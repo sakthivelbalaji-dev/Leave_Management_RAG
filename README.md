@@ -1,136 +1,207 @@
 🤖 Leave Management AI
 
-An AI-powered Leave Management System that combines FastAPI, Streamlit, PostgreSQL/SQLAlchemy, RAG, Qwen3 embeddings, FAISS, and a Groq-hosted LLM.
+An AI-powered Leave Management System that combines Natural Language Processing, Retrieval-Augmented Generation (RAG), database-backed leave operations, role-based access control, and a Streamlit interface.
 
-The application supports:
+📌 Overview
 
-Natural-language leave applications
+Leave Management AI is an intelligent leave-management platform that allows employees and managers to interact with the system using natural language.
 
-One-day and multi-day leave requests
+Employees can
 
-Leave balance queries
+Ask company-policy questions
 
-Employee leave history
+Check leave balance
 
-Leave status queries
+View leave history
 
-Manager pending-leave queries
+Check leave status
 
-Today's leave queries
+Apply for leave using natural language
 
-Manager approval/rejection
+Cancel leave requests
 
-Company-policy questions using RAG
+Managers can
 
-Grounding/hallucination checking
+View today's leave requests
 
-JWT authentication and role-based access control
+View pending leave requests
 
-Temporary conversational context in the chat UI
+View today's and pending requests
 
-1. Architecture
+Approve leave requests
+
+Reject leave requests
+
+The system uses RAG for company-policy questions and the database as the source of truth for employee and leave information.
+
+✨ Features
+
+👨‍💼 Employee
+
+Natural-language leave application
+
+One-day leave detection
+
+Multi-day leave requests
+
+Leave balance lookup
+
+Leave history
+
+Leave status
+
+Leave cancellation
+
+Company-policy Q&A
+
+👨‍💼 Manager
+
+Today's leave requests
+
+Pending leave requests
+
+Today's + pending requests
+
+Approve leave requests
+
+Reject leave requests
+
+🤖 AI
+
+LLM-based intent understanding
+
+Natural-language information extraction
+
+RAG-based policy retrieval
+
+Qwen3 embeddings
+
+FAISS vector similarity search
+
+Grounded responses
+
+Hallucination checking
+
+Temporary conversation context
+
+Confirmation workflow for leave submission
+
+🔐 Security
+
+JWT authentication
+
+Password hashing
+
+Role-based authorization
+
+Employee/manager access separation
+
+Backend-side permission validation
+
+Environment-variable secrets
+
+🏗️ System Architecture
 
                          ┌──────────────────────┐
                          │      Streamlit       │
-                         │    Web Interface     │
+                         │     Frontend UI      │
                          └──────────┬───────────┘
-                                    │ HTTP
+                                    │
                                     ▼
                          ┌──────────────────────┐
                          │       FastAPI        │
-                         │       REST API       │
+                         │      REST API        │
                          └──────────┬───────────┘
                                     │
-                  ┌─────────────────┼─────────────────┐
-                  │                 │                 │
-                  ▼                 ▼                 ▼
-            Authentication     Leave Management       AI
-              / JWT              / Database         /ai/query
-                                    │                 │
-                                    │                 ▼
-                                    │          ┌───────────────┐
-                                    │          │ Intent LLM    │
-                                    │          └───────┬───────┘
-                                    │                  │
-                                    │          ┌───────┴────────┐
-                                    │          │                │
-                                    │          ▼                ▼
-                                    │       Database           RAG
-                                    │                           │
-                                    │                           ▼
-                                    │                    Qwen3 Embeddings
-                                    │                           │
-                                    │                           ▼
-                                    │                         FAISS
-                                    │                           │
-                                    │                           ▼
-                                    │                     Policy Context
-                                    │                           │
-                                    │                           ▼
-                                    │                    Groq LLM Answer
-                                    │                           │
-                                    │                           ▼
-                                    │                  Hallucination Check
-                                    ▼                           │
-                              PostgreSQL ◄─────────────────────┘
+              ┌─────────────────────┼─────────────────────┐
+              │                     │                     │
+              ▼                     ▼                     ▼
+       Authentication        Leave Management          AI Layer
+              │                     │                     │
+              │                     ▼                     ▼
+              │                 PostgreSQL        Intent Classification
+              │                                           │
+              │                              ┌────────────┴────────────┐
+              │                              │                         │
+              │                              ▼                         ▼
+              │                         Database                    RAG
+              │                                                          │
+              │                                                          ▼
+              │                                                   Qwen3 Embeddings
+              │                                                          │
+              │                                                          ▼
+              │                                                        FAISS
+              │                                                          │
+              │                                                          ▼
+              │                                                   Policy Context
+              │                                                          │
+              │                                                          ▼
+              │                                                       Groq LLM
+              │                                                          │
+              │                                                          ▼
+              │                                               Hallucination Check
+              │
+              └──────────────────────────────────────────────────────────────
 
-2. Main Technologies
+🛠️ Technology Stack
 
-Component
+Layer
 
 Technology
-
-Backend API
-
-FastAPI
 
 Frontend
 
 Streamlit
 
+Backend
+
+FastAPI
+
 Database
 
-PostgreSQL + SQLAlchemy
+PostgreSQL
+
+ORM
+
+SQLAlchemy
 
 Authentication
 
-JWT / HTTP Bearer
-
-Password hashing
-
-bcrypt
-
-LLM
-
-Groq
-
-Embedding model
-
-Qwen3-Embedding-0.6B
-
-Vector search
-
-FAISS
-
-RAG
-
-Custom retrieval pipeline
+JWT
 
 Validation
 
 Pydantic
 
-HTTP client
+LLM
 
-Requests
+Groq
 
-Environment configuration
+LLM Model
+
+openai/gpt-oss-20b
+
+Embeddings
+
+Qwen/Qwen3-Embedding-0.6B
+
+Vector Search
+
+FAISS
+
+RAG
+
+Custom RAG Pipeline
+
+Language
+
+Python
+
+Configuration
 
 python-dotenv
 
-The project requirements include FastAPI, Uvicorn, SQLAlchemy, psycopg2-binary, python-dotenv, Pydantic, JWT/security packages, Groq, sentence-transformers, FAISS, NumPy, Streamlit and Requests.
-
-3. Project Structure
+📂 Project Structure
 
 leave_management_ai_full_code/
 │
@@ -165,71 +236,17 @@ leave_management_ai_full_code/
 │   └── app.py
 │
 ├── requirements.txt
-├── .env
+├── .env.example
 ├── .gitignore
 └── README.md
 
-4. RAG Components
+🧠 AI & RAG Architecture
 
-loader.py
+Intent Classification
 
-Loads policy documents from the knowledge base.
+The system uses an LLM to understand the user's intent from natural language.
 
-chunker.py
-
-Splits policy documents into smaller chunks suitable for embedding and retrieval.
-
-embeddings.py
-
-Loads the Qwen3 embedding model and converts text into vector representations.
-
-vector_store.py
-
-Uses FAISS for similarity search.
-
-retriever.py
-
-Retrieves the most relevant policy chunks.
-
-The current retrieval configuration uses a minimum similarity threshold of approximately 0.25.
-
-context_builder.py
-
-Combines retrieved policy information into the context supplied to the LLM.
-
-prompt_builder.py
-
-Enforces the policy grounding rules.
-
-The assistant is instructed to:
-
-Answer only from supplied policy context.
-
-Never invent company rules.
-
-Never guess missing policy information.
-
-Never invent leave balances or entitlements.
-
-Refuse unsupported policy questions.
-
-hallucination_checker.py
-
-Checks whether the generated answer is grounded in the available information.
-
-llm.py
-
-Connects to the Groq API and sends requests to the configured LLM.
-
-initializer.py
-
-Acts as the main AI pipeline/orchestrator.
-
-It connects intent classification, database operations, RAG retrieval, LLM generation, confirmation workflows and response construction.
-
-5. Natural Language Intent System
-
-The AI supports the following application intents:
+Supported intents include:
 
 leave_policy
 leave_request
@@ -246,90 +263,234 @@ confirm
 deny
 general
 
-The intended design is that the intent model understands the meaning of a user's message rather than requiring the exact wording to exist in a predefined phrase list.
+The classifier is designed to understand the meaning of a user's message rather than requiring the exact sentence to exist in a predefined example list.
 
 For example:
 
-"I have a medical appointment on September 17 and won't be available."
+I have a medical appointment on September 17 and won't be available.
 
-can be interpreted as a leave request even when that exact sentence was never hard-coded.
+can be interpreted as a leave request.
 
-For policy questions, intent classification only determines that the user is asking about policy. The actual answer must come from the retrieved company-policy document.
+🔎 RAG Pipeline
 
-6. Leave Application Examples
+Policy questions follow this pipeline:
 
-One-day leave
+User Question
+      │
+      ▼
+Intent Classification
+      │
+      ▼
+leave_policy
+      │
+      ▼
+Query Embedding
+      │
+      ▼
+Qwen3-Embedding-0.6B
+      │
+      ▼
+FAISS Similarity Search
+      │
+      ▼
+Relevant Policy Chunks
+      │
+      ▼
+Context Builder
+      │
+      ▼
+Grounded Prompt
+      │
+      ▼
+Groq LLM
+      │
+      ▼
+Hallucination Check
+      │
+      ▼
+Final Answer
 
-sick leave 17-09-2026 medical checkup
+The company policy document is treated as the source of truth for policy questions.
 
-Expected interpretation:
+If the required information is not present in the retrieved policy context, the assistant should refuse to invent an answer.
 
-Leave type : Sick Leave
-Start date : 2026-09-17
-End date   : 2026-09-17
-Reason     : medical checkup
+🛡️ Hallucination Prevention
 
-The end date should automatically become the same as the start date when the user clearly requests a single-day leave.
+The system uses multiple safeguards.
 
-Multi-day leave
+1. RAG Retrieval
 
-I need casual leave from 17-09-2026 to 19-09-2026 because of personal work
+Only relevant policy chunks are supplied to the LLM.
 
-Expected:
+2. Grounded Prompt
 
-Start date : 2026-09-17
-End date   : 2026-09-19
+The LLM is instructed to answer only from the supplied policy context.
 
-The assistant should ask for missing information only when the user has genuinely not supplied it.
+3. No Unsupported Company Rules
 
-7. Manager AI Operations
+The system must not invent:
 
-Managers can use natural-language requests such as:
+Leave entitlements
 
-Show today's leave requests
+Leave limits
 
-Show pending leave requests
+Eligibility
 
-Show today's and pending leave requests
+Working hours
 
-Approve leave request 15
+Approval rules
 
-Reject leave request 15
+Attendance rules
 
-Manager authorization is enforced by the backend rather than trusting the LLM.
+Company policies
 
-A manager can only act on requests assigned to that manager.
+4. Database Source of Truth
 
-The backend verifies the manager relationship before approval/rejection.
+Employee-specific information comes from the database.
 
-8. API Endpoints
+Leave Balance
+     ↓
+PostgreSQL
 
-Base URL:
+not from the LLM.
 
-http://127.0.0.1:8000
+5. Hallucination Checker
 
-Authentication uses:
+Generated answers are checked for grounding before being returned.
 
-Authorization: Bearer <access_token>
+🗃️ Database Operations
 
-Authentication
+The database is the source of truth for transactional operations.
 
-Register
+Examples:
 
-POST /auth/register
+Leave Balance
+Leave Requests
+Leave Status
+Employee Information
+Manager Relationships
+Leave Types
+
+The AI determines what the user is trying to do.
+
+The backend performs the actual operation.
+
+📝 Leave Application
+
+Users can apply for leave naturally.
+
+One-Day Leave
+
+I need sick leave on 17-09-2026 because I have a medical checkup.
+
+The system extracts:
+
+Leave Type : Sick Leave
+Start Date : 2026-09-17
+End Date   : 2026-09-17
+Reason     : Medical checkup
+
+The end date is automatically set to the start date for a clear single-day request.
+
+Multi-Day Leave
+
+I need casual leave from 17-09-2026 to 19-09-2026 for personal work.
+
+The system extracts:
+
+Leave Type : Casual Leave
+Start Date : 2026-09-17
+End Date   : 2026-09-19
+Reason     : Personal work
+
+✅ Confirmation Workflow
+
+Leave submission uses a confirmation step.
+
+User
+ │
+ ▼
+Leave Request
+ │
+ ▼
+Extract Details
+ │
+ ▼
+Validate
+ │
+ ▼
+Create Draft
+ │
+ ▼
+Ask Confirmation
+ │
+ ├── Yes ──► Submit to Database
+ │
+ └── No ───► Cancel
 
 Example:
 
-{
-  "username": "employee1",
-  "email": "employee1@example.com",
-  "password": "your-password",
-  "role": "employee",
-  "employee_code": "EMP001",
-  "full_name": "Employee One",
-  "department": "Engineering",
-  "manager_id": null
-}
+User:
+I need sick leave on 17-09-2026 for a medical checkup.
+
+Assistant:
+I have prepared your leave request.
+Would you like me to submit it?
+
+User:
+Yes, submit it.
+
+Assistant:
+Leave request submitted successfully.
+
+👨‍💼 Manager Workflow
+
+Managers can interact using natural language.
+
+Today's Leave Requests
+
+Show today's leave requests.
+
+Pending Requests
+
+Show pending leave requests.
+
+Combined Query
+
+Show today's and pending leave requests.
+
+Approve
+
+Approve leave request 15.
+
+Reject
+
+Reject leave request 15.
+
+Authorization is enforced by the backend.
+
+The LLM cannot bypass manager permissions.
+
+🔐 Authentication
+
+The application uses JWT authentication.
+
+Username + Password
+        │
+        ▼
+Authentication
+        │
+        ▼
+JWT Access Token
+        │
+        ▼
+Authorization: Bearer <token>
+        │
+        ▼
+Authenticated User
+        │
+        ▼
+Role Validation
 
 Supported roles:
 
@@ -337,32 +498,51 @@ employee
 manager
 admin
 
+🔌 API Endpoints
+
+Base URL:
+
+http://127.0.0.1:8000
+
+Authentication
+
+Method
+
+Endpoint
+
+Description
+
+POST
+
+/auth/register
+
+Register user
+
+POST
+
+/auth/login
+
 Login
 
-POST /auth/login
+GET
 
-Example:
+/auth/me
 
-{
-  "username": "employee1",
-  "password": "your-password"
-}
+Current authenticated user
 
-Returns an access token.
+AI
 
-Current user
+Method
 
-GET /auth/me
+Endpoint
 
-Requires authentication.
+Description
 
-9. AI Endpoint
+POST
+
+/ai/query
 
 Natural-language AI query
-
-POST /ai/query
-
-Requires authentication.
 
 Example:
 
@@ -371,217 +551,241 @@ Example:
   "top_k": 5
 }
 
-Example leave request:
+Leave request example:
 
 {
   "question": "I need sick leave on 17-09-2026 for a medical checkup",
   "top_k": 5
 }
 
-The authenticated user is passed to the AI pipeline so database operations are performed for the correct user.
+Leave Requests
 
-The AI endpoint returns information such as:
+Method
 
-{
-  "query": "...",
-  "intent": "leave_request",
-  "answer": "...",
-  "hallucination_score": 0.0,
-  "grounded": true,
-  "sources": [],
-  "request_id": null,
-  "requires_confirmation": true,
-  "draft": {}
-}
+Endpoint
 
-10. Leave Request Endpoints
+Description
 
-Submit leave
+POST
 
-POST /leave-requests
+/leave-requests
 
-My leave requests
+Create leave request
 
-GET /leave-requests/me
+GET
+
+/leave-requests/me
+
+Current user's leaves
+
+GET
+
+/leave-requests/pending
 
 Pending requests
 
-GET /leave-requests/pending
+GET
 
-Manager/Admin access.
+/leave-requests/{id}
 
-Get a specific request
+Get leave request
 
-GET /leave-requests/{request_id}
+POST
 
-Approve
+/leave-requests/{id}/approve
 
-POST /leave-requests/{request_id}/approve
+Approve request
 
-Manager/Admin access.
+POST
 
-Optional body:
+/leave-requests/{id}/reject
 
-{
-  "comment": "Approved."
-}
+Reject request
 
-Reject
+Leave Balances
 
-POST /leave-requests/{request_id}/reject
+Method
 
-Manager/Admin access.
+Endpoint
 
-Optional body:
+Description
 
-{
-  "comment": "Not approved due to project requirements."
-}
+GET
 
-11. Leave Balance Endpoints
+/leave-balances/me
 
-My balances
+Current user's balances
 
-GET /leave-balances/me
+GET
 
-Employee balances
+/leave-balances/employee/{id}
 
-GET /leave-balances/employee/{employee_id}
+Employee balance
 
-Manager/Admin access.
+POST
+
+/leave-balances
 
 Create balance
 
-POST /leave-balances
+PUT
 
-Admin access.
+/leave-balances/{id}
 
 Update balance
 
-PUT /leave-balances/{balance_id}
+Leave Types
 
-Admin access.
+Method
 
-12. Leave Type Endpoints
+Endpoint
+
+Description
+
+GET
+
+/leave-types
 
 List leave types
 
-GET /leave-types
+GET
+
+/leave-types/{id}
 
 Get leave type
 
-GET /leave-types/{leave_type_id}
+POST
+
+/leave-types
 
 Create leave type
 
-POST /leave-types
+PUT
 
-Admin access.
+/leave-types/{id}
 
 Update leave type
 
-PUT /leave-types/{leave_type_id}
+DELETE
 
-Admin access.
+/leave-types/{id}
 
 Deactivate leave type
 
-DELETE /leave-types/{leave_type_id}
+Dashboard
 
-Admin access.
+Method
 
-13. Dashboard Endpoints
+Endpoint
 
-Current user's dashboard
+Description
 
-GET /dashboard/me
+GET
 
-The response depends on the authenticated role.
+/dashboard/me
+
+User dashboard
+
+GET
+
+/dashboard/manager
 
 Manager dashboard
 
-GET /dashboard/manager
+GET
 
-Manager/Admin access.
+/dashboard/admin
 
 Admin dashboard
 
-GET /dashboard/admin
+Users
 
-Admin access.
+Method
 
-14. User/Admin Endpoints
+Endpoint
+
+Description
+
+GET
+
+/users/me/profile
 
 Current profile
 
-GET /users/me/profile
+GET
+
+/users
 
 List users
 
-GET /users
+PATCH
 
-Admin only.
+/users/{id}/role
 
 Change user role
 
-PATCH /users/{user_id}/role
+PATCH
 
-Admin only.
-
-Example:
-
-role=manager
+/users/{id}/status
 
 Change user status
 
-PATCH /users/{user_id}/status
+🚀 Installation
 
-Admin only.
+1. Clone Repository
 
-15. Running the Project
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd leave_management_ai_full_code
 
-Open PowerShell in the project root:
+2. Create Virtual Environment
 
-cd B:\leave_management_ai_full_code
-
-Activate the virtual environment:
-
-.\.venv\Scripts\Activate.ps1
-
-If the virtual environment does not exist:
+Windows
 
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 
-Install dependencies:
+Linux/macOS
 
-python -m pip install -r requirements.txt
+python3 -m venv .venv
+source .venv/bin/activate
 
-16. Environment Configuration
+3. Install Dependencies
 
-Create:
+pip install -r requirements.txt
 
-.env
+⚙️ Environment Variables
 
-The application requires database, authentication and Groq configuration.
+Create a .env file in the project root.
 
-Typical configuration:
+Example:
 
 DATABASE_URL=postgresql://USERNAME:PASSWORD@HOST:5432/DATABASE_NAME
 
-SECRET_KEY=CHANGE_THIS_TO_A_LONG_RANDOM_SECRET
+SECRET_KEY=YOUR_SECRET_KEY
 
 ACCESS_TOKEN_EXPIRE_MINUTES=1440
 
 GROQ_API_KEY=YOUR_GROQ_API_KEY
+
 GROQ_BASE_URL=https://api.groq.com
+
 GROQ_MODEL=openai/gpt-oss-20b
 
-Do not commit .env to GitHub.
+⚠️ Never commit .env
 
-Use .env.example for sharing configuration structure without secrets.
+Use .env.example to share the required configuration structure.
 
-17. Start FastAPI Backend
+🗄️ Database Setup
+
+Make sure PostgreSQL is running.
+
+Create your database and configure:
+
+DATABASE_URL=...
+
+The application uses SQLAlchemy to connect to PostgreSQL.
+
+▶️ Running the Backend
 
 From the project root:
 
@@ -591,7 +795,7 @@ Backend:
 
 http://127.0.0.1:8000
 
-FastAPI Swagger documentation:
+Swagger:
 
 http://127.0.0.1:8000/docs
 
@@ -599,40 +803,28 @@ ReDoc:
 
 http://127.0.0.1:8000/redoc
 
-18. Start Streamlit Frontend
+🖥️ Running Streamlit
 
-Open a second PowerShell terminal.
+Open a second terminal:
 
-Activate the environment:
-
-cd B:\leave_management_ai_full_code
 .\.venv\Scripts\Activate.ps1
-
-Run:
-
 streamlit run streamlit/app.py
 
-The Streamlit interface normally opens at:
+Frontend:
 
 http://localhost:8501
 
-The frontend uses:
-
-http://127.0.0.1:8000
-
-as the default FastAPI URL.
-
-19. Recommended Startup Order
+▶️ Complete Startup
 
 Terminal 1 — Backend
 
-cd B:\leave_management_ai_full_code
+cd leave_management_ai_full_code
 .\.venv\Scripts\Activate.ps1
 uvicorn leave_management.app.main:app --reload
 
 Terminal 2 — Frontend
 
-cd B:\leave_management_ai_full_code
+cd leave_management_ai_full_code
 .\.venv\Scripts\Activate.ps1
 streamlit run streamlit/app.py
 
@@ -640,260 +832,108 @@ Then open:
 
 http://localhost:8501
 
-20. Demo Credentials
+🧪 Demo Credentials
 
-The source project does not contain a verified hard-coded demo username/password seed.
+For security, real passwords should never be committed to a public GitHub repository.
 
-Therefore, do not assume credentials such as:
+Create demo accounts locally through the registration endpoint or registration UI.
 
-manager / manager123
-employee / employee123
+Example Employee
 
-unless they have actually been created in the database.
+Username: demo_employee
+Password: DemoPassword123!
+Role: employee
 
-Create a demo employee
+Example Manager
 
-Use the Streamlit Register tab or:
+Username: demo_manager
+Password: DemoPassword123!
+Role: manager
 
-POST /auth/register
+These are example credentials for creating local demo accounts. They are not hard-coded production credentials.
 
-with:
+🧪 Demo Queries
 
-{
-  "username": "demo_employee",
-  "email": "demo_employee@example.com",
-  "password": "DemoPassword123!",
-  "role": "employee",
-  "employee_code": "DEMO001",
-  "full_name": "Demo Employee",
-  "department": "Engineering"
-}
-
-Create a demo manager
-
-Create a manager account:
-
-{
-  "username": "demo_manager",
-  "email": "demo_manager@example.com",
-  "password": "DemoPassword123!",
-  "role": "manager",
-  "employee_code": "MGR001",
-  "full_name": "Demo Manager",
-  "department": "Engineering"
-}
-
-Then associate employees with the manager using the appropriate manager_id.
-
-Important: These are example credentials to create a demo account; they are not credentials that were found pre-seeded in the project database.
-
-21. Demo Flow
-
-Employee demo
-
-Login as an employee.
-
-Ask:
+Employee
 
 What are the working hours?
-
-Expected policy information:
-
-Monday to Friday
-9:00 AM to 6:00 PM
-Lunch: 1:00 PM to 2:00 PM
-Expected working time: 8 hours
-
-Ask:
 
 What is my leave balance?
 
-The answer comes from the database.
+Show my leave history.
 
-Ask:
-
-About my leave
-
-The answer comes from the employee's database records.
-
-Apply leave:
+What is the status of my leave?
 
 I need sick leave on 17-09-2026 because I have a medical checkup.
 
-The system should create a draft with:
-
-Leave type: Sick Leave
-Start: 2026-09-17
-End: 2026-09-17
-Reason: medical checkup
-
-The system should request confirmation before submitting the leave.
-
-Then:
-
 Yes, submit this leave request.
 
-The leave is submitted to the database.
+Manager
 
-22. Manager Demo
-
-Login as a manager.
-
-Ask:
-
-Show me today's leave requests.
-
-Ask:
+Show today's leave requests.
 
 Show pending leave requests.
 
-Ask:
-
 Show today's and pending leave requests.
-
-Approve:
 
 Approve leave request 15.
 
-Reject:
-
 Reject leave request 15.
 
-The backend verifies manager permissions and assignment before changing a leave request.
+📖 Example Policy Query
 
-23. RAG Demo
-
-Ask:
+User
 
 What are the working hours?
 
-The system:
+Example grounded response
 
-Question
-   ↓
-Intent classification
-   ↓
-leave_policy
-   ↓
-Qwen embedding
-   ↓
-FAISS similarity search
-   ↓
-Relevant policy chunks
-   ↓
-Context builder
-   ↓
-Grounded LLM prompt
-   ↓
-LLM answer
-   ↓
-Hallucination check
+Standard working days are Monday to Friday.
+Office hours are 9:00 AM to 6:00 PM.
+Lunch break is from 1:00 PM to 2:00 PM.
+Expected working time is 8 hours per working day.
 
-For unsupported information:
+If information is not available in the policy document, the system should not invent an answer.
 
-What is the company policy for something that isn't documented?
+📊 AI API Response
 
-The assistant should refuse instead of inventing a policy.
+The AI API returns structured information such as:
 
-24. Security Model
+{
+  "query": "What are the working hours?",
+  "intent": "leave_policy",
+  "answer": "...",
+  "hallucination_score": 0.0,
+  "grounded": true,
+  "sources": [],
+  "request_id": null,
+  "requires_confirmation": false,
+  "draft": {}
+}
 
-The application uses JWT authentication.
+🔒 Security Notes
 
-After login:
+Before deploying:
 
-username + password
-        ↓
-authenticate
-        ↓
-JWT access token
-        ↓
-Authorization: Bearer <token>
-        ↓
-get_current_user()
-        ↓
-database user
-        ↓
-role verification
+Replace the development SECRET_KEY
 
-Roles:
+Use a production PostgreSQL database
 
-employee
-manager
-admin
+Never commit .env
 
-Manager/admin permissions are enforced server-side.
+Never expose GROQ_API_KEY
 
-The AI model is not trusted with authorization.
+Use HTTPS in production
 
-25. Hallucination Prevention
+Use strong passwords
 
-The application uses multiple layers of protection.
+Restrict CORS appropriately
 
-Layer 1 — Retrieval
+Validate all API input
 
-Policy answers are based on retrieved documents.
+Keep authorization checks server-side
 
-Layer 2 — Prompt restrictions
-
-The prompt explicitly instructs the LLM not to invent company policy.
-
-Layer 3 — Grounding check
-
-The generated response is checked for grounding.
-
-Layer 4 — Database source of truth
-
-Personal leave balances, leave history and leave status come from the database rather than the LLM.
-
-This separation is important:
-
-Company policy
-      ↓
-     RAG
-      ↓
-Policy answer
-
-Personal leave data
-      ↓
-    Database
-      ↓
-Database answer
-
-User intent
-      ↓
-Intent model
-      ↓
-Structured action
-
-26. Important Design Principle
-
-The LLM should understand the user's natural language, but it should not become the source of truth.
-
-For example:
-
-User:
-How many sick leaves do I have left?
-
-The model identifies:
-
-leave_balance
-
-But the actual balance must be obtained from the database.
-
-Similarly:
-
-User:
-What are the working hours?
-
-The model identifies:
-
-leave_policy
-
-RAG retrieves the policy document and supplies the answer.
-
-The LLM should not invent the working hours.
-
-27. Git / GitHub
+🧹 Git Configuration
 
 Recommended .gitignore:
 
@@ -902,12 +942,12 @@ __pycache__/
 *.py[cod]
 *.pyo
 
-# Virtual environment
+# Virtual environments
 .venv/
 venv/
 env/
 
-# Environment secrets
+# Environment files
 .env
 .env.*
 !.env.example
@@ -931,281 +971,61 @@ Thumbs.db
 # Generated files
 *.pyc
 
-Before pushing:
+📌 Important Design Principle
 
-git status
-git add .
-git commit -m "Complete Leave Management AI"
-git push
+The LLM is not the source of truth.
 
-Never commit:
+                USER
+                  │
+                  ▼
+             LLM / Intent
+                  │
+          Understand intent
+                  │
+        ┌─────────┴─────────┐
+        │                   │
+        ▼                   ▼
+     DATABASE              RAG
+        │                   │
+        │                   ▼
+        │             Policy Documents
+        │                   │
+        ▼                   ▼
+ Personal Data        Company Policy
+        │                   │
+        └─────────┬─────────┘
+                  ▼
+             Final Answer
 
-.env
-GROQ_API_KEY
-DATABASE_URL containing a password
-SECRET_KEY
+The system uses:
 
-28. Troubleshooting
+Database → personal and transactional truth
 
-Backend does not start
+Policy documents → company-policy truth
 
-Check:
+LLM → language understanding and response generation
 
-python --version
+This separation reduces hallucination and prevents the model from inventing database or company-policy information.
 
-Check packages:
 
-pip list
+Leave Management AI Project
 
-Reinstall:
+Built using:
 
-pip install -r requirements.txt
+Python
 
-Database error
+FastAPI
 
-Verify:
+Streamlit
 
-DATABASE_URL=...
+PostgreSQL
 
-The database configuration is required before SQLAlchemy creates the engine.
+SQLAlchemy
 
-Groq error
+Qwen3 Embeddings
 
-Verify:
+FAISS
 
-GROQ_API_KEY=...
+Groq
 
-The application requires a valid Groq API key for LLM operations.
-
-RAG says no documents found
-
-Verify:
-
-knowledge_base/
-└── leave_policy.txt
-
-The retriever expects policy documents in the knowledge base.
-
-Streamlit cannot connect
-
-Make sure FastAPI is running first:
-
-uvicorn leave_management.app.main:app --reload
-
-Then run:
-
-streamlit run streamlit/app.py
-
-29. API Quick Reference
-
-Method
-
-Endpoint
-
-Access
-
-POST
-
-/auth/register
-
-Public
-
-POST
-
-/auth/login
-
-Public
-
-GET
-
-/auth/me
-
-Authenticated
-
-POST
-
-/ai/query
-
-Authenticated
-
-GET
-
-/dashboard/me
-
-Authenticated
-
-GET
-
-/dashboard/manager
-
-Manager/Admin
-
-GET
-
-/dashboard/admin
-
-Admin
-
-GET
-
-/users/me/profile
-
-Authenticated
-
-GET
-
-/users
-
-Admin
-
-PATCH
-
-/users/{user_id}/role
-
-Admin
-
-PATCH
-
-/users/{user_id}/status
-
-Admin
-
-GET
-
-/leave-types
-
-Authenticated
-
-GET
-
-/leave-types/{id}
-
-Authenticated
-
-POST
-
-/leave-types
-
-Admin
-
-PUT
-
-/leave-types/{id}
-
-Admin
-
-DELETE
-
-/leave-types/{id}
-
-Admin
-
-GET
-
-/leave-balances/me
-
-Authenticated
-
-GET
-
-/leave-balances/employee/{id}
-
-Manager/Admin
-
-POST
-
-/leave-balances
-
-Admin
-
-PUT
-
-/leave-balances/{id}
-
-Admin
-
-POST
-
-/leave-requests
-
-Employee/Manager/Admin
-
-GET
-
-/leave-requests/me
-
-Authenticated
-
-GET
-
-/leave-requests/pending
-
-Manager/Admin
-
-GET
-
-/leave-requests/{id}
-
-Authenticated
-
-POST
-
-/leave-requests/{id}/approve
-
-Manager/Admin
-
-POST
-
-/leave-requests/{id}/reject
-
-Manager/Admin
-
-30. Quick Start
-
-cd B:\leave_management_ai_full_code
-
-.\.venv\Scripts\Activate.ps1
-
-pip install -r requirements.txt
-
-Configure .env.
-
-Start backend:
-
-uvicorn leave_management.app.main:app --reload
-
-Open another terminal and start frontend:
-
-cd B:\leave_management_ai_full_code
-.\.venv\Scripts\Activate.ps1
-streamlit run streamlit/app.py
-
-Open:
-
-http://localhost:8501
-
-API documentation:
-
-http://127.0.0.1:8000/docs
-
-31. Project Goal
-
-The goal of the project is to provide a secure, natural-language Leave Management System where:
-
-Users speak naturally
-        ↓
-AI understands intent
-        ↓
-Database handles personal leave operations
-        ↓
-RAG handles company-policy knowledge
-        ↓
-LLM generates grounded responses
-        ↓
-Hallucination checking validates the response
-        ↓
-FastAPI returns structured results
-        ↓
-Streamlit provides the user interface
-
-The system therefore combines LLM reasoning, RAG retrieval, vector search, database-backed operations, authentication, authorization and a conversational interface without making the LLM itself the source of truth for company or employee data.
+RAG
