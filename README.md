@@ -937,18 +937,6 @@ This separation reduces hallucination and prevents the model from inventing data
 
 ---
 
-# 📜 License
-
-Add your preferred license here.
-
-Example:
-
-```text
-MIT License
-```
-
----
-
 # 👨‍💻 Author
 
 **Leave Management AI Project**
