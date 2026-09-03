@@ -1,0 +1,475 @@
+============================================================
+KNACKFORGE
+EMPLOYEE LEAVE, ATTENDANCE AND WORKPLACE POLICY
+============================================================
+
+Document Type:
+Employee Leave and Workplace Policy
+
+Company:
+KnackForge
+
+Policy Version:
+1.0
+
+Effective Date:
+01 September 2026
+
+Policy Owner:
+Human Resources Department
+
+Applicable To:
+All employees unless a specific employment agreement states otherwise.
+
+============================================================
+1. PURPOSE
+============================================================
+
+This policy defines the rules and procedures for employee working hours,
+attendance, leave entitlement, leave application, leave approval,
+attendance correction, work from home, employee complaints, grievances,
+escalation and workplace responsibilities.
+
+============================================================
+2. SCOPE
+============================================================
+
+This policy applies to employees working at KnackForge, including:
+
+- Full-time employees
+- Part-time employees
+- Probationary employees
+- Contract employees
+- Interns
+- Other employees where applicable
+
+Specific benefits or leave provisions may differ according to employment
+category, employment agreement or applicable law.
+
+============================================================
+3. STANDARD WORKING HOURS
+============================================================
+
+Standard Working Days:
+
+Monday to Friday
+
+Standard Office Start Time:
+
+9:00 AM
+
+Standard Office End Time:
+
+6:00 PM
+
+Standard Lunch Break:
+
+1:00 PM to 2:00 PM
+
+Expected Working Hours:
+
+8 working hours per standard working day.
+
+Employees are expected to be available and actively working during their
+scheduled working hours.
+
+Employees assigned to a different shift must follow the working hours
+approved for their department, project or employment agreement.
+
+============================================================
+4. OFFICE ATTENDANCE
+============================================================
+
+Employees are expected to maintain regular and punctual attendance.
+
+Employees must:
+
+- Report to work according to their assigned schedule.
+- Complete the required working hours.
+- Follow the company's attendance recording procedure.
+- Inform their manager if they cannot attend work.
+- Apply for appropriate leave when they are absent.
+- Inform their manager about unexpected delays or absence.
+- Maintain accurate attendance records.
+
+Employees must not intentionally record attendance for another employee.
+
+Attendance records must represent the employee's actual attendance.
+
+============================================================
+5. ATTENDANCE RECORDING
+============================================================
+
+Employees are responsible for recording their attendance using the
+attendance system provided by the company.
+
+Employees should verify that their attendance has been recorded correctly.
+
+If attendance is missing or incorrect, the employee should contact their
+manager or Human Resources as soon as possible.
+
+============================================================
+6. LATE ARRIVAL
+============================================================
+
+Employees are expected to arrive and begin work at their scheduled start
+time.
+
+Standard office start time is 9:00 AM.
+
+If an employee expects to arrive late, the employee should inform their
+manager as soon as reasonably possible.
+
+Repeated late arrival may require discussion with the employee's manager
+and Human Resources.
+
+Late arrival should not be treated as approved leave unless the appropriate
+leave or attendance adjustment has been approved.
+
+============================================================
+7. EARLY DEPARTURE
+============================================================
+
+Employees should not leave work before completing their scheduled working
+hours without approval or authorization.
+
+If an employee needs to leave early, they should:
+
+1. Inform the manager.
+2. Obtain approval where required.
+3. Apply for the appropriate leave or attendance adjustment.
+
+============================================================
+8. BREAK POLICY
+============================================================
+
+Employees are entitled to the standard lunch break from:
+
+1:00 PM to 2:00 PM.
+
+Employees may take reasonable short breaks during the working day
+according to team and workplace requirements.
+
+Breaks must not interfere with:
+
+- Customer commitments
+- Meetings
+- Project deadlines
+- Team responsibilities
+- Required working hours
+
+============================================================
+9. WORK FROM HOME
+============================================================
+
+Work from home is permitted only when approved by the appropriate manager
+or when specifically allowed under company policy.
+
+Employees working remotely must:
+
+- Be available during scheduled working hours.
+- Attend required meetings.
+- Complete assigned work.
+- Maintain communication with their team.
+- Follow attendance requirements.
+- Protect company information and equipment.
+
+Working from home without required approval does not automatically
+constitute approved leave or authorized remote work.
+
+============================================================
+10. GENERAL LEAVE POLICY
+============================================================
+
+Employees may request leave when they need time away from work.
+
+Leave must normally be requested through the company's Leave Management
+System.
+
+============================================================
+11. LEAVE TYPES
+============================================================
+
+The Leave Management System may contain the following leave categories:
+
+- Casual Leave
+- Sick Leave
+- Earned Leave
+- Annual Leave
+- Emergency Leave
+- Maternity Leave
+- Paternity Leave
+- Bereavement Leave
+- Compensatory Leave
+- Other approved leave categories
+
+The exact leave types available to an employee are determined by the
+active leave types configured in the Leave Management System and applicable
+company rules.
+
+============================================================
+12. LEAVE ELIGIBILITY
+============================================================
+
+Leave eligibility may depend on:
+
+- Employee status
+- Employment category
+- Applicable leave type
+- Company policy
+- Employment agreement
+- Available leave balance
+
+Employees should check their current leave balance before applying.
+
+If the required leave type is unavailable or the balance is insufficient,
+the employee should contact Human Resources.
+
+============================================================
+13. LEAVE BALANCE
+============================================================
+
+The Leave Management System maintains employee leave balances.
+
+Available Leave is calculated as:
+
+Available Days = Allocated Days - Used Days
+
+An employee cannot normally submit a leave request when the available
+balance is insufficient for the requested duration.
+
+============================================================
+14. HOW TO APPLY FOR LEAVE
+============================================================
+
+Employees must use the Leave Management System to apply for leave.
+
+General procedure:
+
+1. Log in to the Leave Management System.
+2. Open the Leave Request section.
+3. Select the required leave type.
+4. Select the start date.
+5. Select the end date.
+6. Enter the reason for leave.
+7. Review the requested dates.
+8. Verify that sufficient leave balance is available.
+9. Submit the leave request.
+10. Wait for the manager or authorized reviewer to approve or reject
+    the request.
+
+A submitted request has a status of:
+
+Pending
+
+until it is reviewed.
+
+============================================================
+15. LEAVE REQUEST STATUS
+============================================================
+
+A leave request may have one of the following statuses:
+
+Pending:
+The request has been submitted and is waiting for review.
+
+Approved:
+The authorized manager or reviewer has approved the request.
+
+Rejected:
+The authorized manager or reviewer has rejected the request.
+
+Employees should check the Leave Management System for the current status
+of their requests.
+
+============================================================
+16. LEAVE APPROVAL PROCESS
+============================================================
+
+Leave requests are reviewed by the employee's assigned manager or another
+authorized reviewer.
+
+Normal process:
+
+Employee
+    |
+    v
+Submit Leave Request
+    |
+    v
+Pending
+    |
+    v
+Manager Review
+    |
+    +-------------------+
+    |                   |
+    v                   v
+Approved            Rejected
+
+The manager may provide a comment when approving or rejecting the request.
+
+============================================================
+17. MANAGER RESPONSIBILITIES
+============================================================
+
+Managers are responsible for:
+
+- Reviewing employee leave requests.
+- Checking team availability.
+- Considering project requirements.
+- Approving valid leave requests.
+- Rejecting requests when appropriate.
+- Providing comments when necessary.
+- Ensuring leave decisions are handled consistently.
+- Monitoring employee attendance and leave patterns.
+
+============================================================
+18. MATERNITY LEAVE
+============================================================
+
+Maternity leave may be available according to company policy and applicable
+employment rules.
+
+Employees requiring maternity leave should contact Human Resources for
+eligibility, documentation and duration requirements.
+
+Where configured, the employee should submit the leave request through the
+Leave Management System.
+
+============================================================
+19. PATERNITY LEAVE
+============================================================
+
+Paternity leave may be available according to company policy and applicable
+employment rules.
+
+Employees requiring paternity leave should contact Human Resources for
+eligibility, documentation and duration requirements.
+
+Where configured, the employee should submit the leave request through the
+Leave Management System.
+
+============================================================
+20. BEREAVEMENT OR COMPASSIONATE LEAVE
+============================================================
+
+Employees may request bereavement or compassionate leave in the event of a
+qualifying family or personal circumstance.
+
+Eligibility and duration are determined according to applicable company
+policy.
+
+Employees should contact Human Resources when such leave is required.
+
+============================================================
+21. LEAVE CANCELLATION
+============================================================
+
+Employees who no longer require approved leave should inform their manager
+as soon as possible.
+
+If the Leave Management System provides a cancellation option, the employee
+should use that option.
+
+If cancellation is not available through the system, the employee should
+contact the manager or Human Resources.
+
+Cancellation of approved leave may require manager approval.
+
+============================================================
+22. LEAVE MODIFICATION
+============================================================
+
+If an employee needs to change the dates of an existing leave request, the
+employee should contact the manager or follow the available modification
+process in the Leave Management System.
+
+A modified leave request may require a new approval.
+
+============================================================
+23. RETURN FROM LEAVE
+============================================================
+
+Employees are expected to return to work on the approved return date.
+
+If an employee needs to extend the leave period, the employee should
+contact the manager as soon as possible.
+
+Additional leave is subject to availability, eligibility and approval.
+
+============================================================
+24. UNAPPROVED ABSENCE
+============================================================
+
+An absence without required notification or approval may be considered an
+unapproved absence.
+
+Employees should inform their manager when they cannot attend work.
+
+Repeated unapproved absence may result in review by management and Human
+Resources.
+
+============================================================
+25. WORKPLACE RESPONSIBILITIES
+============================================================
+
+Employees are expected to:
+
+- Follow approved working hours.
+- Maintain accurate attendance.
+- Apply for leave through the Leave Management System.
+- Provide truthful information in leave requests.
+- Inform managers about unexpected absence.
+- Follow approval requirements.
+
+============================================================
+26. HR SUPPORT
+============================================================
+
+Employees should contact the Human Resources Department when they need
+clarification about eligibility, documentation, employment-specific rules,
+or a policy provision that is not clearly covered in this document.
+
+============================================================
+27. POLICY SOURCE OF TRUTH
+============================================================
+
+This document is the source of truth for policy questions in the Leave
+Management AI knowledge base.
+
+The AI assistant must not invent company policy values that are not stated
+in this document.
+
+============================================================
+28. FREQUENTLY ASKED QUESTIONS
+============================================================
+
+Q: What are the company working hours?
+
+A: Standard working days are Monday to Friday. Standard office hours are
+9:00 AM to 6:00 PM, with a standard lunch break from 1:00 PM to 2:00 PM.
+Expected working time is 8 hours per standard working day.
+
+Q: How do I apply for leave?
+
+A: Use the Leave Management System, select the leave type, select the start
+and end dates, enter the reason, review the request, verify sufficient
+balance, and submit it for manager or authorized-reviewer approval.
+
+Q: What happens after I submit leave?
+
+A: The request is Pending until it is reviewed.
+
+Q: Can I work from home without approval?
+
+A: No. Work from home is permitted only when approved by the appropriate
+manager or when specifically allowed by company policy.
+
+Q: What should I do if I will be late?
+
+A: Inform your manager as soon as reasonably possible.
+
+============================================================
+END OF POLICY
+============================================================
