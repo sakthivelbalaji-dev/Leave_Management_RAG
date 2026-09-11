@@ -62,6 +62,17 @@ The system uses **RAG for company-policy questions** and the **database as the s
 - Temporary conversation context
 - Confirmation workflow for leave submission
 
+### 📊 Evaluation Tools
+
+The repository also contains separate evaluation interfaces. These tools do
+not initialize the FastAPI application or the existing Streamlit application.
+
+- `streamlit/single_rag_analysis.py`: evaluates one RAG pipeline using
+  `BAAI/bge-small-en-v1.5` and Groq `openai/gpt-oss-20b`.
+- `streamlit/groq_evaluation.py`: compares Model A (Groq
+  `openai/gpt-oss-20b`) with Model B (Qwen `qwen/qwen3.6-27b`) using shared
+  BGE-retrieved context.
+
 ### 🔐 Security
 
 - JWT authentication
@@ -132,7 +143,8 @@ The system uses **RAG for company-policy questions** and the **database as the s
 | Validation | Pydantic |
 | LLM | Groq |
 | LLM Model | `openai/gpt-oss-20b` |
-| Embeddings | `Qwen/Qwen3-Embedding-0.6B` |
+| Legacy application embeddings | `Qwen/Qwen3-Embedding-0.6B` |
+| Standalone evaluation embeddings | `BAAI/bge-small-en-v1.5` (384 dimensions, CPU) |
 | Vector Search | FAISS |
 | RAG | Custom RAG Pipeline |
 | Language | Python |
@@ -160,6 +172,8 @@ leave_management_ai_full_code/
 │   ├── prompt_builder.py
 │   ├── retriever.py
 │   ├── vector_store.py
+│   ├── groq_evaluator.py
+│   └── single_rag_evaluator.py
 │   └── __init__.py
 │
 ├── leave_management/
@@ -173,7 +187,10 @@ leave_management_ai_full_code/
 │       └── main.py
 │
 ├── streamlit/
-│   └── app.py
+│   ├── app.py
+│   ├── groq_evaluation.py
+│   ├── groq_evaluation_simple.py
+│   └── single_rag_analysis.py
 │
 ├── requirements.txt
 ├── .env.example
@@ -221,6 +238,9 @@ can be interpreted as a leave request.
 ---
 
 # 🔎 RAG Pipeline
+
+> The pipeline below describes the original leave-management application. The
+> standalone evaluator is documented separately in [Standalone Evaluation](#standalone-evaluation).
 
 Policy questions follow this pipeline:
 
@@ -306,6 +326,153 @@ not from the LLM.
 ### 5. Hallucination Checker
 
 Generated answers are checked for grounding before being returned.
+
+---
+
+# 📊 Standalone Evaluation
+
+The standalone single-RAG evaluator uses only:
+
+```text
+evaluation_dataset.json
+knowledge_base/leave_policy.txt
+BAAI/bge-small-en-v1.5
+Groq openai/gpt-oss-20b
+```
+
+Its pipeline is:
+
+```text
+Question
+      -> BGE-small embedding
+      -> normalized cosine retrieval
+      -> top-K policy chunks
+      -> strict Groq prompt
+      -> generated answer
+      -> evaluation metrics
+      -> CSV and Streamlit report
+```
+
+The evaluator uses CPU and loads the embedding model and policy vectors once
+through Streamlit resource caching. It does not import the comparison
+retriever, download Qwen embeddings, start FastAPI, or start Uvicorn.
+
+## Single-RAG command
+
+From the project root on Windows:
+
+```powershell
+cd B:\leave_management_ai_full_code
+.\.venv\Scripts\Activate.ps1
+streamlit run streamlit\single_rag_analysis.py --server.fileWatcherType none
+```
+
+The report provides a single-question test, sequential full-dataset
+evaluation, per-question analysis, failure analysis, CSV download, and
+summary metrics.
+
+## Single-RAG controls
+
+The sidebar controls are:
+
+- Top-K retrieved chunks
+- Chunk size and overlap
+- Generation temperature
+- Maximum output tokens
+- Grounding-judge enable/disable
+
+The dataset supports `question` and `relevance_terms`, with optional
+`expected_answer`. Missing expected answers are reported as
+`not_available`; no answer is invented as ground truth.
+
+## Single-RAG metrics
+
+Retrieval and similarity metrics include:
+
+- `accuracy_at_k`: 1 when at least one relevant chunk is retrieved, otherwise 0
+- `precision_at_k`: relevant retrieved chunks divided by retrieved chunks
+- `recall_at_k`: matched relevance terms divided by dataset relevance terms
+- `f1_score`: harmonic mean of precision@K and recall@K
+- `mrr`: reciprocal rank of the first relevant retrieved chunk
+- `similarity_score`: top retrieved cosine similarity
+- `average_similarity_score`: mean cosine similarity of retrieved chunks
+- `retrieval_hit`: whether any relevance term appears in retrieved context
+
+Answer, grounding, performance, and context metrics include answer-term
+coverage, optional expected-answer overlap, grounding score, unsupported
+claims, hallucination risk, embedding latency, retrieval latency, generation
+latency, grounding-judge latency, total latency, token usage, context size,
+and retrieved chunk count.
+
+Precision and recall are lexical approximations based on the supplied dataset
+terms. They are not a substitute for human relevance labels or a full
+semantic correctness evaluation.
+
+## CSV outputs
+
+Full-dataset runs write both files below:
+
+```text
+evaluation_results/single_rag_evaluation_latest.csv
+evaluation_results/single_rag_evaluation_YYYYMMDD_HHMMSS.csv
+```
+
+Arrays and retrieved-chunk objects are JSON-serialized inside CSV cells.
+Unavailable token or judge values remain `not_available` rather than being
+averaged as zero.
+
+## Grounding statuses
+
+The grounding display distinguishes:
+
+- `judge_success`: Groq returned valid structured grounding JSON
+- `judge_fallback`: the judge failed or returned invalid JSON; score is null
+- `disabled`: grounding judge was disabled
+- `judge_error`: the question evaluation itself failed
+
+Hallucination risk is calculated only from a valid grounding score:
+
+```text
+hallucination_risk = 1 - grounding_score
+```
+
+## Groq comparison command
+
+The comparison page uses the same BGE model for retrieval and sends the same
+final context to both models:
+
+```powershell
+cd B:\leave_management_ai_full_code
+.\.venv\Scripts\Activate.ps1
+streamlit run streamlit\groq_evaluation_simple.py --server.fileWatcherType none
+```
+
+The model roles are intentionally separate:
+
+```text
+Model A: openai/gpt-oss-20b
+Model B: qwen/qwen3.6-27b
+```
+
+`GROQ_MODEL` must not be used to silently replace Model A with the Qwen model.
+The comparison page defaults Model A explicitly to `openai/gpt-oss-20b`.
+Model B can be configured with `QWEN_MODEL`.
+
+## Evaluation troubleshooting
+
+- **Model download failure:** confirm internet access and that
+      `sentence-transformers` and PyTorch are installed in the active virtual
+      environment. The first BGE run downloads the model.
+- **Missing API key:** add `GROQ_API_KEY` to `.env`. The evaluator records
+      per-question errors and continues the dataset evaluation.
+- **Both comparison columns show Qwen:** restart Streamlit and verify Model A
+      is `openai/gpt-oss-20b`; do not set `GROQ_MODEL` to a Qwen model.
+- **Grounding score unavailable:** inspect `grounding_status`. Invalid judge
+      JSON and API failures are reported as fallback rather than fake scores.
+- **Port already in use:** run Streamlit with another port, for example
+      `--server.port 8502`.
+- **Missing files:** run from the repository root and confirm
+      `evaluation_dataset.json` and `knowledge_base/leave_policy.txt` exist.
 
 ---
 
