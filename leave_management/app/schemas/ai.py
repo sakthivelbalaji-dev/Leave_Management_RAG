@@ -3,12 +3,9 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 
-
 class ChatMessage(BaseModel):
     role: str
     content: str
-
-
 
 
 class AIQueryRequest(BaseModel):
@@ -29,25 +26,17 @@ class AIQueryRequest(BaseModel):
     # Leave draft prepared by the AI
     draft: dict[str, Any] | None = None
 
-
-    #
-    # Streamlit sends the previous messages here.
-    #
+    # Streamlit sends previous messages here.
     # This is NOT stored in the database.
     # It exists only for the current Streamlit session.
-    #
     conversation_history: list[ChatMessage] = Field(
         default_factory=list,
     )
 
 
-
-
 class AISource(BaseModel):
     source: str
     score: float
-
-
 
 
 class AIQueryResponse(BaseModel):
@@ -73,4 +62,17 @@ class AIQueryResponse(BaseModel):
 
     draft: dict[str, Any] = Field(
         default_factory=dict,
+    )
+
+
+class ModelEvaluationRequest(BaseModel):
+    question: str = Field(
+        min_length=1,
+        max_length=2000,
+    )
+
+    top_k: int = Field(
+        default=5,
+        ge=1,
+        le=10,
     )

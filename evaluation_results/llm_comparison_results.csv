@@ -1,0 +1,669 @@
+timestamp,evaluation_id,question,model,embedding_model,temperature,top_k,context_window_tokens,max_output_tokens,retrieved_chunks,used_context_chunks,context_tokens,input_tokens,output_tokens,total_tokens,retrieval_latency_ms,generation_latency_ms,total_latency_ms,quality_score,grounding_score,hallucination_score,hallucination,factual_claims_count,supported_claims_count,unsupported_claims_count,contradiction_count,unsupported_claims,contradictions,generated_answer,evaluation_status,input_cost,output_cost,total_cost,pricing_source,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0.017,83.5,groq_api
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,83.5,groq_api
+2026-09-10T15:36:05,6ff1032d,"what is paternity leave
+explain perfectly from the document",openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,1.0,5,6000,4000,700,5,5,,829,596,1425,77.17,1805.63,6522.55,0.7067,0.7067,0.2933,False,0,0,0,0,[],[],"**Paternity Leave (as defined in the policy)**  
+
+- **Purpose**  
+  Paternity Leave is intended for an **eligible employee** following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period.
+
+- **Typical situations**  
+  - Birth of the employee’s child.  
+  - Qualifying adoption or child‑placement situation if covered by the applicable company rules.  
+  - Immediate family support following childbirth.
+
+- **Entitlement (demonstration only)**  
+  The policy states an entitlement of **up to 15 working days per qualifying event**.  
+  *Important:* This number is “DEMO ONLY” and is not a statement of actual legal entitlement.
+
+- **Examples** (illustrating when paternity leave may be requested)  
+  - “My wife is expecting our baby and I need paternity leave.”  
+  - “My child was born and I want to apply for paternity leave.”  
+  - “I need paternity leave starting 20‑10‑2026 because my baby was born.”  
+
+- **Eligibility**  
+  The policy indicates that the leave is for an **eligible employee** but does not list specific eligibility criteria in the provided excerpt.
+
+In short, paternity leave is a leave provision for employees to support a newborn or adopted child, typically covering up to 15 working days per event (as a demonstration figure) and applying to eligible employees under the conditions listed above.",grounding_evaluation_fallback,6.2e-05,0.000179,0.000241,0.0052,0.0149,0.0201,83.5,groq_api
+2026-09-10T15:36:05,6ff1032d,"what is paternity leave
+explain perfectly from the document",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,1.0,5,6000,4000,700,5,5,,851,700,1551,77.17,1595.29,6522.55,1.0,1.0,0.0,False,6,6,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:** The user asks: ""what is paternity leave explain perfectly from the document"". They want an explanation based *only* on the provided policy context.
+
+2.  **Analyze Policy Context:** I need to extract all information related to ""Paternity Leave"" from the provided chunks.
+   - Chunk 92: Title ""G. PATERNITY LEAVE"". Purpose: ""intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period."" Typical situations: Birth of child, qualifying adoption/child-placement (if covered by rules), immediate family support following childbirth.
+   - Chunk 93: Examples of when to use it. Demonstration entitlement: ""Up to 15 working days per qualifying event."" Important note: ""This number is DEMO ONLY and is not a statement of actual legal entitlement.""
+   - Chunk 95/96/108: AI behavior instructions and examples of matching user requests to Paternity Leave. Reinforces that it's for childbirth/support following childbirth.
+
+3.  **Synthesize Policy Information:**
+   - **Purpose:** To allow an eligible employee time off following the birth or qualifying arrival of a child to support the child and family.
+   - **Qualifying Situations:** 
+     - Birth of the employee's child.
+     - Qualifying adoption or child-placement situations (if covered by applicable company rules).
+     - Immediate family support following childbirth.
+   - **Entitlement (Note: Demo Only):** Up to 15 working days per qualifying event. The policy explicitly states this is a demonstration value and does not represent actual legal entitlement.
+   - **Eligibility/Usage:** For eligible employees, subject to company rules and HR configuration/documentation.
+
+4.  **Draft Response (Mental Refinement):**
+   Based strictly on the provided policy context, Paternity Leave is defined as follows:
+   - **Purpose:** It is intended for an eligible employee following the birth or qualifying arrival of a child, allowing them to support the child and family during the relevant period.
+   - **Typical/Igning Situations:** It applies to the birth of the employee's child, immediate family support following childbirth, or qualifying adoption/child-placement situations (if covered by applicable company rules).
+   - **Entitlement:** The policy notes a demonstration entitlement of up to 15 working days per qualifying event. However, it explicitly states this figure is ""DEMO ONLY"" and is not a statement of actual legal entitlement.
+   - **Eligibility & Process:** It is subject to eligibility requirements and applicable company rules. Employees should contact HR for specific eligibility and documentation questions.
+
+   The response directly answers the question using *only* the provided context, preserves specific rules/terminology, and clearly notes the ""demo only"" disclaimer as stated in the policy.
+
+5.  **Check against Constraints:**
+   - Analyze policy context for relevance? Yes, highly relevant.
+   - Use policy as primary basis? Yes.
+   - Preserve specific rules/values/limitations? Yes, includes the 15 days demo limit and disclaimer.
+   - Distinguish policy vs general knowledge? Not needed, as I'm only using policy. I will explicitly state it",success,0.000247,0.000413,0.00066,0.0206,0.0345,0.0551,83.5,groq_api
+2026-09-10T15:50:50,dd876033,"what is paternity leave
+explain perfectly from the document
+and explain what is maternity leave 
+and what are the company policy and work time
+give me in a neat structured way",openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,1.0,5,6000,4000,700,5,5,,842,700,1542,129.65,1780.73,9771.43,0.0,0.0,1.0,True,0,0,0,0,[],[],,grounding_evaluation_fallback,6.3e-05,0.00021,0.000273,0.0053,0.0175,0.0228,83.5,groq_api
+2026-09-10T15:50:50,dd876033,"what is paternity leave
+explain perfectly from the document
+and explain what is maternity leave 
+and what are the company policy and work time
+give me in a neat structured way",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,1.0,5,6000,4000,700,5,5,,862,700,1562,129.65,1890.69,9771.43,0.4375,0.4375,0.5625,True,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Question:** ""what is paternity leave explain perfectly from the document and explain what is maternity leave and what are the company policy and work time give me in a neat structured way""
+   - **Requirements:** Explain paternity leave, maternity leave, company policy, and work time based *only* on the provided policy context. Structure it neatly.
+
+2.  **Analyze Policy Context:**
+   - *Chunk 92:* Paternity Leave purpose (eligible employee following birth/qualifying arrival of child, support child/family). Typical situations: Birth of child, qualifying adoption/placement, immediate family support post-childbirth.
+   - *Chunk 96:* Mentions ""specified paternity leave"" and AI behavior for clarification. Then starts ""H. BEREAVEMENT / COMPASSIONATE LEAVE"" but cuts off.
+   - *Chunk 108:* Examples mapping requests to categories. Example 4: ""My child was born and I need time off."" -> Paternity Leave, subject to eligibility. Example 5: ""I am pregnant and need leave for childbirth."" -> Maternity Leave, subject to eligibility.
+   - *Chunk 93:* Continues Paternity Leave. Examples given. Demonstration entitlement: Up to 15 working days per qualifying event. Important: DEMO ONLY, not actual legal entitlement. Demonstration eligibility: starts with ""Eligibility"" but cuts off.
+   - *Chunk 90:* Mentions ""pany rules, employment status, applicable law, and HR verification."" Documentation: HR may request supporting docs for maternity-leave request. Application: Submit through Leave Management System, contact HR. AI behavior note about maternity leave days.
+
+   *Missing/Insufficient Info in Context:*
+   - Detailed definition of Maternity Leave (only mentioned in examples and chunk 90 regarding documentation/application).
+   - Company policy details (only fragments about eligibility depending on company rules, employment status, applicable law, HR verification).
+   - Work time (completely absent from the provided chunks).
+
+3.  **Determine Constraints & Requirements:**
+   - Must use *only* the policy context.
+   - Must structure neatly.
+   - Must explain paternity leave and maternity leave based on the text.
+   - Must address company policy and work time if possible, but note if missing.
+   - Explicit instruction: ""Answer using only the policy context.""
+
+4.  **Draft Construction (Mental Refinement):**
+   I will structure the response with clear headings as requested.
+   - **Paternity Leave**: Purpose, Typical Situations, Entitlement (Demo), Examples.
+   - **Maternity Leave**: Mentioned in examples and application/docs sections. Purpose isn't explicitly stated in the chunks, but context implies it's for pregnancy/childbirth. I'll stick strictly to what's written: It's subject to eligibility, requires application via Leave Management System, HR may request supporting documentation, and factors include company rules, employment status, applicable law, and HR verification.
+   - **Company Policy & Work Time**: The provided context does not contain specific information regarding general company policy details or standard work hours/time. I will state this clearly based on the constraint.
+   - I will ensure all details are sourced",grounding_evaluation_fallback,0.00025,0.000413,0.000663,0.0209,0.0345,0.0554,83.5,groq_api
+2026-09-10T16:04:22,fd093dd5,"what is paternity leave
+explain perfectly from the document
+and explain what is maternity leave
+and what are the company policy and work time
+give me in a neat structured way",openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.6,5,6000,4000,700,18,18,,2787,700,3487,226.82,2115.88,49825.62,1.0,1.0,0.0,False,0,0,0,0,[],[],"**1. Paternity Leave**  
+| Item | Details (from policy) |
+|------|-----------------------|
+| **",success,0.000209,0.00021,0.000419,0.0175,0.0175,0.035,83.5,groq_api
+2026-09-10T16:04:22,fd093dd5,"what is paternity leave
+explain perfectly from the document
+and explain what is maternity leave
+and what are the company policy and work time
+give me in a neat structured way",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,0.6,5,6000,4000,700,18,18,,2972,700,3672,226.82,2047.02,49825.62,0.7805,0.7805,0.2195,False,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:**
+   - ""what is paternity leave""
+   - ""explain perfectly from the document""
+   - ""and explain what is maternity leave""
+   - ""and what are the company policy and work time""
+   - ""give me in a neat structured way""
+   - Constraint: ""Answer using only the policy context.""
+
+2.  **Identify Key Topics in Context:**
+   - Paternity Leave (Definition, Purpose, Entitlement, Eligibility, Documentation, Application)
+   - Maternity Leave (Definition, Purpose, Entitlement, Eligibility, Documentation, Application)
+   - Company Policy/Work Time (Standard Working Hours, Days, Start/End times, Lunch, Attendance expectations)
+
+3.  **Extract Relevant Information from Context:**
+   *Paternity Leave:*
+   - Purpose: Intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period. (Ch 65, 66)
+   - Typical situations: Birth of the employee's child, qualifying adoption/child-placement, immediate family support following childbirth. (Ch 66)
+   - Demonstration entitlement: Up to 15 working days per qualifying event. (Ch 66, 67)
+   - Important: DEMO ONLY, not a statement of actual legal entitlement. (Ch 66, 67)
+   - Eligibility: May depend on employee status, applicable company rules, and the qualifying event. (Ch 67)
+   - Documentation: HR may request appropriate supporting documentation confirming the qualifying event. (Ch 67)
+   - Application: Submit through the Leave Management System where configured, contact HR for eligibility/documentation. (Ch 67)
+
+   *Maternity Leave:*
+   - Purpose/Coverage: Covers pregnancy-related circumstances per company rules. Typical situations: Pregnancy-related leave, leave for childbirth, recovery following childbirth, pregnancy-related medical appointments/complications. (Ch 63)
+   - Demonstration entitlement: Up to 26 weeks in this fictional demonstration policy. (Ch 63)
+   - Important: DEMO ONLY, not a statement of actual legal entitlement. (Ch 63, 64)
+   - Eligibility: May be eligible subject to company rules, employment status, applicable law, and HR verification. (Ch 64)
+   - Documentation: HR may request appropriate supporting documentation related to the maternity-leave request. (Ch 64)
+   - Application: Submit through the Leave Management System where possible, contact HR for eligibility and documentation. (Ch 64)
+   - Note on conflict/general rule: Ch 28 says ""Maternity leave may be available according to company policy and applicable employment rules... This policy does not specify an exact maternity leave duration. The AI must not invent a number of maternity leave days."" I need to explain both the general rule (no fixed duration specified) and the later demonstration rule (up to 26 weeks), labeling the latter as DEMONSTRATION/TEST POLICY DATA.
+
+   *Company Policy & Work Time:*
+   - Standard Working Days: Monday to Friday (Ch 4, 5, 44,",grounding_evaluation_fallback,0.000862,0.000413,0.001275,0.072,0.0345,0.1065,83.5,groq_api
+2026-09-10T16:51:00,52990e0f,"what is paternity leave
+explain perfectly from the document
+and explain what is maternity leave",openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.6,5,6000,4000,700,14,14,,2117,700,2817,180.1,1786.28,50077.56,0.0,0.0,1.0,True,0,0,0,0,[],[],,grounding_evaluation_fallback,0.000159,0.00021,0.000369,0.0133,0.0175,0.0308,83.5,groq_api
+2026-09-10T16:51:00,52990e0f,"what is paternity leave
+explain perfectly from the document
+and explain what is maternity leave",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,0.6,5,6000,4000,700,14,14,,2257,700,2957,180.1,2166.64,50077.56,0.6748,0.6748,0.3252,False,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:**
+   - **Question 1:** ""what is paternity leave""
+   - **Question 2:** ""explain perfectly from the document""
+   - **Question 3:** ""and explain what is maternity leave""
+   - **Constraints:** Answer using only the policy context. Preserve exact rules, values, conditions, limitations, and terminology. Do not invent facts. Handle potential conflicts between general rules and demonstration/test policy data. Explain both if they appear. Direct to HR if info is missing.
+
+2.  **Scan Policy Context for Keywords:**
+   - Keywords: ""Paternity Leave"", ""Maternity Leave"", ""purpose"", ""typical situations"", ""demonstration entitlement"", ""eligibility"", ""documentation"", ""application""
+   - Locate relevant chunks:
+     - Chunk 63: Maternity leave typical situations, examples, demonstration entitlement (26 weeks), demo only warning, eligibility start.
+     - Chunk 64: Maternity leave demo only warning, eligibility, documentation, application, AI behavior.
+     - Chunk 65: AI behavior for maternity, demo policy warning, no inventing benefits. Section header ""G. PATERNITY LEAVE"", Purpose.
+     - Chunk 66: Paternity leave continuation (purpose), typical situations, examples, demonstration entitlement (15 working days), demo only warning.
+     - Chunk 67: Paternity leave demonstration entitlement (15 working days), demo only warning, eligibility, documentation, application, AI behavior.
+     - Chunk 28: General rule for Maternity leave (may be available, contact HR, no exact duration specified, AI must not invent number).
+     - Chunk 28 (continued in Chunk 28/29 area): General rule for Paternity leave (may be available according to company policy...).
+     - Chunk 75: Guidance on when to consider Maternity vs Paternity leave.
+     - Chunk 77: Examples mapping to Maternity/Paternity.
+
+3.  **Extract Information for Paternity Leave:**
+   - *Purpose:* Intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period. (Chunks 65, 66)
+   - *Typical situations:* Birth of the employee's child; Qualifying adoption or child-placement situation if covered by applicable company rules; Immediate family support following childbirth. (Chunk 66)
+   - *Examples:* ""My wife is expecting our baby and I need paternity leave."", ""My child was born and I want to apply for paternity leave."", ""I need paternity leave starting 20-10-2026 because my baby was born."" (Chunk 66)
+   - *Demonstration Entitlement:* Up to 15 working days per qualifying event. (Chunks 66, 67)
+   - *Important Note:* This number is DEMO ONLY and is not a statement of actual legal entitlement. (Chunks 66, 67)
+   - *Demonstration Eligibility:* May depend on employee status, applicable company rules, and the qualifying event. (Chunk 67)
+   - *Documentation:* HR may request appropriate supporting",grounding_evaluation_fallback,0.000655,0.000413,0.001068,0.0547,0.0345,0.0891,83.5,groq_api
+2026-09-10T16:59:59,25e5f3d3,"what is maternity leave 
+and list the company policy
+and what is leave policy and how would i apply for a leave",openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.2,5,6000,4000,700,12,12,,1861,700,2561,105.74,2605.11,39029.18,0.0,0.0,1.0,True,0,0,0,0,[],[],,grounding_evaluation_fallback,0.00014,0.00021,0.00035,0.0117,0.0175,0.0292,83.5,groq_api
+2026-09-10T16:59:59,25e5f3d3,"what is maternity leave 
+and list the company policy
+and what is leave policy and how would i apply for a leave",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,0.2,5,6000,4000,700,12,12,,1977,700,2677,105.74,1847.15,39029.18,0.7273,0.7273,0.2727,False,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:**
+   - ""what is maternity leave""
+   - ""and list the company policy""
+   - ""and what is leave policy""
+   - ""and how would i apply for a leave""
+
+2.  **Scan Policy Context for Keywords/Concepts:**
+   - *Maternity Leave*: Chunks 63, 64, 28, 77, 75
+   - *Company Policy / Leave Policy*: Chunks 28, 15, 16, 17, 4, 75
+   - *How to apply*: Chunks 64, 28, 15, 16, 17
+
+3.  **Extract Relevant Information:**
+   - **What is maternity leave?**
+     - Chunk 63: Covers pregnancy-related circumstances, leave for childbirth, recovery following childbirth, pregnancy-related medical appointments/complications.
+     - Chunk 75: ""If the employee needs leave related to pregnancy, childbirth, or recovery: Consider Maternity Leave.""
+     - Chunk 77: Example 5: ""I am pregnant and need leave for childbirth."" -> Likely category: Maternity Leave.
+   - **Company Policy / Leave Policy (General):**
+     - Chunk 28: ""Maternity leave may be available according to company policy and applicable employment rules."" Also states: ""Important: This policy does not specify an exact maternity leave duration. The AI must not invent a number of maternity leave days.""
+     - Chunk 15: Lists possible leave types (Casual, Sick, Earned, Annual, Emergency, Maternity, Paternity, Bereavement, Compensatory, Other). States exact types depend on active configuration in Leave Management System and company rules.
+     - Chunk 16/17: Leave eligibility depends on employee status, employment category, applicable leave type, company policy, employment agreement, available leave balance. AI must not promise availability to every employee.
+     - Chunk 4: Leave provisions may differ according to employment category, agreement, or law.
+   - **How to apply for leave:**
+     - Chunk 64: ""Where possible, employees should submit maternity leave through the Leave Management System and contact HR for eligibility and documentation.""
+     - Chunk 28: ""Where configured, submit the request through the Leave Management System.""
+     - Chunk 15: ""on and use the application’s database-backed workflow. It must not merely tell the user that leave has been submitted."" (Implies using the system)
+     - Chunk 16/17: Check current leave balance before applying. If unavailable/insufficient, contact HR.
+     - Chunk 64: HR may request supporting documentation.
+
+4.  **Synthesize & Structure Answer (adhering strictly to constraints):**
+   - Address each part of the question.
+   - Preserve exact rules/values/terminology.
+   - Note the DEMO/TEST policy data vs. general rule conflict for maternity leave duration.
+   - Do not invent facts.
+   - Direct to HR where appropriate.
+
+   *Structure:*
+   - **What is Maternity Leave?** (Definition & typical situations from Chunks 63,",grounding_evaluation_fallback,0.000573,0.000413,0.000986,0.0479,0.0345,0.0824,83.5,groq_api
+2026-09-10T17:10:46,2a5db0a1,"what is maternity leave 
+explain paternity leave
+how to see leave balance 
+hot to apply for a leave
+company timmings",openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,1.0,5,6000,6000,1200,14,14,,2126,1200,3326,167.35,2439.86,73704.07,0.6903,0.6903,0.3097,False,0,0,0,0,[],[],"**Maternity leave**
+
+- The policy states that *maternity leave* “may be available according to company policy and applicable employment rules.”  
+- Employees who need maternity leave are instructed to **contact Human Resources for eligibility, documentation, and duration requirements**.  
+- Requests should be submitted through the **Leave Management System** when the leave type is configured.  
+- The policy does **not specify an exact number of maternity‑leave days**.  The policy explicitly says “The AI must not invent a number of maternity leave days.”  
+
+- **Demonstration data (demo‑only)**:  
+  – Chunk 63 contains a “Demonstration entitlement: Up to 26 weeks in this fictional demonstration policy.”  
+  – The policy notes that this figure is *DEMO ONLY* and “is not a statement of actual legal entitlement.”  
+
+Both statements coexist; the general rule says no specific duration is provided, while the later demonstration rule gives a figure that is only for testing purposes.
+
+---
+
+**Paternity leave**
+
+- The policy states that *paternity leave* “may be available according to company policy and applicable employment rules.”  
+- Eligibility, documentation, and duration details must be obtained by **contacting HR**.  
+- Applications should go through the **Leave Management System**.  
+- The policy does **not specify an exact number of paternity‑leave days**.  
+
+- **Demonstration data (demo‑only)**:  
+  – Chunk 66 (and 67) list a “Demonstration entitlement: Up to 15 working days per qualifying event.”  
+  – This figure is also marked *DEMO ONLY* and “is not a statement of actual legal entitlement.”  
+
+Again, the general rule and the later demo rule both appear; the later figure is for demonstration only.
+
+---
+
+**How to see your leave balance**
+
+- The Leave Management System “maintains employee leave balances.”  
+- The policy states: “Employees should check their current leave balance before applying.”  
+- The system calculates the balance with the formula: **Available Days = Allocated** (see Chunk 13).  
+
+---
+
+**How to apply for a leave**
+
+1. Identify the appropriate leave type (e.g., Maternity, Paternity, Bereavement, etc.) based on the situation (see examples in Chunk 77).  
+2. Submit the request through the **Leave Management System** where the leave type is configured.  
+3. If eligibility or required documentation is in question, **contact HR** for clarification (see Chunks 64, 67, 63, 66).  
+
+The policy cautions that the AI must not simply state “leave has been submitted”; the actual submission is handled by the system’s workflow.
+
+---
+
+**Company timings**
+
+- **Standard Working Days:** Monday to Friday (Chunk 3).  
+- **Standard Office Start Time:** 9:00 AM.  
+- **Standard Office End Time:** 6:00 PM.",grounding_evaluation_fallback,0.000159,0.00036,0.000519,0.0133,0.0301,0.0434,83.5,groq_api
+2026-09-10T17:10:46,2a5db0a1,"what is maternity leave 
+explain paternity leave
+how to see leave balance 
+hot to apply for a leave
+company timmings",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,1.0,5,6000,6000,1200,14,14,,2266,1200,3466,167.35,2814.46,73704.07,0.6803,0.6803,0.3197,False,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:**
+   - ""what is maternity leave""
+   - ""explain paternity leave""
+   - ""how to see leave balance""
+   - ""hot to apply for a leave"" (typo: ""how to apply"")
+   - ""company timmings"" (typo: ""company timings"")
+
+2.  **Map to Policy Context:**
+   - *Maternity Leave*: Covered in Chunks 63, 64, 28, 65, 75, 77.
+     - Purpose/Definition: Leave for pregnancy-related circumstances, childbirth, recovery (Chunk 63).
+     - Demo entitlement: Up to 26 weeks (Chunk 63, 64, 65). Important: DEMO ONLY, not actual legal entitlement.
+     - General rule: May be available according to company policy and applicable employment rules. Duration not specified in original policy (Chunk 28).
+     - Application: Submit through Leave Management System, contact HR for eligibility/documentation (Chunk 64).
+   - *Paternity Leave*: Covered in Chunks 66, 65, 67, 75, 77.
+     - Purpose/Definition: For eligible employee following birth/qualifying arrival of a child, to support child/family (Chunk 66, 65).
+     - Demo entitlement: Up to 15 working days per qualifying event (Chunk 66, 67). Important: DEMO ONLY.
+     - Application: Submit through Leave Management System where configured, contact HR (Chunk 67).
+   - *Leave Balance*: Covered in Chunks 16, 17, 13.
+     - How to see/check: The Leave Management System maintains employee leave balances. Formula: Available Days = Allocated... (Chunk 13 cuts off, but implies using the system). Employees should check their current leave balance before applying (Chunk 16, 17). The exact context says ""The Leave Management System maintains employee leave balances."" I will stick to that.
+   - *How to apply for leave*: Covered in Chunks 15, 16, 17, 64, 67, 70.
+     - Submit request through the Leave Management System (where configured/active) (Chunk 28, 64, 67, 15).
+     - Contact HR for eligibility, documentation, or if leave type is unavailable/balance insufficient (Chunk 17, 64, 67).
+   - *Company Timings*: Covered in Chunk 4.
+     - Standard Working Days: Monday to Friday
+     - Standard Office Start Time: 9:00 AM
+     - Standard Office End Time: 6:00 PM
+     - Standard Lunch Break: 1:00 PM to 2:00 PM
+
+3.  **Draft Response (Mental Refinement - aligning with constraints):**
+   - *Maternity Leave*: Explain purpose/situations. Mention the general rule (availability per company policy/rules, original policy doesn't specify exact duration per Chunk 28). Then explain the demonstration rule (up to 26 weeks, DEMO ONLY, not actual legal entitlement). Note application process.
+   - *Paternity Leave*: Explain purpose. Mention demonstration entitlement (up to 15 working days per qualifying event, DEMO ONLY). Note application process.
+   - *Leave Balance*: The Leave Management System maintains employee leave balances. Employees should check their current leave balance in the system before applying.
+   - *How to Apply*: Submit the request through the Leave Management System where the leave type is configured. If the required leave type is unavailable, balance is insufficient, or for eligibility/documentation questions, contact Human Resources.
+   - *Company Timings*: Standard Working Days: Monday to Friday. Start: 9:00 AM. End: 6:00 PM. Lunch Break: 1:00 PM to 2:00 PM.
+
+   Check constraints:
+   - Answer every part? Yes.
+   - Preserve exact rules/values? Yes.
+   - Do not refuse due to incomplete chunks? Yes, handled.
+   - Handle conflict between general rule and demo rule? Yes, explicitly state both and label demo rule.
+   - Do not invent? Yes.
+   - Direct to HR if absent? I'll add HR reference where appropriate per policy instructions.
+
+   Let's map each part carefully to the text.
+   *Maternity Leave*: Chunk 28 says ""Maternity leave may be available according to company policy and applicable employment rules... This policy does not specify an exact maternity leave duration."" Chunk 63/64/65 says ""Typical situations: Pregnancy-related leave, Leave for childbirth, Recovery following childbirth... Demonstration entitlement: Up to 26 weeks... Important: This number is DEMO ONLY and is not a statement of actual legal entitlement."" I will present both clearly.
+   *Paternity Leave*: Chunk 65/66/67 says ""Purpose: Paternity Leave is intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period."" Demo entitlement: ""Up to 15 working days per qualifying event. Important: This number is DEMO ONLY...""
+   *Leave Balance*: Chunk 13 says ""The Leave Management System maintains employee leave balances."" Chunk 16/17 says ""Employees should check their current leave balance before applying.""",grounding_evaluation_fallback,0.000657,0.000708,0.001365,0.0549,0.0591,0.114,83.5,groq_api
+2026-09-11T13:16:30,a85659d8,"what is maternity leave what is paternity leave 
+compare the leaves and tell me which has more leaves 
+tell me company policy",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,0.2,5,6000,6000,1200,14,14,,2264,1200,3464,155.66,3172.98,169043.36,0.6556,0.6556,0.3444,False,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:**
+   - What is maternity leave?
+   - What is paternity leave?
+   - Compare the leaves and tell me which has more leaves.
+   - Tell me company policy.
+
+2.  **Scan Policy Context for Keywords:**
+   - ""Maternity leave"" -> Chunks 63, 64, 28, 77, 75, 65
+   - ""Paternity leave"" -> Chunks 66, 65, 67, 77, 75
+   - Compare/Duration/Entitlement -> Chunks 63, 66, 67, 28, 64, 65
+
+3.  **Extract Information - Maternity Leave:**
+   - *Definition/Purpose:* Covered by applicable company rules. Typical situations: Pregnancy-related leave, leave for childbirth, recovery following childbirth, pregnancy-related medical appointments/complications. (Chunk 63)
+   - *Demonstration Entitlement:* Up to 26 weeks. (Chunk 63)
+   - *Important Note:* DEMO ONLY, not actual legal entitlement. (Chunk 63, 64)
+   - *Eligibility/Policy:* Depends on company rules, employment status, applicable law, HR verification. (Chunk 64)
+   - *General Policy Statement (Chunk 28):* ""Maternity leave may be available according to company policy and applicable employment rules. Employees requiring maternity leave should contact Human Resources for eligibility, documentation and duration requirements. Where configured, submit the request through the Leave Management System. Important: This policy does not specify an exact maternity leave duration. The AI must not invent a number of maternity leave days.""
+   - *AI Behavior Note (Chunk 64/65):* Use policy value only if expanded demonstration section is active test policy. Clearly identify as demonstration policy value. Must not invent additional benefits.
+
+4.  **Extract Information - Paternity Leave:**
+   - *Definition/Purpose:* Intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period. Typical situations: Birth of employee's child, qualifying adoption/child-placement, immediate family support following childbirth. (Chunk 66, 65)
+   - *Demonstration Entitlement:* Up to 15 working days per qualifying event. (Chunk 66, 67)
+   - *Important Note:* DEMO ONLY, not actual legal entitlement. (Chunk 66, 67)
+   - *Eligibility/Policy:* Depends on employee status, applicable company rules, qualifying event. (Chunk 67)
+   - *Application:* Submit through Leave Management System where configured, contact HR for eligibility/documentation. (Chunk 67)
+
+5.  **Compare & Determine Which Has More:**
+   - Maternity: Up to 26 weeks (DEMO ONLY)
+   - Paternity: Up to 15 working days (DEMO ONLY)
+   - Comparison: 26 weeks is significantly longer than 15 working days. So, maternity leave has more leave days in this demonstration policy.
+   - Must explicitly state these are DEMONSTRATION/TEST POLICY values and not actual legal/company entitlements.
+
+6.  **Address ""Company Policy"" Request:**
+   - The context provides both a general rule (Chunk 28) and expanded demonstration rules (Chunks 63, 64, 66, 67).
+   - General rule (Chunk 28): Does not specify an exact duration. Directs employees to HR for eligibility, documentation, and duration. Requests submitted via Leave Management System if configured.
+   - Demonstration rule: Specifies 26 weeks for maternity and 15 working days for paternity, but explicitly marks them as DEMO ONLY.
+   - I need to present both, explain the conflict/difference, and label the demonstration values clearly as requested by the system prompt.
+
+7.  **Draft Response (Mental Refinement):**
+   Based on the provided policy context:
+
+   **Maternity Leave:**
+   - **Purpose/Definition:** Covers pregnancy-related circumstances, including pregnancy-related leave, leave for childbirth, recovery following childbirth, and pregnancy-related medical appointments or complications.
+   - **General Company Policy:** The base policy states that maternity leave may be available according to company policy and applicable employment rules. It does not specify an exact duration. Employees are directed to contact Human Resources for eligibility, documentation, and duration requirements, and to submit requests through the Leave Management System where configured.
+   - **Demonstration/Test Policy Data:** The expanded demonstration section lists an entitlement of **up to 26 weeks**. This is explicitly marked as **DEMO ONLY** and is not a statement of actual legal or company entitlement.
+
+   **Paternity Leave:**
+   - **Purpose/Definition:** Intended for an eligible employee following the birth or qualifying arrival of a child (including qualifying adoption or child-placement situations), allowing the employee to support the child and family during the relevant period.
+   - **General Company Policy:** Similar to maternity leave, availability depends on company policy, applicable employment rules, and employee status. Requests should be submitted through the Leave Management System where configured, with HR handling eligibility and documentation.
+   - **Demonstration/Test Policy Data:** The expanded demonstration section lists an entitlement of **up to 15 working days per qualifying event**. This is also explicitly marked as **DEMO ONLY** and is not a statement of actual legal or company entitlement.
+
+   **Comparison",grounding_evaluation_fallback,0.000657,0.000708,0.001365,0.0548,0.0591,0.1139,83.5,groq_api
+2026-09-11T13:16:30,a85659d8,"what is maternity leave what is paternity leave 
+compare the leaves and tell me which has more leaves 
+tell me company policy",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,0.2,5,6000,6000,1200,14,14,,2264,1200,3464,155.66,34480.48,169043.36,0.641,0.641,0.359,False,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:**
+   - ""what is maternity leave""
+   - ""what is paternity leave""
+   - ""compare the leaves and tell me which has more leaves""
+   - ""tell me company policy""
+   - Constraint: Answer using only the policy context.
+
+2.  **Scan Policy Context for Keywords:**
+   - ""Maternity leave"" -> Chunks 63, 64, 28, 77, 75
+   - ""Paternity leave"" -> Chunks 66, 65, 67, 77, 75
+   - Compare/Duration/Entitlement -> Chunks 63, 66, 67, 28
+   - Company policy/general rules -> Chunks 28, 15, 16, 17, 4
+
+3.  **Extract Information for Maternity Leave:**
+   - *Definition/Purpose:* Covers pregnancy-related circumstances, leave for childbirth, recovery following childbirth, pregnancy-related medical appointments/complications. (Chunk 63)
+   - *Demonstration Entitlement:* Up to 26 weeks. (Chunk 63)
+   - *Important Note:* DEMO ONLY, not actual legal entitlement. (Chunk 63, 64)
+   - *Eligibility/Policy:* May be available according to company policy and applicable employment rules. Eligibility depends on company rules, employment status, applicable law, HR verification. (Chunk 63, 64, 28)
+   - *Application/Documentation:* Submit through Leave Management System, contact HR. HR may request supporting documentation. (Chunk 64)
+   - *General Policy Note (Chunk 28):* ""This policy does not specify an exact maternity leave duration. The AI must not invent a number of maternity leave days."" (This conflicts with the demo rule, need to explain both per instructions).
+
+4.  **Extract Information for Paternity Leave:**
+   - *Definition/Purpose:* Intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period. Covers birth of employee's child, qualifying adoption/child-placement, immediate family support following childbirth. (Chunk 66, 65)
+   - *Demonstration Entitlement:* Up to 15 working days per qualifying event. (Chunk 66, 67)
+   - *Important Note:* DEMO ONLY, not actual legal entitlement. (Chunk 66, 67)
+   - *Eligibility/Policy:* Eligibility may depend on employee status, applicable company rules, and the qualifying event. (Chunk 67)
+   - *Application/Documentation:* Submit through Leave Management System where configured, contact HR. HR may request supporting documentation. (Chunk 67)
+
+5.  **Compare & Determine Which Has More:**
+   - Maternity: Up to 26 weeks (demo)
+   - Paternity: Up to 15 working days (demo)
+   - 26 weeks is significantly more than 15 working days.
+   - Must explicitly state these are DEMONSTRATION/TEST POLICY DATA values and not real legal entitlements, as instructed.
+
+6.  **Address ""Company Policy"" Aspect:**
+   - General policy states leave types are determined by active configurations in the Leave Management System and applicable company rules (Chunk 15).
+   - Eligibility depends on employee status, employment category, company policy, employment agreement, and available balance (Chunk 16, 17).
+   - The original/general policy does not specify exact durations for maternity or paternity leave; employees must contact HR for eligibility, documentation, and duration requirements (Chunk 28).
+   - The specific numbers provided are from an expanded demonstration/test policy section.
+
+7.  **Structure the Response:**
+   - Define Maternity Leave (purpose, typical situations)
+   - Define Paternity Leave (purpose, typical situations)
+   - Compare durations (explicitly note demo values vs general policy)
+   - State which has more
+   - Explain company policy context (eligibility, application, HR contact, demo disclaimer)
+   - Ensure all constraints are met: preserve exact rules/values, explain conflicting general vs demo rules, label demo data clearly, do not invent facts.
+
+   Draft structure:
+   - **Maternity Leave**: Definition & typical situations.
+   - **Paternity Leave**: Definition & typical situations.
+   - **Comparison & Duration**: State demo values (26 weeks vs 15 working days), clearly label as DEMONSTRATION/TEST POLICY DATA. Note the general policy rule that doesn't specify exact duration. Conclude which has more based on the demo values.
+   - **Company Policy & Application**: Explain eligibility factors, Leave Management System usage, HR contact requirement, and documentation. Reiterate that actual entitlements depend on employment category/agreement and HR verification.
+
+8.  **Refine according to constraints:**
+   - Check exact wording from context.
+   - ""Up to 26 weeks in this fictional demonstration policy."" (Chunk 63)
+   - ""Up to 15 working days per qualifying event."" (Chunk 66/67)
+   - ""Important: This number is DEMO ONLY and is not a statement of actual legal entitlement."" (Chunks 63, 64, 66, 67)
+   - ""Important: This policy does not specify an exact maternity leave duration. The AI",grounding_evaluation_fallback,0.000657,0.000708,0.001365,0.0548,0.0591,0.1139,83.5,groq_api
+2026-09-11T14:30:32,a6e52a80,"what is maternity leave what is paternity leave 
+compare the leaves and tell me which has more leaves 
+tell me company policy",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,0.0,5,6000,6000,1200,14,14,,2264,1200,3464,137.63,3339.18,306140.38,0.5864,0.5864,0.4136,False,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:**
+   - What is maternity leave?
+   - What is paternity leave?
+   - Compare the leaves and tell me which has more leaves.
+   - Tell me company policy.
+   - Constraint: Answer using only the policy context.
+
+2.  **Scan Policy Context for Keywords:**
+   - ""Maternity leave"" -> Chunks 63, 64, 28, 77, 75, 15
+   - ""Paternity leave"" -> Chunks 66, 65, 67, 77, 75, 15
+   - ""Compare"", ""more leaves"", ""company policy"" -> Need to extract definitions, entitlements, and policy statements from the chunks.
+
+3.  **Extract Information - Maternity Leave:**
+   - *Definition/Purpose:* Covers pregnancy-related circumstances (pregnancy-related leave, leave for childbirth, recovery following childbirth, pregnancy-related medical appointments/complications). (Chunk 63)
+   - *Demonstration Entitlement:* Up to 26 weeks. (Chunk 63)
+   - *Important Note:* DEMO ONLY, not a statement of actual legal entitlement. (Chunk 63, 64)
+   - *Eligibility/Policy:* May be available according to company policy and applicable employment rules. Eligibility depends on company rules, employment status, applicable law, and HR verification. (Chunk 64, 28)
+   - *Application:* Submit through Leave Management System, contact HR. (Chunk 64, 28)
+   - *General Policy Statement (Chunk 28):* ""Maternity leave may be available according to company policy and applicable employment rules. Employees requiring maternity leave should contact Human Resources for eligibility, documentation and duration requirements. Where configured, submit the request through the Leave Management System. Important: This policy does not specify an exact maternity leave duration. The AI must not invent a number of maternity leave days.""
+
+4.  **Extract Information - Paternity Leave:**
+   - *Definition/Purpose:* Intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period. Covers birth of employee's child, qualifying adoption/child-placement, immediate family support following childbirth. (Chunk 66, 65)
+   - *Demonstration Entitlement:* Up to 15 working days per qualifying event. (Chunk 66, 67)
+   - *Important Note:* DEMO ONLY, not a statement of actual legal entitlement. (Chunk 66, 67)
+   - *Eligibility/Policy:* May be available according to company policy and applicable employment rules. Eligibility depends on employee status, applicable company rules, and the qualifying event. (Chunk 67, 28 continuation implied)
+   - *Application:* Submit through Leave Management System where configured, contact HR. (Chunk 67)
+
+5.  **Compare & Address ""Which has more leaves?"":**
+   - Maternity Leave (Demo): Up to 26 weeks.
+   - Paternity Leave (Demo): Up to 15 working days.
+   - 26 weeks is significantly more than 15 working days.
+   - *Crucial Caveat from Policy:* Both numbers are explicitly marked as ""DEMO ONLY"" and ""not a statement of actual legal entitlement."" The general policy (Chunk 28) explicitly states: ""This policy does not specify an exact maternity leave duration. The AI must not invent a number of maternity leave days."" The demonstration values are for testing/fictional demonstration purposes only. Actual entitlements depend on company policy, employment rules, status, and HR verification.
+
+6.  **Synthesize Answer according to Constraints:**
+   - Define Maternity Leave based on context.
+   - Define Paternity Leave based on context.
+   - Compare durations using the provided demonstration values, but heavily emphasize the ""DEMO ONLY"" disclaimer and the general policy statement that actual durations are not fixed in the base policy and require HR verification.
+   - State company policy regarding eligibility, application, and the fact that exact entitlements vary by employment category/agreement and must be verified with HR.
+   - Ensure all constraints are met: preserve exact rules/values, explain both general and demo rules, identify demo data as such, do not invent facts, direct to HR where appropriate.
+
+   Structure:
+   - Maternity Leave Definition & Policy
+   - Paternity Leave Definition & Policy
+   - Comparison & Duration (Demo vs. Actual Policy)
+   - Company Policy & Next Steps (HR contact, Leave Management System, eligibility factors)
+   - Strict adherence to disclaimers.
+
+7.  **Draft Response (Mental Refinement):**
+   Based on the provided policy context:
+
+   **Maternity Leave**
+   - **Purpose/Coverage:** Covers pregnancy-related circumstances, including pregnancy-related leave, leave for childbirth, recovery following childbirth, and pregnancy-related medical appointments or complications.
+   - **Company Policy:** Maternity leave may be available according to company policy and applicable employment rules. The base policy does not specify an exact duration. Eligibility depends on company rules, employment status, applicable law, and HR verification. Requests should be submitted through the Leave Management System (where configured) and employees should contact HR for eligibility, documentation, and duration requirements.
+
+   **Paternity Leave**
+   - **Purpose/Coverage:** Intended for an eligible employee following the birth or qualifying arrival of a child (including qualifying adoption or child-placement situations",grounding_evaluation_fallback,0.000657,0.000708,0.001365,0.0548,0.0591,0.1139,83.5,groq_api
+2026-09-11T14:30:32,a6e52a80,"what is maternity leave what is paternity leave 
+compare the leaves and tell me which has more leaves 
+tell me company policy",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,0.0,5,6000,6000,1200,14,14,,2264,1200,3464,137.63,55739.05,306140.38,0.609,0.609,0.391,False,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:**
+   - What is maternity leave?
+   - What is paternity leave?
+   - Compare the leaves and tell me which has more leaves.
+   - Tell me company policy.
+   - Constraint: Answer using only the policy context.
+
+2.  **Scan Policy Context for Keywords:**
+   - ""Maternity leave""
+   - ""Paternity leave""
+   - ""compare"" / ""more leaves""
+   - ""company policy""
+
+3.  **Extract Information on Maternity Leave:**
+   - From Chunk 63: Covers pregnancy-related circumstances, childbirth, recovery, medical appointments/complications. Examples given.
+   - Demonstration entitlement: Up to 26 weeks.
+   - Important: DEMO ONLY, not actual legal entitlement.
+   - From Chunk 64: Eligibility subject to company rules, employment status, applicable law, HR verification. Documentation may be requested. Submit via Leave Management System, contact HR.
+   - From Chunk 28: May be available according to company policy and applicable employment rules. Contact HR for eligibility, documentation, duration. Original policy does not specify an exact duration. AI must not invent a number.
+   - From Chunk 77/75: Categorized under pregnancy, childbirth, recovery.
+
+4.  **Extract Information on Paternity Leave:**
+   - From Chunk 66: Following birth or qualifying arrival of a child, allowing employee to support child/family. Covers birth of employee's child, qualifying adoption/placement, immediate family support.
+   - Demonstration entitlement: Up to 15 working days per qualifying event.
+   - Important: DEMO ONLY, not actual legal entitlement.
+   - From Chunk 65/67: Purpose same as above. Eligibility depends on employee status, company rules, qualifying event. Documentation may be requested. Submit via Leave Management System, contact HR.
+   - From Chunk 28: May be available according to company policy and applicable employment rules.
+   - From Chunk 77/75: Categorized under birth/qualifying arrival of a child as an eligible parent.
+
+5.  **Compare & Determine ""Which has more leaves"":**
+   - Maternity leave demonstration entitlement: Up to 26 weeks.
+   - Paternity leave demonstration entitlement: Up to 15 working days per qualifying event.
+   - 26 weeks is significantly more than 15 working days.
+   - Must explicitly state that these numbers are from the DEMONSTRATION/TEST POLICY DATA and are NOT actual legal/company entitlements. The actual policy (Chunk 28) states it does not specify an exact duration for maternity leave, and eligibility/duration depends on company rules, employment status, and HR verification.
+
+6.  **Address ""Company Policy"":**
+   - The context explicitly states that leave provisions may differ according to employment category, agreement, or applicable law (Chunk 4).
+   - Eligibility depends on employee status, employment category, applicable leave type, company policy, employment agreement, and available leave balance (Chunk 16/17).
+   - Employees should contact HR for exact eligibility, documentation, and duration requirements (Chunk 28, 64, 67).
+   - The Leave Management System is used for submission where configured (Chunk 28, 64, 67).
+   - The policy provides demonstration/test values for testing purposes only, not as binding entitlements.
+
+7.  **Structure the Response:**
+   - Define Maternity Leave based on context.
+   - Define Paternity Leave based on context.
+   - Compare durations based on the demonstration data, clearly labeling them as DEMO/TEST values.
+   - Explain the actual company policy stance (no fixed duration specified in the base policy, eligibility varies, direct to HR).
+   - Ensure all constraints are met: preserve exact rules/values, identify demo data, do not invent, answer all parts.
+
+   Draft structure:
+   - **Maternity Leave**: Definition, typical situations, demo entitlement (26 weeks), disclaimer.
+   - **Paternity Leave**: Definition, typical situations, demo entitlement (15 working days), disclaimer.
+   - **Comparison**: 26 weeks vs 15 working days. Maternity leave has more in the demonstration data.
+   - **Company Policy & Eligibility**: Explain that the base policy does not specify exact durations. Eligibility depends on employment status, category, agreement, and HR verification. Direct to HR for actual entitlements. Mention submission via Leave Management System.
+   - **Important Disclaimer**: Reiterate that the 26 weeks and 15 days are DEMONSTRATION/TEST POLICY DATA only and not actual legal or company entitlements.
+
+8.  **Refine according to constraints:**
+   - Check exact wording from chunks.
+   - Chunk 63: ""Up to 26 weeks in this fictional demonstration policy."" ""This number is DEMO ONLY and is not a statement of actual legal entitlement.""
+   - Chunk 66/67: ""Up to 15 working days per qualifying event."" ""This number is DEMO ONLY and is not a statement of actual legal entitlement.""
+   - Chunk 28: ""Important: This policy does not specify an exact maternity leave duration. The AI must not invent a number of maternity leave days.""
+   - Chunk 4/16/17: Eligibility depends on status, category, agreement, etc. Contact HR.
+   - Ensure tone is factual and strictly adheres to the provided text.",grounding_evaluation_fallback,0.000657,0.000708,0.001365,0.0548,0.0591,0.1139,83.5,groq_api
+2026-09-11T15:08:56,e4042dcb,"WHAT IS MATERNITY LEAVE WHAT IS PATERNITY LEAVE 
+COMPARE BOTH LEAVES AND LIST ME WHT LEAVE HAS MAXIMUM LEAVE DAYS 
+AND TELL ME COMPANY POLICY",openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.0,5,6000,6000,1200,14,14,,2138,1200,3338,213.43,1917.48,69129.56,0.0,0.0,1.0,True,0,0,0,0,[],[],,grounding_evaluation_fallback,0.00016,0.00036,0.00052,0.0134,0.0301,0.0434,83.5,groq_api
+2026-09-11T15:08:56,e4042dcb,"WHAT IS MATERNITY LEAVE WHAT IS PATERNITY LEAVE 
+COMPARE BOTH LEAVES AND LIST ME WHT LEAVE HAS MAXIMUM LEAVE DAYS 
+AND TELL ME COMPANY POLICY",qwen/qwen3.6-27b,BAAI/bge-small-en-v1.5,0.0,5,6000,6000,1200,14,14,,2280,1200,3480,213.43,2602.11,69129.56,0.5962,0.5962,0.4038,False,0,0,0,0,[],[],"<think>
+Here's a thinking process:
+
+1.  **Analyze User Question:**
+   - ""WHAT IS MATERNITY LEAVE""
+   - ""WHAT IS PATERNITY LEAVE""
+   - ""COMPARE BOTH LEAVES""
+   - ""LIST ME WHT LEAVE HAS MAXIMUM LEAVE DAYS""
+   - ""TELL ME COMPANY POLICY""
+   - Constraint: Answer using only the policy context. Preserve exact rules, values, conditions, limitations, terminology. Explain both general and demonstration rules if they conflict. Identify demonstration values as DEMO/TEST POLICY DATA. Do not invent facts.
+
+2.  **Scan Policy Context for Keywords:**
+   - Maternity Leave: Chunks 63, 28, 64, 77, 75
+   - Paternity Leave: Chunks 66, 28, 65, 67, 77, 75
+   - Comparison/Maximum days: Need to extract entitlements from both.
+   - Company Policy: General rules, eligibility, application process, demo vs real policy warnings.
+
+3.  **Extract Information - Maternity Leave:**
+   - *Definition/Purpose:* Covered by applicable company rules. Typical situations: Pregnancy-related leave, leave for childbirth, recovery following childbirth, pregnancy-related medical appointments/complications. (Chunk 63)
+   - *General Policy Rule:* May be available according to company policy and applicable employment rules. Employees should contact HR for eligibility, documentation, and duration requirements. Submit through Leave Management System where configured. *Important:* This policy does not specify an exact maternity leave duration. The AI must not invent a number. (Chunk 28)
+   - *Demonstration/Test Policy Data:* Up to 26 weeks. *Important:* This number is DEMO ONLY and is not a statement of actual legal entitlement. Eligibility subject to company rules, employment status, applicable law, HR verification. HR may request documentation. Submit via Leave Management System. (Chunks 63, 64)
+
+4.  **Extract Information - Paternity Leave:**
+   - *Definition/Purpose:* Intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period. Typical situations: Birth of employee's child, qualifying adoption/child-placement, immediate family support following childbirth. (Chunks 66, 65)
+   - *General Policy Rule:* May be available according to company policy and applicable employment rules. (Chunk 28 - cut off but implies similar structure)
+   - *Demonstration/Test Policy Data:* Up to 15 working days per qualifying event. *Important:* This number is DEMO ONLY and is not a statement of actual legal entitlement. Eligibility depends on employee status, applicable company rules, qualifying event. HR may request documentation. Submit via Leave Management System. (Chunks 66, 67)
+
+5.  **Compare & Identify Maximum:**
+   - Maternity Leave (Demo): Up to 26 weeks.
+   - Paternity Leave (Demo): Up to 15 working days per qualifying event.
+   - Comparison: Maternity leave covers pregnancy, childbirth, and recovery for the expecting mother. Paternity leave covers support for the child/family following birth or qualifying arrival/adoption for an eligible parent.
+   - Maximum: Based on the demonstration/test policy data, Maternity Leave has the maximum duration (26 weeks vs. 15 working days).
+   - *Crucial Caveat:* Both durations are explicitly marked as DEMO ONLY / TEST POLICY DATA and are not statements of actual legal entitlement. The general policy states that exact durations are not specified and depend on company policy, employment rules, and HR verification.
+
+6.  **Structure the Response:**
+   - Define Maternity Leave (purpose, typical situations)
+   - Define Paternity Leave (purpose, typical situations)
+   - Compare both (focus, eligibility, duration in demo)
+   - Identify which has maximum days (Maternity, based on demo data)
+   - State Company Policy rules (general vs demo, application process, HR contact, disclaimer about demo data)
+   - Ensure all constraints are met: exact terminology, preserve rules, highlight demo nature, no invented facts.
+
+   Draft structure:
+   **Maternity Leave**
+   - Purpose/Definition: ...
+   - Typical situations: ...
+   **Paternity Leave**
+   - Purpose/Definition: ...
+   - Typical situations: ...
+   **Comparison & Maximum Duration**
+   - Compare focus/eligibility
+   - State demo entitlements
+   - Identify maximum
+   **Company Policy & Important Notes**
+   - General rule vs Demo rule
+   - Application process
+   - HR contact requirement
+   - Disclaimer about demo data
+
+7.  **Refine Content (Self-Correction/Verification during drafting):**
+   - *Check exact wording:* ""Up to 26 weeks in this fictional demonstration policy."" (Chunk 63)
+   - ""Up to 15 working days per qualifying event."" (Chunk 66)
+   - ""Important: This number is DEMO ONLY and is not a statement of actual legal entitlement."" (Both chunks)
+   - General policy: ""Maternity leave may be available according to company policy and applicable employment rules... This policy does not specify an exact maternity leave duration."" (Chunk 28)
+   - Application: ""Where configured, submit the request through the Leave Management System."" / ""contact Human Resources for eligibility, documentation and duration requirements.""
+   - Comparison: Maternity is for pregnancy/childbirth/recovery.",grounding_evaluation_fallback,0.000661,0.000708,0.001369,0.0552,0.0591,0.1143,83.5,groq_api

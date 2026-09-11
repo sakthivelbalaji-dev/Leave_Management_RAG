@@ -31,6 +31,20 @@ def split_sentences(text: str):
     ]
 
 
+def _meaningful_tokens(text: str):
+    stop_words = {
+        "a", "an", "and", "are", "as", "at", "be", "by", "for",
+        "from", "how", "in", "is", "it", "of", "on", "or", "that",
+        "the", "this", "to", "when", "where", "with", "you",
+    }
+    return {
+        token.strip(".,:;!?()[]").casefold()
+        for token in text.split()
+        if len(token.strip(".,:;!?()[]")) > 2
+        and token.strip(".,:;!?()[]").casefold() not in stop_words
+    }
+
+
 def check_hallucination(
     answer: str,
     context: str,
@@ -86,12 +100,21 @@ def check_hallucination(
     )
 
     grounded_scores = []
+    context_tokens = _meaningful_tokens(context)
 
-    for answer_embedding in answer_embeddings:
+    for index, answer_embedding in enumerate(answer_embeddings):
 
         scores = context_embeddings @ answer_embedding
 
         best_score = float(scores.max())
+
+        answer_tokens = _meaningful_tokens(sentences[index])
+        lexical_support = (
+            len(answer_tokens & context_tokens) / len(answer_tokens)
+            if answer_tokens
+            else 0.0
+        )
+        best_score = max(best_score, lexical_support)
 
         grounded_scores.append(
             best_score

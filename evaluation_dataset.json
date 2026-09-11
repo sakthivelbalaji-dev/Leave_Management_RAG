@@ -1,0 +1,69 @@
+[
+    {
+        "question": "What are the company working hours?",
+        "relevance_terms": [
+            "Standard office hours",
+            "Expected working time"
+        ]
+    },
+    {
+        "question": "What time does the workday start?",
+        "relevance_terms": [
+            "Standard office start time is 9:00 AM"
+        ]
+    },
+    {
+        "question": "What is the lunch break?",
+        "relevance_terms": [
+            "Standard Lunch Break",
+            "1:00 PM to 2:00 PM"
+        ]
+    },
+    {
+        "question": "What are the working days?",
+        "relevance_terms": [
+            "Standard working days are Monday to Friday"
+        ]
+    },
+    {
+        "question": "How many working hours are there per day?",
+        "relevance_terms": [
+            "8 working hours per standard working day"
+        ]
+    },
+    {
+        "question": "How do I apply for leave?",
+        "relevance_terms": [
+            "Use the Leave Management System",
+            "select the leave type",
+            "select the start and end dates"
+        ]
+    },
+    {
+        "question": "What happens after I submit leave?",
+        "relevance_terms": [
+            "The request is Pending"
+        ]
+    },
+    {
+        "question": "What should I do if I arrive late?",
+        "relevance_terms": [
+            "Standard office start time is 9:00 AM",
+            "inform their manager"
+        ]
+    },
+    {
+        "question": "What should employees do when they are absent?",
+        "relevance_terms": [
+            "appropriate leave",
+            "Inform their manager",
+            "unexpected delays or absence"
+        ]
+    },
+    {
+        "question": "Who should I contact for HR support?",
+        "relevance_terms": [
+            "Human Resources Department"
+        ]
+    }
+]

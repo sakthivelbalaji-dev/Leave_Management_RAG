@@ -1,3 +1,5 @@
+import os
+
 from .loader import KnowledgeBaseLoader
 from .chunker import TextChunker
 from .embeddings import EmbeddingModel
@@ -8,9 +10,14 @@ class Retriever:
 
     def __init__(
         self,
-        minimum_score: float = 0.25,
+        minimum_score: float | None = None,
     ):
-        self.minimum_score = minimum_score
+        configured_score = os.getenv("RAG_MINIMUM_SCORE", "0.15")
+        self.minimum_score = (
+            float(configured_score)
+            if minimum_score is None
+            else float(minimum_score)
+        )
 
         # --------------------------------------------------------
         # LOAD POLICY DOCUMENTS
@@ -44,6 +51,8 @@ class Retriever:
         # --------------------------------------------------------
 
         self.embedding_model = EmbeddingModel()
+        self.documents = documents
+        self.chunks = chunks
 
         embeddings = self.embedding_model.encode(
             [
@@ -79,6 +88,13 @@ class Retriever:
             f"Minimum retrieval similarity: "
             f"{self.minimum_score}"
         )
+        print(f"Embedding dimension: {embeddings.shape[1]}")
+        print("Knowledge-base chunks:")
+        for chunk in chunks:
+            preview = chunk["content"][:120].replace("\n", " ")
+            print(
+                f"  {chunk['chunk_id']} | {chunk['source']} | {preview}"
+            )
 
     # ============================================================
     # RETRIEVE
@@ -117,34 +133,123 @@ class Retriever:
         filtered = [
             item
             for item in results
-            if float(item.get("score", 0.0))
-            >= self.minimum_score
+            if float(
+                item.get(
+                    "score",
+                    0.0
+                )
+            ) >= self.minimum_score
         ]
 
         # --------------------------------------------------------
         # DEBUG INFORMATION
         # --------------------------------------------------------
 
-        print("\n" + "=" * 70)
-        print("[RAG RETRIEVAL]")
-        print(f"Query: {query}")
-        print(f"Requested top_k: {top_k}")
-        print(f"Results before filtering: {len(results)}")
-        print(f"Results after filtering: {len(filtered)}")
+        print("\n" + "=" * 80)
+        print("========== AI / RAG DEBUG ==========")
 
-        for index, item in enumerate(results, start=1):
+        print(
+            "USER QUESTION:",
+            query
+        )
+
+        print(
+            "REQUESTED TOP_K:",
+            top_k
+        )
+
+        print(
+            "RESULTS BEFORE FILTERING:",
+            len(results)
+        )
+
+        print(
+            "QUERY EMBEDDING DIMENSION:",
+            query_embedding.shape[0]
+        )
+
+        print(
+            "MINIMUM SCORE:",
+            self.minimum_score
+        )
+
+        print("\nRAW RESULTS:")
+        for index, chunk in enumerate(results, start=1):
+            print(
+                f"RAW RESULT {index}: "
+                f"id={chunk.get('chunk_id')} "
+                f"score={float(chunk.get('score', 0.0)):.6f} "
+                f"source={chunk.get('source', 'unknown')}"
+            )
+            print("CONTENT:")
+            print(chunk.get("content", ""))
+
+        print(
+            "RESULTS AFTER FILTERING:",
+            len(filtered)
+        )
+
+        print("\nRETRIEVED CHUNKS:")
+        print("-" * 80)
+
+        if filtered:
+
+            for index, chunk in enumerate(
+                filtered,
+                start=1
+            ):
+
+                print(
+                    f"\nCHUNK #{index}"
+                )
+
+                print(
+                    "Chunk ID:",
+                    chunk.get(
+                        "chunk_id",
+                        "N/A"
+                    )
+                )
+
+                print(
+                    "Score:",
+                    f"{float(chunk.get('score', 0.0)):.4f}"
+                )
+
+                print(
+                    "Source:",
+                    chunk.get(
+                        "source",
+                        "unknown"
+                    )
+                )
+
+                print("\nCONTENT:")
+
+                print(
+                    chunk.get(
+                        "content",
+                        ""
+                    )
+                )
+
+                print("-" * 80)
+
+        else:
 
             print(
-                f"\nResult {index}"
-                f"\nScore: {float(item.get('score', 0.0)):.4f}"
-                f"\nSource: {item.get('source', 'unknown')}"
+                "NO RELEVANT CHUNKS FOUND."
             )
 
-            print(
-                f"Content preview:\n"
-                f"{item.get('content', '')[:500]}"
-            )
+        print(
+            "\nTOTAL RETRIEVED CHUNKS:",
+            len(filtered)
+        )
 
-        print("=" * 70 + "\n")
+        print(
+            "\n========== END AI / RAG DEBUG =========="
+        )
+
+        print("=" * 80 + "\n")
 
         return filtered

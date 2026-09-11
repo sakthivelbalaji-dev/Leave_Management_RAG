@@ -1,9 +1,11 @@
 import requests
 import streamlit as st
+from datetime import datetime, date
+import pandas as pd
 
 
 # ============================================================
-# PAGE CONFIG
+# PAGE CONFIGURATION
 # ============================================================
 
 st.set_page_config(
@@ -12,34 +14,47 @@ st.set_page_config(
     layout="wide",
 )
 
+
+# ============================================================
+# CONFIGURATION
+# ============================================================
+
 API_URL = st.sidebar.text_input(
     "API URL",
     "http://127.0.0.1:8000",
-).rstrip("/")
+)
 
 
-# ============================================================
-# SESSION STATE
-# ============================================================
+DEFAULT_DRAFT = {
+    "leave_type_id": None,
+    "leave_type_name": None,
+    "start_date": None,
+    "end_date": None,
+    "reason": None,
+}
+
 
 if "token" not in st.session_state:
     st.session_state.token = None
-
 if "user" not in st.session_state:
     st.session_state.user = None
-
 if "chat_messages" not in st.session_state:
     st.session_state.chat_messages = []
+if "leave_flow" not in st.session_state:
+    st.session_state.leave_flow = False
+if "leave_step" not in st.session_state:
+    st.session_state.leave_step = None
+if "leave_draft" not in st.session_state:
+    st.session_state.leave_draft = DEFAULT_DRAFT.copy()
+if "evaluation_result" not in st.session_state:
+    st.session_state.evaluation_result = None
+if "evaluation_mode" not in st.session_state:
+    st.session_state.evaluation_mode = None
 
-
-# ============================================================
-# API HELPERS
-# ============================================================
 
 def headers():
     if not st.session_state.token:
         return {}
-
     return {
         "Authorization": f"Bearer {st.session_state.token}",
         "Content-Type": "application/json",
@@ -48,71 +63,622 @@ def headers():
 
 def api(method, path, **kwargs):
     try:
-        response = requests.request(
+        return requests.request(
             method,
             f"{API_URL}{path}",
             headers=headers(),
-            timeout=60,
+            timeout=300,
             **kwargs,
         )
-        if response.status_code == 401:
-            st.session_state.token = None
-            st.session_state.user = None
-            st.session_state.chat_messages = []
-            st.warning("Your session has expired. Please log in again.")
-            st.rerun()
-        return response
     except requests.RequestException as exc:
         st.error(f"API connection error: {exc}")
         return None
 
 
-def error_detail(response):
-    if response is None:
-        return "No response from API."
+def parse_date(text):
+    text = text.strip()
+    for fmt in ["%Y-%m-%d", "%d-%m-%Y", "%d/%m/%Y"]:
+        try:
+            return datetime.strptime(text, fmt).date()
+        except ValueError:
+            pass
+    return None
 
+
+def get_active_leave_types():
+    response = api("GET", "/leave-types")
+    if not response or not response.ok:
+        return []
     try:
         data = response.json()
-        return data.get("detail", response.text)
+        return [item for item in data if item.get("is_active", False)]
     except Exception:
-        return response.text
+        return []
 
-def get_chat_history():
-    """
-    Return temporary conversation history for the current
-    Streamlit session.
 
-    Only user/assistant text is sent to the AI service.
-    UI metadata such as sources and intent is excluded.
-    """
-    history = []
+# ============================================================
+# FIND LEAVE TYPE
+# ============================================================
 
-    for message in st.session_state.chat_messages:
-        role = message.get("role")
-        content = message.get("content", "").strip()
+def find_leave_type(
+    text,
+    leave_types,
+):
 
-        if role in {"user", "assistant"} and content:
-            history.append({
-                "role": role,
-                "content": content,
+    text_lower = (
+        text.lower()
+        .strip()
+    )
+
+    for item in leave_types:
+
+        name = item["name"].lower()
+
+        if text_lower == name:
+            return item
+
+        if name in text_lower:
+            return item
+
+    return None
+
+
+# ============================================================
+# DETECT LEAVE APPLICATION
+# ============================================================
+
+def is_leave_application_request(text):
+
+    text = text.lower()
+
+    keywords = [
+        "apply leave",
+        "apply for leave",
+        "want to apply leave",
+        "want to apply for leave",
+        "need to apply leave",
+        "need to apply for leave",
+        "request leave",
+        "request for leave",
+        "take leave",
+        "want leave",
+        "need leave",
+        "i need leave",
+    ]
+
+    return any(
+        keyword in text
+        for keyword in keywords
+    )
+
+
+# ============================================================
+# RESET LEAVE FLOW
+# ============================================================
+
+def reset_leave_flow():
+
+    st.session_state.leave_flow = False
+
+    st.session_state.leave_step = None
+
+    st.session_state.leave_draft = (
+        DEFAULT_DRAFT.copy()
+    )
+
+
+# ============================================================
+# START LEAVE APPLICATION
+# ============================================================
+
+def start_leave_application():
+
+    leave_types = (
+        get_active_leave_types()
+    )
+
+    if not leave_types:
+
+        st.session_state.chat_messages.append({
+            "role": "assistant",
+            "content": (
+                "I cannot start the leave "
+                "application because there are "
+                "no active leave types configured."
+            ),
+        })
+
+        return
+
+    st.session_state.leave_flow = True
+
+    st.session_state.leave_draft = (
+        DEFAULT_DRAFT.copy()
+    )
+
+    st.session_state.leave_step = (
+        "leave_type"
+    )
+
+    names = ", ".join(
+        item["name"]
+        for item in leave_types
+    )
+
+    st.session_state.chat_messages.append({
+        "role": "assistant",
+        "content": (
+            "Sure. I can help you apply "
+            "for leave.\n\n"
+            f"Available leave types: **{names}**\n\n"
+            "Please enter the leave type."
+        ),
+    })
+
+
+# ============================================================
+# SUBMIT LEAVE REQUEST
+# ============================================================
+
+def submit_leave_request():
+
+    draft = (
+        st.session_state.leave_draft
+    )
+
+    payload = {
+        "leave_type_id":
+            draft["leave_type_id"],
+
+        "start_date":
+            str(draft["start_date"]),
+
+        "end_date":
+            str(draft["end_date"]),
+
+        "reason":
+            draft["reason"],
+    }
+
+    response = api(
+        "POST",
+        "/leave-requests",
+        json=payload,
+    )
+
+    if response and response.ok:
+
+        try:
+
+            data = response.json()
+
+            request_id = data.get(
+                "id"
+            )
+
+        except Exception:
+
+            request_id = None
+
+        if request_id:
+
+            message = (
+                "✅ **Leave request "
+                "submitted successfully.**\n\n"
+
+                f"Request ID: **{request_id}**\n"
+
+                f"Leave type: "
+                f"**{draft['leave_type_name']}**\n"
+
+                f"Start date: "
+                f"**{draft['start_date']}**\n"
+
+                f"End date: "
+                f"**{draft['end_date']}**\n"
+
+                f"Reason: "
+                f"**{draft['reason']}**\n\n"
+
+                "Your request is now "
+                "**pending approval**."
+            )
+
+        else:
+
+            message = (
+                "✅ Leave request submitted "
+                "successfully.\n\n"
+
+                "Your request is now "
+                "**pending approval**."
+            )
+
+        st.session_state.chat_messages.append({
+            "role": "assistant",
+            "content": message,
+        })
+
+        reset_leave_flow()
+
+        return
+
+    if response:
+
+        try:
+
+            error_data = (
+                response.json()
+            )
+
+            detail = error_data.get(
+                "detail",
+                "Failed to submit leave request.",
+            )
+
+        except Exception:
+
+            detail = response.text
+
+        st.session_state.chat_messages.append({
+            "role": "assistant",
+            "content": (
+                "❌ I could not submit "
+                "the leave request.\n\n"
+                f"**Reason:** {detail}"
+            ),
+        })
+
+
+# ============================================================
+# PROCESS LEAVE CONVERSATION
+# ============================================================
+
+def process_leave_message(
+    user_message,
+):
+
+    draft = (
+        st.session_state.leave_draft
+    )
+
+    leave_types = (
+        get_active_leave_types()
+    )
+
+
+    # ========================================================
+    # STEP 1 - LEAVE TYPE
+    # ========================================================
+
+    if (
+        st.session_state.leave_step
+        == "leave_type"
+    ):
+
+        selected_type = find_leave_type(
+            user_message,
+            leave_types,
+        )
+
+        if not selected_type:
+
+            names = "\n".join(
+                f"- {item['name']}"
+                for item in leave_types
+            )
+
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": (
+                    "I couldn't identify "
+                    "that leave type.\n\n"
+                    "Please choose one of these:\n\n"
+                    f"{names}"
+                ),
             })
 
-    return history
+            return
+
+        draft["leave_type_id"] = (
+            selected_type["id"]
+        )
+
+        draft["leave_type_name"] = (
+            selected_type["name"]
+        )
+
+        st.session_state.leave_step = (
+            "start_date"
+        )
+
+        st.session_state.chat_messages.append({
+            "role": "assistant",
+            "content": (
+                f"Leave type selected: "
+                f"**{selected_type['name']}**.\n\n"
+
+                "Now enter the **start date**.\n\n"
+
+                "Use format: `YYYY-MM-DD`\n\n"
+
+                "Example: `2026-09-01`"
+            ),
+        })
+
+        return
+
+
+    # ========================================================
+    # STEP 2 - START DATE
+    # ========================================================
+
+    if (
+        st.session_state.leave_step
+        == "start_date"
+    ):
+
+        parsed = parse_date(
+            user_message
+        )
+
+        if not parsed:
+
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": (
+                    "Please enter a valid "
+                    "start date.\n\n"
+
+                    "Use format: `YYYY-MM-DD`\n\n"
+
+                    "Example: `2026-09-01`"
+                ),
+            })
+
+            return
+
+        if parsed < date.today():
+
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": (
+                    "The start date cannot "
+                    "be in the past.\n\n"
+
+                    "Please enter another "
+                    "start date."
+                ),
+            })
+
+            return
+
+        draft["start_date"] = parsed
+
+        st.session_state.leave_step = (
+            "end_date"
+        )
+
+        st.session_state.chat_messages.append({
+            "role": "assistant",
+            "content": (
+                f"Start date: **{parsed}**.\n\n"
+
+                "Now enter the **end date**.\n\n"
+
+                "Use format: `YYYY-MM-DD`\n\n"
+
+                "For a single-day leave, "
+                "enter the same date."
+            ),
+        })
+
+        return
+
+
+    # ========================================================
+    # STEP 3 - END DATE
+    # ========================================================
+
+    if (
+        st.session_state.leave_step
+        == "end_date"
+    ):
+
+        parsed = parse_date(
+            user_message
+        )
+
+        if not parsed:
+
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": (
+                    "Please enter a valid "
+                    "end date.\n\n"
+
+                    "Use format: `YYYY-MM-DD`"
+                ),
+            })
+
+            return
+
+        if parsed < draft["start_date"]:
+
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": (
+                    "The end date cannot "
+                    "be before the start date.\n\n"
+
+                    "Please enter another "
+                    "end date."
+                ),
+            })
+
+            return
+
+        draft["end_date"] = parsed
+
+        st.session_state.leave_step = (
+            "reason"
+        )
+
+        st.session_state.chat_messages.append({
+            "role": "assistant",
+            "content": (
+                f"End date: **{parsed}**.\n\n"
+
+                "Now enter the **reason "
+                "for your leave**."
+            ),
+        })
+
+        return
+
+
+    # ========================================================
+    # STEP 4 - REASON
+    # ========================================================
+
+    if (
+        st.session_state.leave_step
+        == "reason"
+    ):
+
+        reason = (
+            user_message.strip()
+        )
+
+        if len(reason) < 2:
+
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": (
+                    "Please provide a "
+                    "valid reason for "
+                    "your leave."
+                ),
+            })
+
+            return
+
+        draft["reason"] = reason
+
+        st.session_state.leave_step = (
+            "confirmation"
+        )
+
+        st.session_state.chat_messages.append({
+            "role": "assistant",
+            "content": (
+                "Please confirm your "
+                "leave request:\n\n"
+
+                f"**Leave type:** "
+                f"{draft['leave_type_name']}\n\n"
+
+                f"**Start date:** "
+                f"{draft['start_date']}\n\n"
+
+                f"**End date:** "
+                f"{draft['end_date']}\n\n"
+
+                f"**Reason:** "
+                f"{draft['reason']}\n\n"
+
+                "Type **yes** to submit "
+                "or **no** to cancel."
+            ),
+        })
+
+        return
+
+
+    # ========================================================
+    # STEP 5 - CONFIRMATION
+    # ========================================================
+
+    if (
+        st.session_state.leave_step
+        == "confirmation"
+    ):
+
+        answer = (
+            user_message
+            .lower()
+            .strip()
+        )
+
+        if answer in {
+            "yes",
+            "y",
+            "confirm",
+            "confirmed",
+            "submit",
+        }:
+
+            submit_leave_request()
+
+            return
+
+        if answer in {
+            "no",
+            "n",
+            "cancel",
+            "cancel it",
+        }:
+
+            reset_leave_flow()
+
+            st.session_state.chat_messages.append({
+                "role": "assistant",
+                "content": (
+                    "❌ Leave application "
+                    "cancelled."
+                ),
+            })
+
+            return
+
+        st.session_state.chat_messages.append({
+            "role": "assistant",
+            "content": (
+                "Please type **yes** to "
+                "submit the request or "
+                "**no** to cancel it."
+            ),
+        })
+
+
 # ============================================================
 # LOGIN / REGISTER
 # ============================================================
 
 if not st.session_state.token:
 
-    st.title("📅 Leave Management AI")
+    st.title(
+        "📅 Leave Management AI"
+    )
 
-    tab1, tab2 = st.tabs(["Login", "Register"])
+    tab1, tab2 = st.tabs([
+        "Login",
+        "Register",
+    ])
+
+
+    # ========================================================
+    # LOGIN
+    # ========================================================
 
     with tab1:
-        st.subheader("Login")
+
+        st.subheader(
+            "🔐 Login"
+        )
 
         username = st.text_input(
-            "Username",
+            "Username / Email",
             key="login_username",
         )
 
@@ -122,66 +688,86 @@ if not st.session_state.token:
             key="login_password",
         )
 
-        if st.button("Login", type="primary"):
-            if not username.strip() or not password:
-                st.warning("Enter username and password.")
+        if st.button(
+            "Login",
+            type="primary",
+        ):
+
+            if not username or not password:
+
+                st.warning(
+                    "Enter username and password."
+                )
+
             else:
-                try:
-                    response = requests.post(
-                        f"{API_URL}/auth/login",
-                        json={
-                            "username": username.strip(),
-                            "password": password,
-                        },
+
+                response = requests.post(
+                    f"{API_URL}/auth/login",
+
+                    # IMPORTANT:
+                    # JSON, NOT data=
+                    json={
+                        "username":
+                            username,
+
+                        "password":
+                            password,
+                    },
+
+                    timeout=30,
+                )
+
+                if response.ok:
+
+                    data = response.json()
+
+                    st.session_state.token = (
+                        data["access_token"]
+                    )
+
+                    me = requests.get(
+                        f"{API_URL}/auth/me",
+                        headers=headers(),
                         timeout=30,
                     )
 
-                    if response.ok:
-                        data = response.json()
-                        token = data.get("access_token")
+                    if me.ok:
 
-                        if not token:
-                            st.error("Login succeeded but no access token was returned.")
-                        else:
-                            st.session_state.token = token
+                        st.session_state.user = (
+                            me.json()
+                        )
 
-                            me = requests.get(
-                                f"{API_URL}/auth/me",
-                                headers={
-                                    "Authorization": f"Bearer {token}",
-                                },
-                                timeout=30,
-                            )
+                    st.rerun()
 
-                            if not me.ok:
-                                st.session_state.token = None
-                                st.error(
-                                    "Login token was received, but /auth/me failed:\n\n"
-                                    + error_detail(me)
-                                )
-                            else:
-                                st.session_state.user = me.json()
-                                st.rerun()
-                    else:
-                        st.error(error_detail(response))
+                else:
 
-                except requests.RequestException as exc:
-                    st.error(f"Cannot connect to API: {exc}")
+                    st.error(
+                        f"Login failed: "
+                        f"{response.text}"
+                    )
+
+
+    # ========================================================
+    # REGISTER
+    # ========================================================
 
     with tab2:
-        st.subheader("Register Employee")
 
-        reg_username = st.text_input(
+        st.subheader(
+            "📝 Register Employee"
+        )
+
+        username = st.text_input(
             "Username",
             key="reg_username",
         )
 
-        reg_email = st.text_input(
+        email = st.text_input(
             "Email",
             key="reg_email",
         )
 
-        reg_password = st.text_input(
+        password = st.text_input(
             "Password",
             type="password",
             key="reg_password",
@@ -202,41 +788,68 @@ if not st.session_state.token:
             key="reg_department",
         )
 
-        if st.button("Register"):
-            try:
-                response = requests.post(
-                    f"{API_URL}/auth/register",
-                    json={
-                        "username": reg_username.strip(),
-                        "email": reg_email.strip(),
-                        "password": reg_password,
-                        "role": "employee",
-                        "employee_code": employee_code.strip() or None,
-                        "full_name": full_name.strip() or None,
-                        "department": department.strip() or None,
-                    },
-                    timeout=30,
+        if st.button(
+            "Register"
+        ):
+
+            response = requests.post(
+                f"{API_URL}/auth/register",
+
+                json={
+                    "username":
+                        username,
+
+                    "email":
+                        email,
+
+                    "password":
+                        password,
+
+                    "role":
+                        "employee",
+
+                    "employee_code":
+                        employee_code,
+
+                    "full_name":
+                        full_name,
+
+                    "department":
+                        department,
+                },
+
+                timeout=30,
+            )
+
+            if response.ok:
+
+                st.success(
+                    "Registration successful. "
+                    "Please login."
                 )
 
-                if response.ok:
-                    st.success(
-                        "Registration successful. Please login."
-                    )
-                else:
-                    st.error(error_detail(response))
+            else:
 
-            except requests.RequestException as exc:
-                st.error(f"Cannot connect to API: {exc}")
+                st.error(
+                    response.text
+                )
 
     st.stop()
 
 
 # ============================================================
-# CURRENT USER
+# LOGGED-IN USER
 # ============================================================
 
-user = st.session_state.user or {}
-role = user.get("role", "")
+user = (
+    st.session_state.user
+    or {}
+)
+
+role = user.get(
+    "role",
+    "",
+)
 
 
 # ============================================================
@@ -244,14 +857,35 @@ role = user.get("role", "")
 # ============================================================
 
 st.sidebar.success(
-    f"Logged in: {user.get('username', 'user')} ({role})"
+    f"Logged in: "
+    f"{user.get('username', 'user')} "
+    f"({role})"
 )
 
-if st.sidebar.button("Logout"):
+if st.sidebar.button(
+    "Logout"
+):
+
     st.session_state.token = None
+
     st.session_state.user = None
+
     st.session_state.chat_messages = []
+
+    st.session_state.evaluation_result = None
+
+    reset_leave_flow()
+
     st.rerun()
+
+
+# ============================================================
+# MAIN TITLE
+# ============================================================
+
+st.title(
+    "📅 Leave Management AI"
+)
 
 
 # ============================================================
@@ -262,19 +896,32 @@ tab_names = [
     "Dashboard",
     "My Leave",
     "AI Assistant",
+    "Model Evaluation",
 ]
 
-if role in {"manager", "admin"}:
-    tab_names.append("Approvals")
+
+if role in {
+    "manager",
+    "admin",
+}:
+
+    tab_names.append(
+        "Approvals"
+    )
+
 
 if role == "admin":
+
     tab_names.extend([
         "Leave Types",
         "Balances",
         "Users",
     ])
 
-pages = st.tabs(tab_names)
+
+pages = st.tabs(
+    tab_names
+)
 
 
 # ============================================================
@@ -282,46 +929,58 @@ pages = st.tabs(tab_names)
 # ============================================================
 
 with pages[0]:
-    st.header("Dashboard")
 
-    response = api("GET", "/dashboard/me")
+    st.header(
+        "Dashboard"
+    )
+
+    response = api(
+        "GET",
+        "/dashboard/me",
+    )
 
     if response and response.ok:
+
         data = response.json()
 
-        col1, col2, col3 = st.columns(3)
+        if isinstance(data, dict):
 
-        with col1:
-            st.metric(
-                "Employee",
-                data.get("employee", {}).get(
-                    "full_name",
-                    user.get("username", "-"),
-                )
-                if isinstance(data.get("employee"), dict)
-                else user.get("username", "-"),
+            cols = st.columns(
+                len(data)
             )
 
-        with col2:
-            balances = data.get("balances", [])
-            st.metric(
-                "Leave balance records",
-                len(balances) if isinstance(balances, list) else 0,
-            )
+            for index, (
+                key,
+                value,
+            ) in enumerate(
+                data.items()
+            ):
 
-        with col3:
-            requests_data = data.get("leave_requests", [])
-            st.metric(
-                "Leave requests",
-                len(requests_data)
-                if isinstance(requests_data, list)
-                else 0,
-            )
+                with cols[
+                    index
+                    % len(cols)
+                ]:
 
-        st.json(data)
+                    st.metric(
+                        str(key)
+                        .replace(
+                            "_",
+                            " "
+                        )
+                        .title(),
+
+                        str(value),
+                    )
+
+        else:
+
+            st.json(data)
 
     elif response:
-        st.error(error_detail(response))
+
+        st.error(
+            response.text
+        )
 
 
 # ============================================================
@@ -329,87 +988,153 @@ with pages[0]:
 # ============================================================
 
 with pages[1]:
-    st.header("My Leave")
 
-    response = api("GET", "/leave-balances/me")
+    st.header(
+        "My Leave"
+    )
+
+
+    # --------------------------------------------------------
+    # BALANCES
+    # --------------------------------------------------------
+
+    response = api(
+        "GET",
+        "/leave-balances/me",
+    )
 
     if response and response.ok:
-        st.subheader("Balances")
+
+        st.subheader(
+            "Balances"
+        )
+
         st.dataframe(
             response.json(),
             use_container_width=True,
+            hide_index=True,
         )
-    elif response:
-        st.error(error_detail(response))
 
-    st.subheader("Apply for Leave")
 
-    response = api("GET", "/leave-types")
+    # --------------------------------------------------------
+    # NORMAL LEAVE FORM
+    # --------------------------------------------------------
+
+    st.subheader(
+        "Apply for Leave"
+    )
+
+    response = api(
+        "GET",
+        "/leave-types",
+    )
 
     type_options = {}
 
     if response and response.ok:
-        for item in response.json():
-            if item.get("is_active"):
-                type_options[item["name"]] = item["id"]
+
+        type_options = {
+            item["name"]:
+                item["id"]
+
+            for item in response.json()
+
+            if item.get(
+                "is_active",
+                False,
+            )
+        }
+
 
     if type_options:
+
         selected = st.selectbox(
             "Leave type",
-            list(type_options.keys()),
+            list(
+                type_options.keys()
+            ),
         )
 
         start = st.date_input(
-            "Start date",
-            key="normal_leave_start",
+            "Start date"
         )
 
         end = st.date_input(
-            "End date",
-            key="normal_leave_end",
+            "End date"
         )
 
         reason = st.text_area(
-            "Reason",
-            key="normal_leave_reason",
+            "Reason"
         )
 
-        if st.button("Submit Leave Request"):
+
+        if st.button(
+            "Submit Leave Request"
+        ):
+
             response = api(
                 "POST",
                 "/leave-requests",
+
                 json={
-                    "leave_type_id": type_options[selected],
-                    "start_date": str(start),
-                    "end_date": str(end),
-                    "reason": reason,
+                    "leave_type_id":
+                        type_options[
+                            selected
+                        ],
+
+                    "start_date":
+                        str(start),
+
+                    "end_date":
+                        str(end),
+
+                    "reason":
+                        reason,
                 },
             )
 
+
             if response and response.ok:
+
                 st.success(
-                    f"Leave request submitted. "
-                    f"Request ID: {response.json().get('id', '-')}"
+                    "Leave request submitted."
                 )
+
                 st.rerun()
 
             elif response:
-                st.error(error_detail(response))
+
+                st.error(
+                    response.text
+                )
 
     else:
-        st.info("No active leave types configured.")
 
-    st.subheader("My Requests")
+        st.info(
+            "No active leave types configured."
+        )
 
-    response = api("GET", "/leave-requests/me")
+
+    # --------------------------------------------------------
+    # MY REQUESTS
+    # --------------------------------------------------------
+
+    response = api(
+        "GET",
+        "/leave-requests/me",
+    )
 
     if response and response.ok:
+
+        st.subheader(
+            "My Requests"
+        )
+
         st.dataframe(
             response.json(),
             use_container_width=True,
+            hide_index=True,
         )
-    elif response:
-        st.error(error_detail(response))
 
 
 # ============================================================
@@ -417,281 +1142,930 @@ with pages[1]:
 # ============================================================
 
 with pages[2]:
-    st.header("🤖 Policy AI Assistant")
+
+    st.header(
+        "🤖 Policy AI Assistant"
+    )
 
     st.caption(
-        "Ask company-policy questions or apply for leave using natural language."
+        "Ask about company policy or "
+        "apply for leave directly through "
+        "the chat."
     )
 
-    for message in st.session_state.chat_messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
 
-            if message["role"] == "assistant":
-                if message.get("sources"):
-                    with st.expander("RAG sources"):
-                        st.json(message["sources"])
+    for message in (
+        st.session_state.chat_messages
+    ):
 
-                if "intent" in message:
-                    st.caption(
-                        f"Intent: {message['intent']} | "
-                        f"Grounded: {message.get('grounded', True)}"
-                    )
+        with st.chat_message(
+            message["role"]
+        ):
+
+            st.markdown(
+                message["content"]
+            )
+
 
     user_message = st.chat_input(
-        "Ask about company policy or tell me what leave you need..."
+        "Ask about leave policy or "
+        "say 'I want to apply for leave'"
     )
 
-    if user_message:
-        question = user_message.strip()
 
-        if not question:
-            st.warning("Please enter a message.")
-            st.stop()
+    if user_message:
 
         st.session_state.chat_messages.append({
             "role": "user",
-            "content": question,
+            "content": user_message,
         })
 
-        draft = st.session_state.get("pending_leave_draft")
-        confirmed = False
-        if question.lower().strip() in {"yes", "yes submit it", "confirm", "confirm and submit", "yes i confirm"}:
-            confirmed = True
 
         response = api(
             "POST",
             "/ai/query",
             json={
-                "question": question,
-                "top_k": 5,
-                "confirmed": confirmed,
-                "draft": draft,
-                "conversation_history": get_chat_history()[-20:],
+                "question": user_message,
+                "top_k": 3,
+                "draft": st.session_state.leave_draft,
+                "conversation_history": st.session_state.chat_messages,
             },
         )
 
         if response and response.ok:
             data = response.json()
-
-            if data.get("requires_confirmation"):
-                st.session_state.pending_leave_draft = data.get("draft", {})
-            elif data.get("draft") is not None:
-                st.session_state.pending_leave_draft = data.get("draft", {})
-            else:
-                st.session_state.pending_leave_draft = {}
+            answer = data.get(
+                "answer",
+                "I could not generate an answer.",
+            )
+            returned_draft = data.get("draft") or {}
+            if data.get("intent") == "leave_request" and returned_draft:
+                st.session_state.leave_draft = returned_draft
+                st.session_state.leave_flow = data.get(
+                    "requires_confirmation", False,
+                )
+            elif not data.get("requires_confirmation"):
+                reset_leave_flow()
 
             st.session_state.chat_messages.append({
                 "role": "assistant",
-                "content": data.get(
-                    "answer",
-                    "I could not generate an answer.",
-                ),
-                "sources": data.get("sources", []),
-                "intent": data.get("intent", "unknown"),
-                "grounded": data.get("grounded", True),
-                "request_id": data.get("request_id"),
+                "content": answer,
             })
-
         elif response:
             st.session_state.chat_messages.append({
                 "role": "assistant",
                 "content": (
-                    "❌ **AI service error**\n\n"
-                    f"HTTP status: `{response.status_code}`\n\n"
-                    f"`{error_detail(response)}`"
+                    "❌ AI service error:\n\n"
+                    f"{response.text}"
                 ),
-            })
-
-        else:
-            st.session_state.chat_messages.append({
-                "role": "assistant",
-                "content": "❌ Could not connect to the AI service.",
             })
 
         st.rerun()
 
-    if st.session_state.get("pending_leave_draft"):
-        st.info("A leave draft is ready to submit.")
-        if st.button("Yes, submit this leave request"):
-            st.session_state.chat_messages.append({
-                "role": "user",
-                "content": "Yes, submit this leave request",
-            })
-            response = api(
-                "POST",
-                "/ai/query",
-                json={
-                    "question": "Yes, submit this leave request",
-                    "top_k": 5,
-                    "confirmed": True,
-                    "draft": st.session_state.pending_leave_draft,
-                    "conversation_history": get_chat_history()[-20:],
-                },
-            )
-            if response and response.ok:
-                data = response.json()
-                st.session_state.pending_leave_draft = {}
-                st.session_state.chat_messages.append({
-                    "role": "assistant",
-                    "content": data.get("answer", "I could not submit the request."),
-                    "sources": data.get("sources", []),
-                    "intent": data.get("intent", "unknown"),
-                    "grounded": data.get("grounded", True),
-                    "request_id": data.get("request_id"),
-                })
-                st.rerun()
-            elif response:
-                st.error(error_detail(response))
 
-        if st.button("No, cancel"):
-            st.session_state.pending_leave_draft = {}
-            st.rerun()
+# ============================================================
+# MODEL EVALUATION
+# ============================================================
+
+with pages[3]:
+
+    st.header(
+        "📊 Embedding Model Evaluation"
+    )
+
+    st.markdown(
+        """
+        Compare **Qwen3-Embedding-0.6B** and
+        **BAAI/bge-small-en-v1.5** on the same
+        Leave Management knowledge base.
+
+        You can enter **any wording** related
+        to the documents.
+        """
+    )
+
+    st.divider()
+
+
+    # ========================================================
+    # QUERY
+    # ========================================================
+
+    evaluation_question = st.text_area(
+        "🔎 Evaluation Question",
+
+        placeholder="Enter any question about the available leave-management documents.",
+
+        height=110,
+
+        key="evaluation_question",
+    )
+
+
+    # ========================================================
+    # TOP K
+    # ========================================================
+
+    evaluation_top_k = st.slider(
+        "Top K",
+
+        min_value=1,
+
+        max_value=10,
+
+        value=5,
+
+        key="evaluation_top_k",
+    )
+
+
+    # ========================================================
+    # COMPARE BUTTON
+    # ========================================================
+
+    if st.button(
+        "🚀 Compare Models",
+        type="primary",
+        use_container_width=True,
+    ):
+
+        question = (
+            evaluation_question
+            .strip()
+        )
+
+
+        if not question:
+
+            st.warning(
+                "Please enter an evaluation question."
+            )
+
+        else:
+                question = evaluation_question.strip()
+                if not question:
+                    st.warning("Please enter an evaluation question.")
+                else:
+                    with st.spinner("Running QWEN and BAAI..."):
+                        response = api(
+                            "POST",
+                            "/ai/evaluate",
+                            json={
+                                "question": question,
+                                "top_k": evaluation_top_k,
+                            },
+                        )
+                    st.session_state.evaluation_mode = "free_query"
+                    if response and response.ok:
+                        st.session_state.evaluation_result = response.json()
+                        st.success("Model comparison completed.")
+                    elif response:
+                        try:
+                            error_message = response.json().get(
+                                "detail", "Unknown evaluation error."
+                            )
+                        except Exception:
+                            error_message = response.text
+                        st.error(
+                            f"Evaluation failed ({response.status_code}): {error_message}"
+                        )
+        result = st.session_state.evaluation_result or {}
+        qwen = result.get("qwen", {})
+        BAAI = result.get("BAAI", {})
+
+        qwen_score = float(
+            qwen.get("top_score", 0.0)
+        )
+
+        BAAI_score = float(
+            BAAI.get("top_score", 0.0)
+        )   
+
+        # ====================================================
+
+        st.subheader(
+            "🤖 Models"
+        )
+
+        col1, col2 = st.columns(2)
+
+
+        with col1:
+
+            st.metric(
+                "QWEN",
+                "Qwen3-Embedding-0.6B",
+            )
+
+
+        with col2:
+
+            st.metric(
+                "BAAI",
+                "BAAI/bge-small-en-v1.5",
+            )
+
+
+        # ====================================================
+        # TOP SIMILARITY
+        # ====================================================
+
+        st.subheader(
+            "🎯 Similarity Score"
+        )
+
+        similarity_col1, similarity_col2 = (
+            st.columns(2)
+        )
+
+
+        qwen_score = float(
+            qwen.get(
+                "top_score",
+                0.0,
+            )
+        )
+
+        BAAI_score = float(
+            BAAI.get(
+                "top_score",
+                0.0,
+            )
+        )
+
+
+        with similarity_col1:
+
+            st.metric(
+                "QWEN Top Score",
+                f"{qwen_score:.4f}",
+            )
+
+
+        with similarity_col2:
+
+            st.metric(
+                "BAAI Top Score",
+                f"{BAAI_score:.4f}",
+            )
+
+
+        if qwen_score > BAAI_score:
+
+            st.success(
+                "🏆 QWEN has the higher "
+                "top similarity score."
+            )
+
+        elif BAAI_score > qwen_score:
+
+            st.success(
+                "🏆 BAAI has the higher "
+                "top similarity score."
+            )
+
+        else:
+
+            st.info(
+                "🤝 Both models have the "
+                "same top similarity score."
+            )
+
+
+        st.subheader(
+            "Retrieval Metrics"
+        )
+
+        metrics_df = pd.DataFrame([
+            {
+                "Metric": "Top Similarity",
+                "QWEN": qwen.get("top_score", 0.0),
+                "BAAI": BAAI.get("top_score", 0.0),
+            },
+            {
+                "Metric": "Average Similarity @K",
+                "QWEN": qwen.get("average_score", 0.0),
+                "BAAI": BAAI.get("average_score", 0.0),
+            },
+            {
+                "Metric": "Precision",
+                "QWEN": qwen.get("precision", "N/A"),
+                "BAAI": BAAI.get("precision", "N/A"),
+            },
+            {
+                "Metric": "Recall",
+                "QWEN": qwen.get("recall", "N/A"),
+                "BAAI": BAAI.get("recall", "N/A"),
+            },
+            {
+                "Metric": "F1 Score",
+                "QWEN": qwen.get("f1", "N/A"),
+                "BAAI": BAAI.get("f1", "N/A"),
+            },
+            {
+                "Metric": "MRR",
+                "QWEN": qwen.get("mrr", "N/A"),
+                "BAAI": BAAI.get("mrr", "N/A"),
+            },
+            {
+                "Metric": "Embedding Latency (ms)",
+                "QWEN": qwen.get("embedding_latency_ms", 0.0),
+                "BAAI": BAAI.get("embedding_latency_ms", 0.0),
+            },
+            {
+                "Metric": "Retrieval Latency (ms)",
+                "QWEN": qwen.get("retrieval_latency_ms", 0.0),
+                "BAAI": BAAI.get("retrieval_latency_ms", 0.0),
+            },
+            {
+                "Metric": "Total Latency (ms)",
+                "QWEN": qwen.get("total_latency_ms", 0.0),
+                "BAAI": BAAI.get("total_latency_ms", 0.0),
+            },
+        ])
+
+        st.dataframe(
+            metrics_df,
+            use_container_width=True,
+            hide_index=True,
+        )
+
+        # ====================================================
+        # LATENCY
+        # ====================================================
+
+        st.subheader(
+            "⚡ Latency Comparison"
+        )
+
+
+        latency_rows = [
+
+            {
+                "Metric":
+                    "Embedding Latency (ms)",
+
+                "QWEN":
+                    qwen.get(
+                        "embedding_latency_ms",
+                        0.0,
+                    ),
+
+                "BAAI":
+                    BAAI.get(
+                        "embedding_latency_ms",
+                        0.0,
+                    ),
+            },
+
+            {
+                "Metric":
+                    "Retrieval Latency (ms)",
+
+                "QWEN":
+                    qwen.get(
+                        "retrieval_latency_ms",
+                        0.0,
+                    ),
+
+                "BAAI":
+                    BAAI.get(
+                        "retrieval_latency_ms",
+                        0.0,
+                    ),
+            },
+
+            {
+                "Metric":
+                    "Total Latency (ms)",
+
+                "QWEN":
+                    qwen.get(
+                        "total_latency_ms",
+                        0.0,
+                    ),
+
+                "BAAI":
+                    BAAI.get(
+                        "total_latency_ms",
+                        0.0,
+                    ),
+            },
+        ]
+
+
+        latency_df = pd.DataFrame(
+            latency_rows
+        )
+
+
+        st.dataframe(
+            latency_df,
+            use_container_width=True,
+            hide_index=True,
+        )
+
+
+        # ====================================================
+        # OVERALL COMPARISON
+        # ====================================================
+
+        comparison = result.get(
+            "comparison",
+            {},
+        )
+
+
+        if comparison:
+
+            st.subheader(
+                "🏆 Model Comparison"
+            )
+
+
+            c1, c2, c3, c4 = st.columns(4)
+
+
+            with c1:
+
+                st.metric(
+                    "Similarity Winner",
+                    comparison.get(
+                        "similarity_winner",
+                        "N/A",
+                    ),
+                )
+
+
+            with c2:
+
+                st.metric(
+                    "Speed Winner",
+                    comparison.get(
+                        "speed_winner",
+                        "N/A",
+                    ),
+                )
+
+
+            with c3:
+
+                agreement = comparison.get(
+                    "top_result_agreement",
+                    False,
+                )
+
+                st.metric(
+                    "Top Result Agreement",
+                    "Yes"
+                    if agreement
+                    else "No",
+                )
+
+
+            with c4:
+
+                overlap = comparison.get(
+                    "result_overlap_percentage",
+                    0.0,
+                )
+
+                st.metric(
+                    "Result Overlap",
+                    f"{float(overlap):.2f}%",
+                )
+
+            if comparison.get("evaluation_available"):
+                st.subheader("Evaluation Metrics")
+                evaluation_df = pd.DataFrame([
+                    {
+                        "Metric": "Precision",
+                        "QWEN": qwen.get("precision", 0.0),
+                        "BAAI": BAAI.get("precision", 0.0),
+                    },
+                    {
+                        "Metric": "Recall",
+                        "QWEN": qwen.get("recall", 0.0),
+                        "BAAI": BAAI.get("recall", 0.0),
+                    },
+                    {
+                        "Metric": "F1 Score",
+                        "QWEN": qwen.get("f1", 0.0),
+                        "BAAI": BAAI.get("f1", 0.0),
+                    },
+                    {
+                        "Metric": "MRR",
+                        "QWEN": qwen.get("mrr", 0.0),
+                        "BAAI": BAAI.get("mrr", 0.0),
+                    },
+                ])
+                st.dataframe(
+                    evaluation_df,
+                    use_container_width=True,
+                    hide_index=True,
+                )
+            else:
+                st.info(
+                    "Precision, recall, F1, and MRR are available for questions in the evaluation dataset."
+                )
+
+
+        # ====================================================
+        # RETRIEVED RESULTS
+        # ====================================================
+
+        st.subheader(
+            f"🔍 Top {evaluation_top_k} Retrieved Results"
+        )
+
+
+        result_col1, result_col2 = (
+            st.columns(2)
+        )
+
+
+        # ====================================================
+        # QWEN
+        # ====================================================
+
+        with result_col1:
+
+            st.markdown(
+                "### 🔵 Qwen3-Embedding-0.6B"
+            )
+
+            qwen_results = (
+                qwen.get(
+                    "results",
+                    [],
+                )
+            )
+
+
+            if not qwen_results:
+
+                st.warning(
+                    "QWEN returned no results."
+                )
+
+            else:
+
+                for index, item in enumerate(
+                    qwen_results,
+                    start=1,
+                ):
+
+                    score = float(
+                        item.get(
+                            "score",
+                            0.0,
+                        )
+                    )
+
+                    source = item.get(
+                        "source",
+                        "unknown",
+                    )
+
+                    chunk_id = item.get(
+                        "chunk_id",
+                        "unknown",
+                    )
+
+                    content = item.get(
+                        "content",
+                        "",
+                    )
+
+
+                    with st.expander(
+                        f"#{index} | "
+                        f"Score: {score:.4f}"
+                    ):
+
+                        st.write(
+                            f"**Chunk:** {chunk_id}"
+                        )
+
+                        st.write(
+                            f"**Source:** {source}"
+                        )
+
+                        st.write(
+                            content
+                        )
+
+
+        # ====================================================
+        # BAAI
+        # ====================================================
+
+        with result_col2:
+
+            st.markdown(
+                "### 🟢 BAAI-Embedding-0.6B"
+            )
+
+            BAAI_results = (
+                BAAI.get(
+                    "results",
+                    [],
+                )
+            )
+
+
+            if not BAAI_results:
+
+                st.warning(
+                    "BAAI returned no results."
+                )
+
+            else:
+
+                for index, item in enumerate(
+                    BAAI_results,
+                    start=1,
+                ):
+
+                    score = float(
+                        item.get(
+                            "score",
+                            0.0,
+                        )
+                    )
+
+                    source = item.get(
+                        "source",
+                        "unknown",
+                    )
+
+                    chunk_id = item.get(
+                        "chunk_id",
+                        "unknown",
+                    )
+
+                    content = item.get(
+                        "content",
+                        "",
+                    )
+
+
+                    with st.expander(
+                        f"#{index} | "
+                        f"Score: {score:.4f}"
+                    ):
+
+                        st.write(
+                            f"**Chunk:** {chunk_id}"
+                        )
+
+                        st.write(
+                            f"**Source:** {source}"
+                        )
+
+                        st.write(
+                            content
+                        )
+
+
+        # ====================================================
+        # OVERALL RECOMMENDATION
+        # ====================================================
+
+        st.divider()
+
+        st.subheader(
+            "💡 Recommendation"
+        )
+
+
+        qwen_latency = float(
+            qwen.get(
+                "total_latency_ms",
+                0.0,
+            )
+        )
+
+        BAAI_latency = float(
+            BAAI.get(
+                "total_latency_ms",
+                0.0,
+            )
+        )
+
+
+        if qwen_score > BAAI_score:
+
+                st.info(
+                    "QWEN has the higher top similarity for this query."
+                )
+
+        elif BAAI_score > qwen_score:
+
+                st.info(
+                    "BAAI has the higher top similarity for this query."
+                )
+
+        else:
+
+                st.info(
+                    "Both models produced the "
+                    "same top similarity score."
+                )
+
+
+        st.caption(
+            f"Total latency — "
+            f"QWEN: {qwen_latency:.2f} ms | "
+            f"BAAI: {BAAI_latency:.2f} ms"
+        )
 
 
 # ============================================================
 # APPROVALS
 # ============================================================
 
-if role in {"manager", "admin"}:
+approval_page_index = 4
 
-    with pages[3]:
-        st.header("Leave Approvals")
+
+if role in {
+    "manager",
+    "admin",
+}:
+
+    with pages[approval_page_index]:
+
+        st.header(
+            "Leave Approvals"
+        )
 
         response = api(
             "GET",
             "/leave-requests/pending",
         )
 
+
         if response and response.ok:
-            requests_data = response.json()
+
+            requests_data = (
+                response.json()
+            )
+
 
             if not requests_data:
-                st.info("No pending requests.")
+
+                st.info(
+                    "No pending requests."
+                )
+
 
             for item in requests_data:
+
                 with st.expander(
                     f"Request #{item['id']} — "
-                    f"{item['start_date']} to {item['end_date']}"
+                    f"{item['start_date']} to "
+                    f"{item['end_date']}"
                 ):
+
                     st.write(
-                        f"Employee ID: {item['employee_id']}"
+                        f"Employee ID: "
+                        f"{item['employee_id']}"
                     )
+
                     st.write(
-                        f"Days: {item['days']}"
+                        f"Days: "
+                        f"{item['days']}"
                     )
+
                     st.write(
-                        f"Reason: {item['reason']}"
+                        f"Reason: "
+                        f"{item['reason']}"
                     )
+
 
                     comment = st.text_area(
                         "Manager comment",
-                        key=f"comment_{item['id']}",
+
+                        key=(
+                            f"comment_"
+                            f"{item['id']}"
+                        ),
                     )
 
-                    col1, col2 = st.columns(2)
+
+                    col1, col2 = (
+                        st.columns(2)
+                    )
+
+
+                    # ----------------------------------------
+                    # APPROVE
+                    # ----------------------------------------
 
                     with col1:
+
                         if st.button(
                             "Approve",
-                            key=f"approve_{item['id']}",
+
+                            key=(
+                                f"approve_"
+                                f"{item['id']}"
+                            ),
                         ):
+
                             rr = api(
                                 "POST",
-                                f"/leave-requests/{item['id']}/approve",
+
+                                f"/leave-requests/"
+                                f"{item['id']}/approve",
+
                                 json={
-                                    "comment": comment,
+                                    "comment":
+                                        comment
                                 },
                             )
 
-                            if rr and rr.ok:
-                                st.success("Approved.")
-                                st.rerun()
-                            elif rr:
-                                st.error(error_detail(rr))
-
-                    with col2:
-                        if st.button(
-                            "Reject",
-                            key=f"reject_{item['id']}",
-                        ):
-                            rr = api(
-                                "POST",
-                                f"/leave-requests/{item['id']}/reject",
-                                json={
-                                    "comment": comment,
-                                },
-                            )
 
                             if rr and rr.ok:
-                                st.success("Rejected.")
+
+                                st.success(
+                                    "Approved."
+                                )
+
                                 st.rerun()
+
                             elif rr:
-                                st.error(error_detail(rr))
 
-        elif response:
-            st.error(error_detail(response))
+                                st.error(
+                                    rr.text
+                                )
 
 
-# ============================================================
-# ADMIN - LEAVE TYPES
-# ============================================================
-
-if role == "admin":
-
-    with pages[4]:
-        st.header("Leave Types")
-
-        response = api("GET", "/leave-types")
-
-        if response and response.ok:
-            st.dataframe(
-                response.json(),
-                use_container_width=True,
-            )
-
-        name = st.text_input(
-            "New leave type name",
-            key="new_leave_type_name",
-        )
-
-        description = st.text_area(
-            "Description",
-            key="new_leave_type_description",
-        )
-
-        if st.button("Create Leave Type"):
             response = api(
                 "POST",
                 "/leave-types",
+
                 json={
-                    "name": name.strip(),
-                    "description": description.strip() or None,
+                    "name":
+                        name,
+
+                    "description":
+                        description,
                 },
             )
 
-            if response and response.ok:
-                st.success("Created.")
-                st.rerun()
-            elif response:
-                st.error(error_detail(response))
 
-    with pages[5]:
-        st.header("Balances")
-        st.info(
-            "Use the admin balance endpoints or Swagger to create/update "
-            "employee leave balances."
-        )
+            if response and response.ok:
+
+                st.success(
+                    "Created."
+                )
+
+                st.rerun()
+
+            elif response:
+
+                st.error(
+                    response.text
+                )
+
+
+    # ========================================================
+    # BALANCES
+    # ========================================================
 
     with pages[6]:
-        st.header("Users")
 
-        response = api("GET", "/users")
+        st.header(
+            "Balances"
+        )
+
+        st.info(
+            "Use Swagger to create and "
+            "update employee leave balances."
+        )
+
+
+    # ========================================================
+    # USERS
+    # ========================================================
+
+    with pages[7]:
+
+        st.header(
+            "Users"
+        )
+
+        response = api(
+            "GET",
+            "/users",
+        )
+
 
         if response and response.ok:
+
             st.dataframe(
                 response.json(),
                 use_container_width=True,
+                hide_index=True,
             )
-        elif response:
-            st.error(error_detail(response))

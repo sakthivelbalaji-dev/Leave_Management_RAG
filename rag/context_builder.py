@@ -8,4 +8,8 @@ class ContextBuilder:
                 f"CONTENT:\n{item.get('content', '')}"
             )
 
-        return "\n\n---\n\n".join(parts)
+        context = "\n\n---\n\n".join(parts)
+        print("\nFINAL CONTEXT SENT TO LLM:")
+        print(context if context else "<EMPTY>")
+        print("=" * 80)
+        return context

@@ -1,0 +1,83 @@
+timestamp,question,groq_model,embedding_model,temperature,top_k,context_window_tokens,max_output_tokens,retrieved_chunks,used_context_chunks,context_tokens,prompt_tokens,completion_tokens,total_tokens,retrieval_latency_ms,generation_latency_ms,total_latency_ms,grounding_score,hallucination_score,hallucination,factual_claims_count,supported_claims_count,unsupported_claims_count,contradiction_count,unsupported_claims,contradictions,generated_answer,final_answer,precision,recall,f1,evaluation_status
+2026-09-10T12:17:02,WHAT IS THE DIFFERNCE BETWEEN MATERNITY AND PATERNITY LEAVE,openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.0,3,2000,400,3,3,,592,366,958,116.07,3005.36,4496.57,1.0,0.0,False,4,4,0,0,[],[],"**Difference according to the policy context**
+
+| Aspect | Paternity Leave | Maternity Leave |
+|--------|-----------------|-----------------|
+| **Policy detail** | The policy states that paternity leave is available for an eligible employee following the birth or qualifying arrival of a child. It gives a *demonstration entitlement* of up to **15 working days per qualifying event** (this is a demo figure only). | The policy explicitly says it does **not** specify an exact maternity leave duration. No specific entitlement or eligibility details are provided for maternity leave in the supplied context. |
+
+**Key takeaway**  
+The policy provides a concrete example for paternity leave (up to 15 working days, demo only) but does not give any specific information about maternity leave duration or eligibility.","**Difference according to the policy context**
+
+| Aspect | Paternity Leave | Maternity Leave |
+|--------|-----------------|-----------------|
+| **Policy detail** | The policy states that paternity leave is available for an eligible employee following the birth or qualifying arrival of a child. It gives a *demonstration entitlement* of up to **15 working days per qualifying event** (this is a demo figure only). | The policy explicitly says it does **not** specify an exact maternity leave duration. No specific entitlement or eligibility details are provided for maternity leave in the supplied context. |
+
+**Key takeaway**  
+The policy provides a concrete example for paternity leave (up to 15 working days, demo only) but does not give any specific information about maternity leave duration or eligibility.",1.0,1.0,1.0,success
+2026-09-10T12:31:50,what is maternity leave and paternity leave,openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.0,2,2000,200,2,2,,471,200,671,105.77,3951.31,6423.65,,,True,0,0,0,0,[],[],,"Maternity leave: The policy context does not provide a definition or specify a duration for maternity leave. Paternity leave: Paternity leave is intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period. Typical situations include the birth of the employee's child, a qualifying adoption or child‑placement situation if covered by applicable company rules, and immediate family support following childbirth.",,,,grounding_evaluation_unavailable
+2026-09-10T12:56:20,what is paternity leave and maternity leave,openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.0,2,2000,400,2,2,,471,400,871,91.54,5192.17,7603.64,,,True,0,0,0,0,[],[],,"Paternity leave is intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period. The policy does not specify an exact maternity leave duration or provide details about maternity leave.",,,,grounding_evaluation_unavailable
+2026-09-10T12:57:40,what is paternity leave and maternity leave,openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.1,2,2000,400,2,2,,471,400,871,127.02,1698.47,4163.56,,,True,0,0,0,0,[],[],"**Paternity leave**  
+- Intended for an eligible employee following the birth or qualifying arrival of a child.  
+- Allows the employee to support the child and family during the relevant period.  
+- Typical situations include:  
+  - Birth of the employee’s child.  
+  - Qualifying adoption or child‑placement situation (if covered by the applicable company rules).  
+  -","Paternity leave is intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period. Typical situations include birth of the employee’s child, qualifying adoption or child‑placement situation if covered by applicable company rules, and immediate family support following childbirth. The policy does not specify an exact maternity leave duration, and no explicit definition of maternity leave is provided in the policy context.",,,,grounding_evaluation_unavailable
+2026-09-10T12:59:19,what is paternity leave and maternity leave,openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.1,8,2000,400,8,8,,1098,400,1498,119.75,1603.77,3662.03,,,True,0,0,0,0,[],[],"**Paternity Leave**  
+- Intended for an eligible employee following the birth or qualifying arrival of a child.  
+- Allows the employee to support the child and family during the relevant period.  
+- Employees should contact Human Resources for eligibility, documentation, and duration requirements.  
+
+**Maternity Leave**  
+- Intended for employees related to pregnancy, childbirth, or recovery.  
+- The policy does **not** specify an exact duration; employees","**Paternity Leave**
+- Intended for an eligible employee following the birth or qualifying arrival of a child.
+- Allows the employee to support the child and family during the relevant period.
+- Employees should contact Human Resources for eligibility, documentation, and duration requirements.
+- The policy does not specify an exact number of paternity leave days.
+
+**Maternity Leave**
+- Intended for employees related to pregnancy, childbirth, or recovery.
+- Employees should contact Human Resources for eligibility, documentation, and duration requirements.
+- The policy does not specify an exact number of maternity leave days.",,,,grounding_evaluation_unavailable
+2026-09-10T13:07:32,what is maternity leave and paternity leave,openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.1,5,2000,300,5,5,,797,300,1097,92.22,2527.92,5243.08,0.0,1.0,True,0,0,0,0,[],[],,I don't have enough information in the provided policy context to answer that.,0.0,0.0,0.0,grounding_evaluation_fallback
+2026-09-10T13:07:51,what is maternity leave and paternity leave,openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.1,5,2000,400,5,5,,797,400,1197,85.69,1264.38,3181.35,1.0,0.0,False,6,6,0,0,[],[],"**Maternity Leave**  
+- The policy does not specify an exact duration for maternity leave.  
+- Employees who need leave related to pregnancy, childbirth, or recovery should consider Maternity Leave and contact Human Resources for eligibility, documentation, and duration.
+
+**Paternity Leave**  
+- Paternity Leave is intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period.  
+- Typical situations include:  
+  - Birth of the employee’s child.  
+  - Qualifying adoption or child‑placement situation (if covered by company rules).  
+  - Immediate family support following childbirth.  
+- Examples of requests: “My wife is expecting our baby and I need paternity leave,” “My child was born and I want to apply for paternity leave,” or “I need paternity leave starting 20‑10‑2026 because my baby was born.”  
+- Demonstration entitlement: up to 15 working days per qualifying event (this is a demo figure only and not a statement of actual legal entitlement).","**Maternity Leave**  
+- The policy does not specify an exact duration for maternity leave.  
+- Employees who need leave related to pregnancy, childbirth, or recovery should consider Maternity Leave and contact Human Resources for eligibility, documentation, and duration.
+
+**Paternity Leave**  
+- Paternity Leave is intended for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period.  
+- Typical situations include:  
+  - Birth of the employee’s child.  
+  - Qualifying adoption or child‑placement situation (if covered by company rules).  
+  - Immediate family support following childbirth.  
+- Examples of requests: “My wife is expecting our baby and I need paternity leave,” “My child was born and I want to apply for paternity leave,” or “I need paternity leave starting 20‑10‑2026 because my baby was born.”  
+- Demonstration entitlement: up to 15 working days per qualifying event (this is a demo figure only and not a statement of actual legal entitlement).",1.0,1.0,1.0,success
+2026-09-10T13:08:03,what is maternity leave and paternity leave,openai/gpt-oss-20b,BAAI/bge-small-en-v1.5,0.1,12,2000,400,12,12,,1473,291,1764,82.25,1810.72,3306.27,1.0,0.0,False,6,6,0,0,[],[],"**Maternity Leave**  
+- Purpose: Leave for an employee who needs time related to pregnancy, childbirth, recovery after childbirth, or other pregnancy‑related circumstances.  
+- Typical situations: pregnancy‑related leave, leave for childbirth, recovery after childbirth, pregnancy‑related medical appointments or complications.  
+- The policy does **not** specify an exact duration; employees should contact Human Resources for eligibility, documentation, and duration requirements.
+
+**Paternity Leave**  
+- Purpose: Leave for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period.  
+- Typical situations: birth of the employee’s child, qualifying adoption or child‑placement situation (if covered by company rules), immediate family support following childbirth.  
+- The policy does **not** specify an exact duration; employees should contact Human Resources for eligibility, documentation, and duration requirements.","**Maternity Leave**  
+- Purpose: Leave for an employee who needs time related to pregnancy, childbirth, recovery after childbirth, or other pregnancy‑related circumstances.  
+- Typical situations: pregnancy‑related leave, leave for childbirth, recovery after childbirth, pregnancy‑related medical appointments or complications.  
+- The policy does **not** specify an exact duration; employees should contact Human Resources for eligibility, documentation, and duration requirements.
+
+**Paternity Leave**  
+- Purpose: Leave for an eligible employee following the birth or qualifying arrival of a child, allowing the employee to support the child and family during the relevant period.  
+- Typical situations: birth of the employee’s child, qualifying adoption or child‑placement situation (if covered by company rules), immediate family support following childbirth.  
+- The policy does **not** specify an exact duration; employees should contact Human Resources for eligibility, documentation, and duration requirements.",1.0,1.0,1.0,success

@@ -19,9 +19,14 @@ Rules:
    explicitly stated in the context.
 5. If the context does not explicitly support the answer, respond exactly:
 {REFUSAL}
-6. If a source says it is test data or unofficial, do not call it official.
-7. Keep answers concise and factual.
-8. Do not treat the user's statement as evidence of a company policy.
+6. If the context contains the answer, answer it directly even when the
+    user uses different wording or asks a paraphrase.
+7. Do not claim information is unavailable when the supplied context
+    contains the answer.
+8. Preserve the meaning of the policy and do not add unsupported details.
+9. If a source says it is test data or unofficial, do not call it official.
+10. Keep answers concise and factual.
+11. Do not treat the user's statement as evidence of a company policy.
 """
 
 

@@ -1,74 +1,64 @@
-============================================================
-KNACKFORGE
-EMPLOYEE LEAVE, ATTENDANCE AND WORKPLACE POLICY
-============================================================
+KNACKFORGE EMPLOYEE LEAVE, ATTENDANCE AND WORKPLACE POLICY DETAILED
+DEMONSTRATION / AI KNOWLEDGE BASE VERSION
+================================================================
 
-Document Type:
-Employee Leave and Workplace Policy
+IMPORTANT DEMONSTRATION NOTICE This is a DEMONSTRATION / TEST policy for
+the Leave Management AI project. The company name, address, phone
+numbers, emails, website and other contact details marked DEMO are
+fictional. They are included only for testing RAG, retrieval, policy
+answering and contact-information queries. They must not be represented
+as real-world company information.
 
-Company:
-KnackForge
+DOCUMENT INFORMATION
 
-Policy Version:
-1.0
+Document Type: Employee Leave, Attendance and Workplace Policy Company:
+KnackForge Policy Version: 1.0-DEMO Effective Date: 01 September 2026
+Policy Owner: Human Resources Department Applicable To: All employees
+unless a specific employment agreement states otherwise. Document
+Status: Demonstration / Development Knowledge Base
 
-Effective Date:
-01 September 2026
+DEMO HR CONTACT Human Resources Department KnackForge - DEMO 100 Example
+IT Road Demo Technology Park Chennai, Tamil Nadu 600001 India Phone: +91
+44 4000 1234 Email: hr@example.knackforge.invalid Employee Support:
+support@example.knackforge.invalid Website:
+https://knackforge.example.invalid HR Office Hours: Monday to Friday,
+9:00 AM to 6:00 PM
 
-Policy Owner:
-Human Resources Department
+All contact information above is fictional demonstration data.
 
-Applicable To:
-All employees unless a specific employment agreement states otherwise.
-
-============================================================
-1. PURPOSE
-============================================================
-
+================================================================ 1.
+PURPOSE ================================================================
 This policy defines the rules and procedures for employee working hours,
 attendance, leave entitlement, leave application, leave approval,
 attendance correction, work from home, employee complaints, grievances,
 escalation and workplace responsibilities.
 
-============================================================
-2. SCOPE
-============================================================
+Explanation: This section explains why the policy exists. The AI should
+use this section when a user asks about the purpose or scope of the
+workplace policy.
 
-This policy applies to employees working at KnackForge, including:
-
-- Full-time employees
-- Part-time employees
-- Probationary employees
-- Contract employees
-- Interns
-- Other employees where applicable
+================================================================ 2.
+SCOPE ================================================================
+This policy applies to employees working at KnackForge, including: -
+Full-time employees - Part-time employees - Probationary employees -
+Contract employees - Interns - Other employees where applicable
 
 Specific benefits or leave provisions may differ according to employment
 category, employment agreement or applicable law.
 
-============================================================
-3. STANDARD WORKING HOURS
-============================================================
+Explanation: The AI must not assume every employee has identical
+benefits. When a question depends on employment category or an
+employment agreement, the AI should explain that eligibility may differ
+and direct the employee to HR when the document does not provide the
+exact answer.
 
-Standard Working Days:
-
-Monday to Friday
-
-Standard Office Start Time:
-
-9:00 AM
-
-Standard Office End Time:
-
-6:00 PM
-
-Standard Lunch Break:
-
-1:00 PM to 2:00 PM
-
-Expected Working Hours:
-
-8 working hours per standard working day.
+================================================================ 3.
+STANDARD WORKING HOURS
+================================================================
+Standard Working Days: Monday to Friday Standard Office Start Time: 9:00
+AM Standard Office End Time: 6:00 PM Standard Lunch Break: 1:00 PM to
+2:00 PM Expected Working Hours: 8 working hours per standard working
+day.
 
 Employees are expected to be available and actively working during their
 scheduled working hours.
@@ -76,42 +66,51 @@ scheduled working hours.
 Employees assigned to a different shift must follow the working hours
 approved for their department, project or employment agreement.
 
-============================================================
-4. OFFICE ATTENDANCE
-============================================================
+Explanation: If a user asks when work starts, answer 9:00 AM. If a user
+asks when work ends, answer 6:00 PM. If a user asks about lunch, answer
+1:00 PM to 2:00 PM. If a user asks about normal working days, answer
+Monday to Friday. If the employee has an approved different shift, that
+approved schedule takes precedence.
 
+================================================================ 4.
+OFFICE ATTENDANCE
+================================================================
 Employees are expected to maintain regular and punctual attendance.
 
-Employees must:
-
-- Report to work according to their assigned schedule.
-- Complete the required working hours.
-- Follow the company's attendance recording procedure.
-- Inform their manager if they cannot attend work.
-- Apply for appropriate leave when they are absent.
-- Inform their manager about unexpected delays or absence.
-- Maintain accurate attendance records.
+Employees must: - Report to work according to their assigned schedule. -
+Complete the required working hours. - Follow the company’s attendance
+recording procedure. - Inform their manager if they cannot attend
+work. - Apply for appropriate leave when they are absent. - Inform their
+manager about unexpected delays or absence. - Maintain accurate
+attendance records.
 
 Employees must not intentionally record attendance for another employee.
+Attendance records must represent the employee’s actual attendance.
 
-Attendance records must represent the employee's actual attendance.
+Explanation: If an employee cannot attend work, the employee should
+inform the manager and apply for appropriate leave where applicable. The
+AI must not claim that an absence is automatically approved leave.
 
-============================================================
-5. ATTENDANCE RECORDING
-============================================================
-
+================================================================ 5.
+ATTENDANCE RECORDING
+================================================================
 Employees are responsible for recording their attendance using the
 attendance system provided by the company.
 
-Employees should verify that their attendance has been recorded correctly.
+Employees should verify that their attendance has been recorded
+correctly.
 
 If attendance is missing or incorrect, the employee should contact their
 manager or Human Resources as soon as possible.
 
-============================================================
-6. LATE ARRIVAL
-============================================================
+DEMO HR CONTACT: Phone: +91 44 4000 1234 Email:
+hr@example.knackforge.invalid
 
+Explanation: The AI should not invent additional attendance-correction
+procedures. The contact details above are fictional test values.
+
+================================================================ 6. LATE
+ARRIVAL ================================================================
 Employees are expected to arrive and begin work at their scheduled start
 time.
 
@@ -120,356 +119,1227 @@ Standard office start time is 9:00 AM.
 If an employee expects to arrive late, the employee should inform their
 manager as soon as reasonably possible.
 
-Repeated late arrival may require discussion with the employee's manager
+Repeated late arrival may require discussion with the employee’s manager
 and Human Resources.
 
-Late arrival should not be treated as approved leave unless the appropriate
-leave or attendance adjustment has been approved.
+Late arrival should not be treated as approved leave unless the
+appropriate leave or attendance adjustment has been approved.
 
-============================================================
-7. EARLY DEPARTURE
-============================================================
+Explanation: For questions such as “What should I do if I am late?”, “I
+will reach late, what should I do?”, or “What if I arrive after 9?”, the
+key answer is: inform the manager as soon as reasonably possible.
 
-Employees should not leave work before completing their scheduled working
-hours without approval or authorization.
+The AI must not say that late arrival automatically consumes leave.
 
-If an employee needs to leave early, they should:
+================================================================ 7.
+EARLY DEPARTURE
+================================================================
+Employees should not leave work before completing their scheduled
+working hours without approval or authorization.
 
-1. Inform the manager.
-2. Obtain approval where required.
-3. Apply for the appropriate leave or attendance adjustment.
+If an employee needs to leave early: 1. Inform the manager. 2. Obtain
+approval where required. 3. Apply for the appropriate leave or
+attendance adjustment.
 
-============================================================
-8. BREAK POLICY
-============================================================
+Explanation: Early departure requires the appropriate notification and
+approval process. Do not invent an automatic number of permitted early
+departures.
 
-Employees are entitled to the standard lunch break from:
-
-1:00 PM to 2:00 PM.
+================================================================ 8.
+BREAK POLICY
+================================================================
+Standard lunch break: 1:00 PM to 2:00 PM.
 
 Employees may take reasonable short breaks during the working day
 according to team and workplace requirements.
 
-Breaks must not interfere with:
+Breaks must not interfere with: - Customer commitments - Meetings -
+Project deadlines - Team responsibilities - Required working hours
 
-- Customer commitments
-- Meetings
-- Project deadlines
-- Team responsibilities
-- Required working hours
+Explanation: The policy specifies the lunch period but does not specify
+a fixed number or exact duration for short breaks. The AI must not
+invent such values.
 
-============================================================
-9. WORK FROM HOME
-============================================================
+================================================================ 9. WORK
+FROM HOME
+================================================================ Work
+from home is permitted only when approved by the appropriate manager or
+when specifically allowed under company policy.
 
-Work from home is permitted only when approved by the appropriate manager
-or when specifically allowed under company policy.
-
-Employees working remotely must:
-
-- Be available during scheduled working hours.
-- Attend required meetings.
-- Complete assigned work.
-- Maintain communication with their team.
-- Follow attendance requirements.
-- Protect company information and equipment.
+Employees working remotely must: - Be available during scheduled working
+hours. - Attend required meetings. - Complete assigned work. - Maintain
+communication with their team. - Follow attendance requirements. -
+Protect company information and equipment.
 
 Working from home without required approval does not automatically
 constitute approved leave or authorized remote work.
 
-============================================================
-10. GENERAL LEAVE POLICY
-============================================================
+Explanation: The AI must distinguish between approved work from home,
+approved leave and unauthorized absence.
 
+================================================================ 10.
+GENERAL LEAVE POLICY
+================================================================
 Employees may request leave when they need time away from work.
 
-Leave must normally be requested through the company's Leave Management
+Leave must normally be requested through the company’s Leave Management
 System.
 
-============================================================
-11. LEAVE TYPES
-============================================================
+Explanation: For actual leave applications, the conversational AI should
+collect the required information and use the application’s
+database-backed workflow. It must not merely tell the user that leave
+has been submitted.
 
-The Leave Management System may contain the following leave categories:
-
-- Casual Leave
-- Sick Leave
-- Earned Leave
-- Annual Leave
-- Emergency Leave
-- Maternity Leave
-- Paternity Leave
-- Bereavement Leave
-- Compensatory Leave
-- Other approved leave categories
+================================================================ 11.
+LEAVE TYPES
+================================================================ The
+Leave Management System may contain: - Casual Leave - Sick Leave -
+Earned Leave - Annual Leave - Emergency Leave - Maternity Leave -
+Paternity Leave - Bereavement Leave - Compensatory Leave - Other
+approved leave categories
 
 The exact leave types available to an employee are determined by the
-active leave types configured in the Leave Management System and applicable
-company rules.
+active leave types configured in the Leave Management System and
+applicable company rules.
 
-============================================================
-12. LEAVE ELIGIBILITY
-============================================================
+Explanation: This document provides possible categories, while the
+actual database should be treated as the source for currently configured
+leave types. The AI must not invent a leave type that is not available
+in the system.
 
-Leave eligibility may depend on:
-
-- Employee status
-- Employment category
-- Applicable leave type
-- Company policy
-- Employment agreement
-- Available leave balance
+================================================================ 12.
+LEAVE ELIGIBILITY
+================================================================ Leave
+eligibility may depend on: - Employee status - Employment category -
+Applicable leave type - Company policy - Employment agreement -
+Available leave balance
 
 Employees should check their current leave balance before applying.
 
-If the required leave type is unavailable or the balance is insufficient,
-the employee should contact Human Resources.
+If the required leave type is unavailable or the balance is
+insufficient, the employee should contact Human Resources.
 
-============================================================
-13. LEAVE BALANCE
-============================================================
+Explanation: The AI must not promise that a leave type is available to
+every employee. Exact personal eligibility should be determined from
+applicable policy and database information.
 
-The Leave Management System maintains employee leave balances.
+================================================================ 13.
+LEAVE BALANCE
+================================================================ The
+Leave Management System maintains employee leave balances.
 
-Available Leave is calculated as:
-
-Available Days = Allocated Days - Used Days
+Formula: Available Days = Allocated Days - Used Days
 
 An employee cannot normally submit a leave request when the available
 balance is insufficient for the requested duration.
 
-============================================================
-14. HOW TO APPLY FOR LEAVE
-============================================================
+Example: Allocated Days = 12 Used Days = 4 Available Days = 12 - 4 = 8
+days
 
-Employees must use the Leave Management System to apply for leave.
+Explanation: Personal leave balances must come from the authenticated
+employee’s database record. The AI must not invent a balance.
 
-General procedure:
+================================================================ 14. HOW
+TO APPLY FOR LEAVE
+================================================================
+Employees must use the Leave Management System.
 
-1. Log in to the Leave Management System.
-2. Open the Leave Request section.
-3. Select the required leave type.
-4. Select the start date.
-5. Select the end date.
-6. Enter the reason for leave.
-7. Review the requested dates.
-8. Verify that sufficient leave balance is available.
-9. Submit the leave request.
-10. Wait for the manager or authorized reviewer to approve or reject
-    the request.
+General procedure: 1. Log in. 2. Open Leave Request. 3. Select leave
+type. 4. Select start date. 5. Select end date. 6. Enter reason. 7.
+Review dates. 8. Verify sufficient balance. 9. Submit the request. 10.
+Wait for manager or authorized-reviewer approval.
 
-A submitted request has a status of:
+A submitted request has status Pending until reviewed.
 
-Pending
+AI NATURAL-LANGUAGE APPLICATION: The user does not need to fill a rigid
+form in separate messages.
 
-until it is reviewed.
+Example: “I want casual leave on 19-09-2026 because of a family
+function.”
 
-============================================================
-15. LEAVE REQUEST STATUS
-============================================================
+The AI should extract: Intent = leave_request Leave Type = Casual Leave
+Start Date = 2026-09-19 End Date = 2026-09-19 Reason = family function
 
-A leave request may have one of the following statuses:
+Because only one date was supplied, it is a one-day leave and: End Date
+= Start Date
 
-Pending:
-The request has been submitted and is waiting for review.
+The AI should then show confirmation: “Your leave request is ready:
+Casual Leave 19-09-2026 Reason: family function Would you like me to
+submit it?”
 
-Approved:
-The authorized manager or reviewer has approved the request.
+Only after explicit confirmation should the actual database insertion
+happen.
 
-Rejected:
-The authorized manager or reviewer has rejected the request.
+================================================================ 15.
+NATURAL-LANGUAGE LEAVE APPLICATION RULES
+================================================================ Users
+may express leave requests naturally.
 
-Employees should check the Leave Management System for the current status
-of their requests.
+Example: “I want casual leave tomorrow because I have a family
+function.”
 
-============================================================
-16. LEAVE APPROVAL PROCESS
-============================================================
+Extract: Leave Type = Casual Leave Start Date = tomorrow End Date =
+tomorrow Reason = family function
 
-Leave requests are reviewed by the employee's assigned manager or another
+Example: “I need sick leave on 20 September because I have a doctor’s
+appointment.”
+
+Extract: Leave Type = Sick Leave Start Date = 2026-09-20 End Date =
+2026-09-20 Reason = doctor’s appointment
+
+Example: “I want casual leave from September 19 to September 22 because
+I’m attending a family function.”
+
+Extract: Leave Type = Casual Leave Start Date = 2026-09-19 End Date =
+2026-09-22 Reason = attending a family function
+
+IMPORTANT RULE: Never ask the user for information that is already
+present in the current message or existing conversation draft.
+
+================================================================ 16.
+MISSING INFORMATION RULE
+================================================================ The AI
+must: 1. Extract all information available in the current message. 2.
+Merge it with the existing conversation/draft. 3. Normalize and validate
+values. 4. Determine what is actually missing. 5. Ask only for missing
+information. 6. If nothing is missing, go directly to confirmation.
+
+Example: “I want casual leave on 19-09-2026.”
+
+Known: Leave Type = Casual Leave Start Date = 2026-09-19 End Date =
+2026-09-19
+
+Missing: Reason
+
+Ask only: “What is the reason for your leave?”
+
+Do not ask again for leave type or dates.
+
+================================================================ 17.
+DATE HANDLING
+================================================================ The AI
+should understand: - today - tomorrow - next Monday - September 19 - 19
+September 2026 - 19/09/2026 - 19-09-2026 - from September 19 to
+September 22 - two days starting September 19
+
+Final database format: YYYY-MM-DD
+
+Date validation and normalization should be performed by application
+logic. For one-day leave: Start Date = End Date.
+
+================================================================ 18.
+LEAVE REQUEST STATUS
+================================================================
+Possible statuses:
+
+Pending: Submitted and waiting for review.
+
+Approved: Authorized manager or reviewer approved the request.
+
+Rejected: Authorized manager or reviewer rejected the request.
+
+Employees should check the Leave Management System for the current
+status.
+
+Explanation: Personal leave status must be retrieved from the database.
+The AI must not invent a status.
+
+================================================================ 19.
+LEAVE APPROVAL PROCESS
+================================================================ Leave
+requests are reviewed by the employee’s assigned manager or another
 authorized reviewer.
 
-Normal process:
+Normal process: Employee -> Submit Leave Request -> Pending -> Manager
+Review Manager Review -> Approved OR Rejected
 
-Employee
-    |
-    v
-Submit Leave Request
-    |
-    v
-Pending
-    |
-    v
-Manager Review
-    |
-    +-------------------+
-    |                   |
-    v                   v
-Approved            Rejected
+The manager may provide a comment when approving or rejecting.
 
-The manager may provide a comment when approving or rejecting the request.
+Explanation: Submission does not mean approval. The initial submitted
+status is Pending.
 
-============================================================
-17. MANAGER RESPONSIBILITIES
-============================================================
+================================================================ 20.
+MANAGER RESPONSIBILITIES
+================================================================
+Managers are responsible for: - Reviewing employee leave requests. -
+Checking team availability. - Considering project requirements. -
+Approving valid leave requests. - Rejecting requests when appropriate. -
+Providing comments when necessary. - Ensuring leave decisions are
+handled consistently. - Monitoring employee attendance and leave
+patterns.
 
-Managers are responsible for:
+Explanation: An employee submitting a request is different from a
+manager approving it. The employee cannot automatically approve their
+own request.
 
-- Reviewing employee leave requests.
-- Checking team availability.
-- Considering project requirements.
-- Approving valid leave requests.
-- Rejecting requests when appropriate.
-- Providing comments when necessary.
-- Ensuring leave decisions are handled consistently.
-- Monitoring employee attendance and leave patterns.
-
-============================================================
-18. MATERNITY LEAVE
-============================================================
-
-Maternity leave may be available according to company policy and applicable
-employment rules.
+================================================================ 21.
+MATERNITY LEAVE
+================================================================
+Maternity leave may be available according to company policy and
+applicable employment rules.
 
 Employees requiring maternity leave should contact Human Resources for
 eligibility, documentation and duration requirements.
 
-Where configured, the employee should submit the leave request through the
-Leave Management System.
+Where configured, submit the request through the Leave Management
+System.
 
-============================================================
-19. PATERNITY LEAVE
-============================================================
+Important: This policy does not specify an exact maternity leave
+duration. The AI must not invent a number of maternity leave days.
 
-Paternity leave may be available according to company policy and applicable
-employment rules.
+================================================================ 22.
+PATERNITY LEAVE
+================================================================
+Paternity leave may be available according to company policy and
+applicable employment rules.
 
 Employees requiring paternity leave should contact Human Resources for
 eligibility, documentation and duration requirements.
 
-Where configured, the employee should submit the leave request through the
-Leave Management System.
+Where configured, submit the request through the Leave Management
+System.
 
-============================================================
-20. BEREAVEMENT OR COMPASSIONATE LEAVE
-============================================================
+Important: This policy does not specify an exact paternity leave
+duration. The AI must not invent a number of paternity leave days.
 
-Employees may request bereavement or compassionate leave in the event of a
-qualifying family or personal circumstance.
+================================================================ 23.
+BEREAVEMENT / COMPASSIONATE LEAVE
+================================================================
+Employees may request bereavement or compassionate leave in the event of
+a qualifying family or personal circumstance.
 
 Eligibility and duration are determined according to applicable company
 policy.
 
 Employees should contact Human Resources when such leave is required.
 
-============================================================
-21. LEAVE CANCELLATION
-============================================================
+Important: This policy does not specify an exact duration.
 
-Employees who no longer require approved leave should inform their manager
-as soon as possible.
+================================================================ 24.
+LEAVE CANCELLATION
+================================================================
+Employees who no longer require approved leave should inform their
+manager as soon as possible.
 
-If the Leave Management System provides a cancellation option, the employee
-should use that option.
+If the system provides cancellation, use that option.
 
-If cancellation is not available through the system, the employee should
-contact the manager or Human Resources.
+If cancellation is unavailable, contact the manager or Human Resources.
 
 Cancellation of approved leave may require manager approval.
 
-============================================================
-22. LEAVE MODIFICATION
-============================================================
+Explanation: Cancellation is different from rejection. Rejection means a
+reviewer did not approve a request. Cancellation means the employee no
+longer requires previously requested or approved leave.
 
-If an employee needs to change the dates of an existing leave request, the
-employee should contact the manager or follow the available modification
-process in the Leave Management System.
+================================================================ 25.
+LEAVE MODIFICATION
+================================================================ If an
+employee needs to change dates of an existing leave request, contact the
+manager or follow the available modification process.
 
-A modified leave request may require a new approval.
+A modified request may require new approval.
 
-============================================================
-23. RETURN FROM LEAVE
-============================================================
+Explanation: Modification is different from creating a new request. When
+supported, the AI should identify the existing request being changed.
 
-Employees are expected to return to work on the approved return date.
+================================================================ 26.
+RETURN FROM LEAVE
+================================================================
+Employees are expected to return on the approved return date.
 
-If an employee needs to extend the leave period, the employee should
-contact the manager as soon as possible.
+If an employee needs to extend leave, contact the manager as soon as
+possible.
 
 Additional leave is subject to availability, eligibility and approval.
 
-============================================================
-24. UNAPPROVED ABSENCE
-============================================================
+Explanation: An extension is not automatically approved.
 
-An absence without required notification or approval may be considered an
+================================================================ 27.
+UNAPPROVED ABSENCE
+================================================================ An
+absence without required notification or approval may be considered an
 unapproved absence.
 
 Employees should inform their manager when they cannot attend work.
 
-Repeated unapproved absence may result in review by management and Human
-Resources.
+Repeated unapproved absence may result in review by management and HR.
 
-============================================================
-25. WORKPLACE RESPONSIBILITIES
-============================================================
+Explanation: Informing a manager does not automatically convert an
+absence into approved leave.
 
-Employees are expected to:
+================================================================ 28.
+WORKPLACE RESPONSIBILITIES
+================================================================
+Employees are expected to: - Follow approved working hours. - Maintain
+accurate attendance. - Apply for leave through the Leave Management
+System. - Provide truthful information in leave requests. - Inform
+managers about unexpected absence. - Follow approval requirements.
 
-- Follow approved working hours.
-- Maintain accurate attendance.
-- Apply for leave through the Leave Management System.
-- Provide truthful information in leave requests.
-- Inform managers about unexpected absence.
-- Follow approval requirements.
+Explanation: The AI must not encourage falsifying attendance or leave
+information.
 
-============================================================
-26. HR SUPPORT
-============================================================
+================================================================ 29. HR
+SUPPORT ================================================================
+Employees should contact Human Resources for: - Eligibility
+clarification - Documentation questions - Employment-specific rules -
+Policy provisions not clearly covered - Leave categories that are
+unavailable or unclear - Attendance corrections - Special circumstances
 
-Employees should contact the Human Resources Department when they need
-clarification about eligibility, documentation, employment-specific rules,
-or a policy provision that is not clearly covered in this document.
+DEMO HR CONTACT: Human Resources Department 100 Example IT Road Demo
+Technology Park Chennai, Tamil Nadu 600001 India Phone: +91 44 4000 1234
+Email: hr@example.knackforge.invalid
 
-============================================================
-27. POLICY SOURCE OF TRUTH
-============================================================
+These are fictional demonstration values.
 
-This document is the source of truth for policy questions in the Leave
+================================================================ 30.
+DEMO COMPANY DIRECTORY
+================================================================
+Company: KnackForge - DEMO Head Office: 100 Example IT Road, Demo
+Technology Park, Chennai, Tamil Nadu 600001, India HR Department: Human
+Resources HR Phone: +91 44 4000 1234 HR Email:
+hr@example.knackforge.invalid Leave Support: Leave Management Support
+Team Support Phone: +91 44 4000 5678 Support Email:
+support@example.knackforge.invalid Emergency HR - DEMO: +91 90000 12345
+Website - DEMO: https://knackforge.example.invalid
+
+All directory values are fictional test data.
+
+================================================================ 31.
+POLICY SOURCE OF TRUTH
+================================================================ This
+document is the source of truth for policy questions in the Leave
 Management AI knowledge base.
 
-The AI assistant must not invent company policy values that are not stated
-in this document.
+The AI must not invent company policy values that are not stated here.
 
-============================================================
-28. FREQUENTLY ASKED QUESTIONS
-============================================================
+If the policy does not specify an answer, say that the policy does not
+specify the requested information and direct the employee to HR when
+appropriate.
 
-Q: What are the company working hours?
+Policy source: This knowledge-base document.
 
-A: Standard working days are Monday to Friday. Standard office hours are
-9:00 AM to 6:00 PM, with a standard lunch break from 1:00 PM to 2:00 PM.
-Expected working time is 8 hours per standard working day.
+Personal employee source: Authenticated database.
 
-Q: How do I apply for leave?
+Database information includes: - Employee leave balance - Employee leave
+requests - Leave request status - Active configured leave types -
+Employee/manager relationship where configured
 
-A: Use the Leave Management System, select the leave type, select the start
-and end dates, enter the reason, review the request, verify sufficient
-balance, and submit it for manager or authorized-reviewer approval.
+Do not use database facts as a replacement for policy text. Do not use
+policy text as a replacement for personal database facts.
 
-Q: What happens after I submit leave?
+================================================================ 32. AI
+RESPONSE RULES
+================================================================ For
+policy questions: - Retrieve relevant policy information. - Answer using
+the knowledge base. - Do not invent missing policy values. - Say when
+information is not specified.
 
-A: The request is Pending until it is reviewed.
+For personal leave questions: - Authenticate the employee. - Retrieve
+actual database information. - Do not expose another employee’s private
+information.
 
-Q: Can I work from home without approval?
+For leave applications: - Understand the complete natural-language
+request. - Extract all available fields. - Merge with conversation
+history/draft. - Validate the leave type. - Normalize dates. - Treat one
+date as a one-day request. - Ask only for genuinely missing
+information. - Confirm the complete request. - Submit only after
+explicit confirmation. - Use the database service for actual insertion.
 
-A: No. Work from home is permitted only when approved by the appropriate
-manager or when specifically allowed by company policy.
+================================================================ 33.
+INFORMATION THAT MUST NOT BE INVENTED
+================================================================ The AI
+must not invent: - Exact maternity leave duration - Exact paternity
+leave duration - Exact bereavement leave duration - Leave entitlement
+numbers not stated in policy - Employee-specific balances -
+Employee-specific statuses - Manager decisions - Approval decisions -
+Company rules not present in policy - Real-world contact details - Real
+employee information
 
-Q: What should I do if I will be late?
+If information is unavailable, answer: “The policy does not specify that
+information.”
 
-A: Inform your manager as soon as reasonably possible.
+================================================================ 34.
+DATABASE VS KNOWLEDGE BASE
+================================================================
+KNOWLEDGE BASE: Used for working hours, attendance rules, late arrival,
+early departure, break policy, work-from-home policy, general leave
+policy, procedures, policy explanations and documented HR contact
+information.
 
-============================================================
-END OF POLICY
-============================================================
+DATABASE: Used for actual employee information, actual leave balances,
+actual leave requests, actual request status, actual configured leave
+types, manager relationships and actual leave creation.
+
+IMPORTANT: Do not replace database facts with LLM-generated text. Do not
+replace policy information with database assumptions.
+
+================================================================ 35.
+SECURITY AND PRIVACY
+================================================================ The AI
+must return only information the authenticated employee is authorized to
+access.
+
+Employees must not receive another employee’s private leave balance,
+leave history or personal information.
+
+The LLM must not be allowed to fabricate successful database operations.
+
+A leave request is considered submitted only after the database
+operation succeeds.
+
+================================================================ 36.
+FREQUENTLY ASKED QUESTIONS
+================================================================ Q: What
+are the company working hours? A: Standard working days are Monday to
+Friday. Standard office hours are 9:00 AM to 6:00 PM, with lunch from
+1:00 PM to 2:00 PM. Expected working time is 8 hours per standard
+working day.
+
+Q: What time does the workday start? A: The standard office start time
+is 9:00 AM.
+
+Q: What time does the workday end? A: The standard office end time is
+6:00 PM.
+
+Q: What are the working days? A: Monday to Friday.
+
+Q: When is lunch? A: 1:00 PM to 2:00 PM.
+
+Q: What should I do if I will be late? A: Inform your manager as soon as
+reasonably possible.
+
+Q: Is late arrival automatically treated as leave? A: No. Late arrival
+should not be treated as approved leave unless the appropriate leave or
+attendance adjustment has been approved.
+
+Q: Can I work from home without approval? A: Work from home is permitted
+only when approved by the appropriate manager or when specifically
+allowed by company policy.
+
+Q: What happens after I submit leave? A: The request is Pending until it
+is reviewed.
+
+Q: Who approves leave? A: The employee’s assigned manager or another
+authorized reviewer.
+
+Q: How is available leave calculated? A: Available Days = Allocated
+Days - Used Days.
+
+Q: How do I apply for leave? A: Use the Leave Management System, select
+leave type, start date, end date and reason, verify sufficient balance,
+and submit for approval.
+
+Q: What is the DEMO HR phone number? A: +91 44 4000 1234. This is
+fictional demonstration data.
+
+Q: What is the DEMO HR email? A: hr@example.knackforge.invalid. This is
+fictional demonstration data.
+
+Q: What is the DEMO office address? A: 100 Example IT Road, Demo
+Technology Park, Chennai, Tamil Nadu 600001, India. This is fictional
+demonstration data.
+
+Q: How many paternity leave days are available? A: This policy does not
+specify an exact paternity leave duration. Contact Human Resources for
+eligibility, documentation and duration requirements.
+
+Q: How many maternity leave days are available? A: This policy does not
+specify an exact maternity leave duration. Contact Human Resources for
+eligibility, documentation and duration requirements.
+
+================================================================ 37.
+FINAL AI INSTRUCTION
+================================================================ Use
+this document as the policy source of truth.
+
+For policy questions, retrieve and answer from this document.
+
+For personal employee information, use authenticated database data.
+
+For leave applications, understand the complete natural-language
+request, extract all available fields, merge them with the existing
+conversation state, ask only for missing information, confirm the
+complete request and submit to the database only after explicit
+confirmation.
+
+Never invent policy information. Never invent employee information.
+Never claim a leave request was submitted unless the database operation
+actually succeeded.
+
+================================================================ END OF
+DEMONSTRATION POLICY
+================================================================
+
+
+================================================================
+EXPANDED LEAVE TYPE GUIDE - DEMONSTRATION RULES
+================================================================
+
+IMPORTANT:
+The original policy states that leave categories may be available, but it
+does not define exact entitlement amounts, eligibility periods, required
+documents, or detailed qualifying events for every leave type.
+
+The following expanded rules are therefore DEMONSTRATION / TEST DATA
+created specifically for the Leave Management AI project. They are not
+real KnackForge legal or HR rules.
+
+The AI must treat these expanded values as fictional test policy data and
+must not present them as actual legal requirements.
+
+================================================================
+A. CASUAL LEAVE
+================================================================
+
+Purpose:
+Casual Leave is intended for short-term personal needs, planned personal
+work, family functions, appointments, urgent personal matters, or other
+ordinary situations where the employee needs a short absence from work.
+
+Typical situations where Casual Leave may be requested:
+- Attending a family function.
+- Attending a wedding.
+- Handling personal work.
+- Attending a personal appointment.
+- Taking care of an unexpected personal matter.
+- Taking a short break for a personal commitment.
+- Attending a school or family-related event.
+- Handling a non-medical household or personal requirement.
+
+Example:
+"I need casual leave on 19-09-2026 because I have a family function."
+
+The AI should extract:
+Leave Type = Casual Leave
+Start Date = 2026-09-19
+End Date = 2026-09-19
+Reason = family function
+
+Demonstration entitlement:
+Up to 12 days per calendar year.
+
+Demonstration usage rule:
+Casual Leave may normally be requested for one or more consecutive days,
+subject to available balance and manager approval.
+
+Demonstration restriction:
+Casual Leave should not be used as a substitute for Sick Leave when the
+employee is genuinely unable to work because of illness, where the
+appropriate sick-leave category is available.
+
+Documentation:
+Normally no medical document is required for ordinary personal reasons,
+but the manager or HR may request clarification when appropriate.
+
+Approval:
+Casual Leave is Pending after submission and remains unapproved until the
+assigned manager or authorized reviewer approves it.
+
+================================================================
+B. SICK LEAVE
+================================================================
+
+Purpose:
+Sick Leave is intended for situations where an employee is unable to work
+because of illness, injury, medical treatment, medical appointments, or
+recovery from a health-related condition.
+
+Typical situations:
+- Fever or flu.
+- Cold or infection.
+- Stomach illness.
+- Injury that prevents working.
+- Doctor or hospital appointment.
+- Medical examination.
+- Recovery after a medical procedure.
+- Other genuine health-related situations.
+
+Examples:
+"I need sick leave tomorrow because I have a doctor's appointment."
+"I am unwell and need sick leave today."
+"I need two days of sick leave because I have a fever."
+
+Demonstration entitlement:
+Up to 12 days per calendar year.
+
+Demonstration usage rule:
+Sick Leave may be requested for one or more days when the employee is
+unable to work due to a health-related reason.
+
+Documentation:
+For extended absence, HR or the manager may request supporting medical
+documentation. This demonstration policy does not define a fixed number
+of days after which documentation becomes mandatory.
+
+Important:
+The AI must not request sensitive medical details unnecessarily.
+The employee only needs to provide an appropriate leave reason for the
+application.
+
+================================================================
+C. EARNED LEAVE
+================================================================
+
+Purpose:
+Earned Leave is intended for planned longer personal breaks, vacations,
+travel, rest, or other planned periods away from work.
+
+Typical situations:
+- Vacation.
+- Planned travel.
+- Extended personal break.
+- Family vacation.
+- Planned rest period.
+- Personal commitments requiring several days.
+
+Examples:
+"I want earned leave from 10-10-2026 to 15-10-2026 for a vacation."
+"I need earned leave for five days for personal travel."
+
+Demonstration entitlement:
+Up to 18 days per calendar year.
+
+Demonstration usage rule:
+Employees should normally plan Earned Leave in advance so that managers
+can consider project schedules and team availability.
+
+Documentation:
+Normally not required for ordinary vacation or personal travel.
+
+Approval:
+Subject to available balance and manager/authorized-reviewer approval.
+
+Important:
+The exact balance must be read from the database for the employee.
+The AI must not assume that every employee has the full annual allocation.
+
+================================================================
+D. ANNUAL LEAVE
+================================================================
+
+Purpose:
+Annual Leave is intended for planned time away from work, such as
+vacations, extended rest, travel, or planned personal commitments.
+
+Typical situations:
+- Annual vacation.
+- Long planned trip.
+- Extended family visit.
+- Planned personal break.
+- Rest and recreation.
+
+Examples:
+"I want annual leave from December 20 to December 27 for my vacation."
+"I need annual leave for three days to travel with my family."
+
+Demonstration entitlement:
+Up to 20 days per calendar year.
+
+Demonstration usage rule:
+Annual Leave should normally be requested before the intended leave dates.
+Approval depends on balance and operational requirements.
+
+Documentation:
+Normally not required unless the employee's employment arrangement
+requires additional documentation.
+
+Important:
+If both Earned Leave and Annual Leave exist in the database, the AI must
+not assume they are interchangeable. It should use the employee's actual
+configured leave types.
+
+================================================================
+E. EMERGENCY LEAVE
+================================================================
+
+Purpose:
+Emergency Leave is intended for unexpected and urgent personal or family
+situations that require the employee's immediate absence.
+
+Typical situations:
+- Sudden serious family emergency.
+- Urgent household emergency.
+- Unexpected incident requiring immediate attention.
+- Other serious and unforeseen personal circumstances.
+
+Examples:
+"There is a family emergency and I need leave today."
+"I have an emergency at home and cannot come to work."
+
+Demonstration entitlement:
+Up to 3 days per calendar year.
+
+Demonstration usage rule:
+Emergency Leave may be requested with short notice because the nature of
+the leave is unexpected.
+
+Notification:
+The employee should inform the manager as soon as reasonably possible.
+
+Documentation:
+HR may request supporting information where appropriate.
+
+Important:
+The AI should not classify every ordinary personal task as an emergency.
+The user should describe the reason naturally, and the system can ask for
+clarification if the leave category is genuinely unclear.
+
+================================================================
+F. MATERNITY LEAVE
+================================================================
+
+Purpose:
+Maternity Leave is intended for an employee who requires leave related to
+pregnancy, childbirth, recovery following childbirth, or other
+pregnancy-related circumstances covered by the applicable company rules.
+
+Typical situations:
+- Pregnancy-related leave.
+- Leave for childbirth.
+- Recovery following childbirth.
+- Pregnancy-related medical appointments or complications where the
+  maternity category is applicable.
+
+Examples:
+"I need maternity leave because I am expecting a baby."
+"I want to apply for maternity leave starting 01-11-2026."
+"I need maternity leave for my delivery and recovery period."
+
+Demonstration entitlement:
+Up to 26 weeks in this fictional demonstration policy.
+
+Important:
+This number is DEMO ONLY and is not a statement of actual legal entitlement.
+
+Demonstration eligibility:
+An employee may be eligible subject to company rules, employment status,
+applicable law, and HR verification.
+
+Documentation:
+HR may request appropriate supporting documentation related to the
+maternity-leave request.
+
+Application:
+Where possible, employees should submit maternity leave through the Leave
+Management System and contact HR for eligibility and documentation.
+
+AI behavior:
+If a user asks "How many maternity leave days do I get?", the AI should
+use the policy value only if this expanded demonstration section is the
+active test policy. It should clearly identify it as the demonstration
+policy value if the application is being tested.
+
+The AI must not invent additional maternity benefits, payment rules,
+carry-forward rules, or legal entitlements that are not documented.
+
+================================================================
+G. PATERNITY LEAVE
+================================================================
+
+Purpose:
+Paternity Leave is intended for an eligible employee following the birth
+or qualifying arrival of a child, allowing the employee to support the
+child and family during the relevant period.
+
+Typical situations:
+- Birth of the employee's child.
+- Qualifying adoption or child-placement situation if covered by the
+  applicable company rules.
+- Immediate family support following childbirth.
+
+Examples:
+"My wife is expecting our baby and I need paternity leave."
+"My child was born and I want to apply for paternity leave."
+"I need paternity leave starting 20-10-2026 because my baby was born."
+
+Demonstration entitlement:
+Up to 15 working days per qualifying event.
+
+Important:
+This number is DEMO ONLY and is not a statement of actual legal entitlement.
+
+Demonstration eligibility:
+Eligibility may depend on employee status, applicable company rules, and
+the qualifying event.
+
+Documentation:
+HR may request appropriate supporting documentation confirming the
+qualifying event.
+
+Application:
+The employee should submit the request through the Leave Management
+System where the leave type is configured and contact HR for eligibility
+and documentation questions.
+
+AI behavior:
+If a user says:
+"I need paternity leave next week because my child is being born."
+
+The AI should recognize:
+Intent = leave_request
+Leave Type = Paternity Leave
+Dates = dates supplied by the user
+Reason = childbirth / support following childbirth
+
+It should not ask "Which leave type?" when the user has already clearly
+specified paternity leave.
+
+If the user only says:
+"My baby was born and I need some time off."
+
+The AI may infer that paternity leave could be relevant, but if the
+available context is insufficient to confidently determine the category,
+it should ask a short clarification question rather than inventing facts.
+
+================================================================
+H. BEREAVEMENT / COMPASSIONATE LEAVE
+================================================================
+
+Purpose:
+Bereavement or Compassionate Leave is intended for a qualifying death or
+serious family circumstance requiring the employee's immediate attention.
+
+Typical situations:
+- Death of an immediate family member.
+- Funeral arrangements.
+- Serious qualifying family circumstance.
+- Other compassionate circumstances approved by HR.
+
+Examples:
+"My father passed away and I need bereavement leave."
+"I need compassionate leave because of a death in my family."
+
+Demonstration entitlement:
+Up to 5 working days per qualifying event.
+
+Important:
+This is DEMO ONLY. The original policy did not define a fixed duration.
+
+Documentation:
+HR may request appropriate documentation when necessary.
+
+Notification:
+The employee should inform the manager and HR as soon as reasonably
+possible, while recognizing that emergencies may prevent immediate formal
+submission.
+
+================================================================
+I. COMPENSATORY LEAVE
+================================================================
+
+Purpose:
+Compensatory Leave is intended as time off provided where an employee has
+worked additional hours or on an approved non-standard working day and
+the applicable company process allows compensatory time.
+
+Typical situations:
+- Approved work on a scheduled weekly off.
+- Approved work on a company holiday.
+- Approved additional work that qualifies under company rules.
+
+Examples:
+"I worked on Saturday with manager approval and want compensatory leave."
+"I worked on the approved holiday and want to use my compensatory day."
+
+Demonstration entitlement:
+Determined according to approved additional work and company records.
+
+Important:
+Compensatory Leave must not be automatically granted merely because an
+employee worked extra hours. The additional work must qualify under the
+applicable company process.
+
+Database requirement:
+The system should verify the employee's actual compensatory balance or
+eligibility where such data is stored.
+
+================================================================
+J. OTHER APPROVED LEAVE
+================================================================
+
+Purpose:
+Other Approved Leave may cover a leave category that has been formally
+configured or approved by the company but is not described in detail in
+this document.
+
+Examples:
+- A special company-approved leave category.
+- A project-specific approved leave category.
+- Another category configured by HR.
+
+AI behavior:
+The AI must retrieve the actual configured leave type from the database.
+It must not invent the purpose or eligibility of an unspecified category.
+
+================================================================
+LEAVE TYPE DECISION GUIDE
+================================================================
+
+If the employee needs leave because of ordinary personal work:
+Consider Casual Leave.
+
+If the employee is sick, injured, receiving medical treatment, or has a
+medical appointment:
+Consider Sick Leave.
+
+If the employee wants a planned vacation or longer personal break:
+Consider Earned Leave or Annual Leave according to the employee's actual
+configured leave types and balance.
+
+If the employee has an unexpected urgent personal/family situation:
+Consider Emergency Leave.
+
+If the employee needs leave related to pregnancy, childbirth, or recovery:
+Consider Maternity Leave.
+
+If the employee needs leave following the birth or qualifying arrival of
+a child as an eligible parent:
+Consider Paternity Leave.
+
+If the employee has experienced a qualifying death or serious family
+circumstance:
+Consider Bereavement / Compassionate Leave.
+
+If the employee performed qualifying approved additional work:
+Consider Compensatory Leave.
+
+IMPORTANT:
+This guide helps the AI understand the intended use of categories.
+The final available leave type must be validated against the actual
+database configuration.
+
+================================================================
+LEAVE TYPE COMPARISON EXAMPLES
+================================================================
+
+Example 1:
+"I have a fever and cannot work tomorrow."
+
+Likely category:
+Sick Leave
+
+Example 2:
+"I have a family wedding next Friday."
+
+Likely category:
+Casual Leave
+
+Example 3:
+"I want to take a week off for my vacation."
+
+Likely category:
+Earned Leave or Annual Leave, depending on configured employee options.
+
+Example 4:
+"My child was born and I need time off."
+
+Likely category:
+Paternity Leave, subject to eligibility.
+
+Example 5:
+"I am pregnant and need leave for childbirth."
+
+Likely category:
+Maternity Leave, subject to eligibility.
+
+Example 6:
+"My father passed away and I need time off for the funeral."
+
+Likely category:
+Bereavement / Compassionate Leave.
+
+Example 7:
+"There is an urgent family emergency and I cannot come today."
+
+Likely category:
+Emergency Leave.
+
+Example 8:
+"I worked on Saturday after getting approval and want a day off."
+
+Likely category:
+Compensatory Leave, subject to qualifying records.
+
+================================================================
+AI RULE FOR AMBIGUOUS LEAVE TYPES
+================================================================
+
+If the user provides enough information to identify the leave type, do not
+ask the leave type again.
+
+Example:
+"I want sick leave tomorrow because I have a fever."
+
+The AI already knows:
+Leave Type = Sick Leave
+Date = tomorrow
+Reason = fever
+
+It should proceed to confirmation after validation.
+
+If the user says:
+"I need leave tomorrow because I have some personal work."
+
+The likely category is Casual Leave, but the AI should validate against
+the configured leave types and policy.
+
+If more than one category could reasonably apply, the AI may ask:
+"Would you like to use Casual Leave or another available leave category?"
+
+The AI must not silently choose a category when the distinction materially
+affects the employee's balance or eligibility.
+
+================================================================
+AI RULE FOR LEAVE DURATION
+================================================================
+
+If the user provides one date:
+Start Date = End Date
+
+Example:
+"I want casual leave on 19-09-2026."
+
+Result:
+Start Date = 2026-09-19
+End Date = 2026-09-19
+
+If the user provides a range:
+Use both dates.
+
+Example:
+"Casual leave from 19-09-2026 to 22-09-2026."
+
+Result:
+Start Date = 2026-09-19
+End Date = 2026-09-22
+
+If the user says:
+"I need leave for two days starting 19-09-2026."
+
+The system should calculate the appropriate end date using the application's
+date logic and preserve the user's intended duration.
+
+================================================================
+AI RULE FOR REASONS
+================================================================
+
+The reason should be captured naturally.
+
+Examples:
+"family function"
+"doctor appointment"
+"fever"
+"vacation"
+"childbirth"
+"new baby"
+"funeral"
+"family emergency"
+"approved weekend work"
+
+The AI should not force the employee to use a predefined reason list unless
+the application specifically requires one.
+
+================================================================
+AI RULE FOR CONFIRMATION
+================================================================
+
+When all required information is available, create a clear draft.
+
+Example:
+
+Leave Type: Casual Leave
+Start Date: 2026-09-19
+End Date: 2026-09-19
+Reason: Family function
+
+Then ask:
+
+"Your leave request is ready. Would you like me to submit it?"
+
+Only explicit confirmation should trigger the actual database submission.
+
+The AI must never say:
+"Your leave has been submitted."
+
+unless the database service actually succeeded.
+
+================================================================
+AI RULE FOR LEAVE BALANCE
+================================================================
+
+Before submission, the system should verify:
+
+Requested Duration <= Available Balance
+
+Example:
+
+Available Casual Leave = 5 days
+Requested Casual Leave = 2 days
+
+Result:
+Eligible based on balance.
+
+Example:
+
+Available Casual Leave = 1 day
+Requested Casual Leave = 3 days
+
+Result:
+Insufficient balance.
+
+The AI should tell the user that the available balance is insufficient
+and should not create an invalid leave request.
+
+================================================================
+DEMONSTRATION LEAVE POLICY CONTACTS
+================================================================
+
+HR Department:
+Human Resources Department
+
+DEMO Address:
+100 Example IT Road
+Demo Technology Park
+Chennai, Tamil Nadu 600001
+India
+
+DEMO HR Phone:
++91 44 4000 1234
+
+DEMO HR Email:
+hr@example.knackforge.invalid
+
+DEMO Leave Support:
+Leave Management Support Team
+
+DEMO Support Phone:
++91 44 4000 5678
+
+DEMO Support Email:
+support@example.knackforge.invalid
+
+DEMO Emergency HR:
++91 90000 12345
+
+All contact information is fictional demonstration data.
+
+================================================================
+IMPORTANT SOURCE-OF-TRUTH RULE
+================================================================
+
+This expanded section intentionally provides fictional demonstration
+details for testing the AI's ability to answer detailed questions about
+leave types.
+
+If this file is used in the application, the AI should treat the contents
+of this file as the configured DEMONSTRATION company policy.
+
+For production use, replace the demonstration entitlement values,
+eligibility rules, documentation requirements, addresses, phone numbers,
+and email addresses with officially approved company information.
+
+Never use these fictional values as real legal or employment advice.
+
+================================================================
+END OF EXPANDED LEAVE TYPE GUIDE
+================================================================
